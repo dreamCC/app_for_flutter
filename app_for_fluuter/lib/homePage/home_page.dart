@@ -28,8 +28,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       print('HomePage-bus1--收到消息:$ondate');
     });
 
-    EventBusUtil.instance.listen<EventBusUtilEvent>((value){
-      print('homePage--收到消息:${value.value}');
+    EventBusUtil.instance.listen((value){
+      print('homePage--收到消息:${value}');
     });
   }
 

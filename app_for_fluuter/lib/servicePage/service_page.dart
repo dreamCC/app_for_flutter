@@ -38,6 +38,7 @@ import 'sliver_appBar_page.dart';
 import 'custom_paint.dart';
 
 import 'offstage_page.dart';
+import 'bmprogresshud_page.dart';
 
 
 
@@ -70,7 +71,7 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
 
   List<String> _titles = ["Video_Player","sharePreferens","EventBus","HttpPage","DioPage",
     "DeviceInfo","Dialog","StreamController","GesturePage","InheritedPage","ConstrainsPage","SliverAppBarPage","ScrollViewPage",
-    "CustomPaintPage","OffStagePage",""];
+    "CustomPaintPage","OffStagePage",'BMPorgressHUDPage',""];
 
   CustomPaintPage _customPaintPage;
 
@@ -180,23 +181,10 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
                      }else if (index == 14) {
                        Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
                            builder: (context) => OffStagePage()));
+                     }else if (index == 15) {
+                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
+                           builder: (context) => BMProgressHudPage()));
                      }else {
-//                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
-//                           builder: (context) => WindowPage()));
-//
-                       // 我们会发现，前两个state和第三个是不一样的。
-                       print(this);
-                       print(ServicePage.of(context));
-                       print(ServicePageState());
-
-
-                       print('=========|${_customPaintPage.state})');
-
-//                       showBottomSheet(context: context, builder: (context){
-//
-//                         return Text('showBottomSheet');
-//                       });
-                       //Scaffold.of(context).showSnackBar(SnackBar(content: Text('showSnackBar')));
 
                      }
                    },
