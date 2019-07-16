@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:app_for_fluuter/common/progresshud.dart';
 
+import 'dart:math';
+
+
 class BMProgressHudPage extends StatefulWidget {
 
   @override
@@ -83,6 +86,10 @@ class _BMProgressHudState extends State<BMProgressHudPage> {
         }else {
 
           //ProgressHud.of(context).showLoading();
+
+
+
+
         }
       },
     );
@@ -93,4 +100,15 @@ class _BMProgressHudState extends State<BMProgressHudPage> {
   }
 
 
+}
+
+class StateLessColor extends StatelessWidget {
+  final Color color = Color.fromARGB(1, Random.secure().nextInt(255), Random.secure().nextInt(255), Random.secure().nextInt(255));
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: this.color,
+    );
+  }
 }
