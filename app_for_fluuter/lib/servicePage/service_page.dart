@@ -39,9 +39,16 @@ import 'custom_paint.dart';
 
 import 'offstage_page.dart';
 import 'bmprogresshud_page.dart';
+import 'value_listen_builder_page.dart';
+import 'widget_key_page.dart';
+import 'slivers_page.dart';
 
 
 
+@immutable
+class Person {
+  String name;
+}
 
 
 class ServicePage  extends StatefulWidget {
@@ -70,8 +77,9 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
 
 
   List<String> _titles = ["Video_Player","sharePreferens","EventBus","HttpPage","DioPage",
-    "DeviceInfo","Dialog","StreamController","GesturePage","InheritedPage","ConstrainsPage","SliverAppBarPage","ScrollViewPage",
-    "CustomPaintPage","OffStagePage",'BMPorgressHUDPage',""];
+    "DeviceInfo","Dialog","StreamController","GesturePage","InheritedPage","ConstrainsPage",
+    "SliverAppBarPage","ScrollViewPage", "CustomPaintPage","OffStagePage",'BMPorgressHUDPage',
+    'ValueLisentedBuilderPage','WidgetKeyPage','SliverPage',""];
 
   CustomPaintPage _customPaintPage;
 
@@ -108,6 +116,9 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
 
     });
 
+    streamController.stream.listen((date){
+      print(date);
+    });
 
 
     print("++++++++++++++++++++++++++");
@@ -119,7 +130,7 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
   Widget build(BuildContext context) {
 
 
-
+    print('------sericepage-build');
 
 
     return Scaffold(
@@ -129,6 +140,8 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
       body: NotificationListener(
           onNotification: (ScrollUpdateNotification notify){
             //print(notify.scrollDelta);
+
+
 
             return true;
           },
@@ -184,8 +197,20 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
                      }else if (index == 15) {
                        Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
                            builder: (context) => BMProgressHudPage()));
+                     }else if (index == 16) {
+                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
+                           builder: (context) => ValueLisentedBuilderPage()));
+                     }else if (index == 17) {
+                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
+                           builder: (context) => WidgetKeyPage()));
+                     }else if (index == 18) {
+                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
+                           builder: (context) => SliverPage()));
                      }else {
 
+                        setState(() {
+
+                        });
                      }
                    },
                  );
@@ -214,14 +239,6 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
             },
             onLoading: () async{
                 await Future.delayed(Duration(seconds: 3));
-
-
-//                if(_titles.length >= 50) {
-//                  setState(() {
-//                    _refreshVc.loadNoData();
-//                  });
-//                  return;
-//                }
 
 
                 setState(() {
