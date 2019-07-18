@@ -42,6 +42,7 @@ import 'bmprogresshud_page.dart';
 import 'value_listen_builder_page.dart';
 import 'widget_key_page.dart';
 import 'slivers_page.dart';
+import 'cache_image_page.dart';
 
 
 
@@ -80,7 +81,7 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
   List<String> _titles = ["Video_Player","sharePreferens","EventBus","HttpPage","DioPage",
     "DeviceInfo","Dialog","StreamController","GesturePage","InheritedPage","ConstrainsPage",
     "SliverAppBarPage","ScrollViewPage", "CustomPaintPage","OffStagePage",'BMPorgressHUDPage',
-    'ValueLisentedBuilderPage','WidgetKeyPage','SliverPage',""];
+    'ValueLisentedBuilderPage','WidgetKeyPage','SliverPage','CacheImagePage',""];
 
   CustomPaintPage _customPaintPage;
 
@@ -207,6 +208,9 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
                      }else if (index == 18) {
                        Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
                            builder: (context) => SliverPage()));
+                     }else if (index == 19) {
+                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
+                           builder: (context) => CacheImagePage()));
                      }else {
 
                         setState(() {
