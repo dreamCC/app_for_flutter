@@ -53,6 +53,9 @@ dependencies:
   #progrees
   #bmprogresshud: ^0.0.5
 
+  #cache image
+  cached_network_image: ^1.1.0
+
 
 
 dev_dependencies:
