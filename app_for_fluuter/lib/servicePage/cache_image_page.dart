@@ -24,13 +24,14 @@ class _CacheImagePageState extends State<CacheImagePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
+          Image.asset('assets/image0@2x.png', width: 200, height: 100,),
           RaisedButton(onPressed: (){
 
           }, child: Text('fetchImage'),),
           Divider(),
 
           CachedNetworkImage(
-            imageUrl: 'http://via.placeholder.com/200x400',
+            imageUrl: 'http://via.placeholder.com/200x150',
             errorWidget: (context, url, error){
               return Icon(Icons.error);
             },

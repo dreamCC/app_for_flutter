@@ -43,6 +43,8 @@ import 'value_listen_builder_page.dart';
 import 'widget_key_page.dart';
 import 'slivers_page.dart';
 import 'cache_image_page.dart';
+import 'future_builder_page.dart';
+import 'flutter_inherit_page.dart';
 
 
 
@@ -67,6 +69,11 @@ class ServicePage  extends StatefulWidget {
   }
 }
 
+/**
+ * 对于AutomaticKeepAliveClientMixin的作用的深刻理解。
+ * 1、能够保持状态的前提是。widget.canupdate 返回的是false。也就是说，在指定节点，widget.runtimeType 和 key 是一样的。
+ * 所以，flutter中tabBar是可以使用的。bottomNavigationBar是不能够使用的。*/
+
 class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClientMixin{
 
   @override
@@ -81,7 +88,7 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
   List<String> _titles = ["Video_Player","sharePreferens","EventBus","HttpPage","DioPage",
     "DeviceInfo","Dialog","StreamController","GesturePage","InheritedPage","ConstrainsPage",
     "SliverAppBarPage","ScrollViewPage", "CustomPaintPage","OffStagePage",'BMPorgressHUDPage',
-    'ValueLisentedBuilderPage','WidgetKeyPage','SliverPage','CacheImagePage',""];
+    'ValueLisentedBuilderPage','WidgetKeyPage','SliverPage','CacheImagePage','FutureBuilderPage',"FlutterInheritPage",""];
 
   CustomPaintPage _customPaintPage;
 
@@ -211,6 +218,12 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
                      }else if (index == 19) {
                        Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
                            builder: (context) => CacheImagePage()));
+                     }else if (index == 20) {
+                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
+                           builder: (context) => FutureBuilderPage()));
+                     }else if (index == 21) {
+                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
+                           builder: (context) => FlutterInheritPage()));
                      }else {
 
                         setState(() {
@@ -240,6 +253,7 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
 
                 _refreshVc.refreshCompleted();
                 _refreshVc.resetNoData();
+
               });
             },
             onLoading: () async{

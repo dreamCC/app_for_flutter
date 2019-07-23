@@ -41,9 +41,16 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         bottom: TabBar(
             controller: _tabController,
             tabs: [
-              Center(child: Text('One'),),
-              Center(child: Text('Two'),),
-              Center(child: Text('Three'),),
+//              Center(child: Text('One'),),
+//              Center(child: Text('Two'),),
+//              Center(child: Text('Three'),),
+//            Text('one'),
+//              Text('Two'),
+//              Text('There')
+
+              Tab(text: 'one',),
+              Tab(text: 'Two',),
+              Tab(text: 'There')
             ],
             labelColor: Colors.purple,
             unselectedLabelColor: Colors.white,
