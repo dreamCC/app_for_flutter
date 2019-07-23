@@ -41,7 +41,7 @@ class _FlutterInheritPageState extends HuState<FlutterInheritPage> {
         ),
         RaisedButton(
           onPressed: () {
-            hiddenEmptyView();
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => SecondPage()));
           },
           child: Text('hiddenEmptyView'),
 
