@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:app_for_fluuter/common/progresshud.dart';
+import 'package:app_for_fluuter/common/progress_hud.dart';
+
+
+import 'package:progress_dialog/progress_dialog.dart';
 
 import 'dart:math';
 
@@ -18,16 +21,17 @@ class BMProgressHudPage extends StatefulWidget {
 class _BMProgressHudState extends State<BMProgressHudPage> {
 
 
-  List<String> _contents = ['show','showLoading','showSuccessAndDismiss','showErrorAndDismiss','showAndDismiss','showMessage',''];
+  List<String> _contents = ['show','showLoading','showSuccessAndDismiss','showErrorAndDismiss','showAndDismiss','showMessage','ProgressDialog',
+  'progressHud_dialog-normal', 'progressHud_dialog-downlog'];
 
   String _name;
-
 
 
   @override
   Widget build(BuildContext context) {
 
     print('build start');
+
 
     return GestureDetector(
       onTap: (){
@@ -86,10 +90,6 @@ class _BMProgressHudState extends State<BMProgressHudPage> {
         }else {
 
           //ProgressHud.of(context).showLoading();
-
-
-
-
         }
       },
     );

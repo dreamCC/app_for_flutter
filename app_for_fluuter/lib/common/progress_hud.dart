@@ -22,7 +22,7 @@ class ProgressHud extends StatefulWidget {
   /// the offsetY of hudview postion from center, default is -50
   final double offsetY;
   final Widget child;
-  
+
   static ProgressHudState of(BuildContext context) {
     return context.ancestorStateOfType(const TypeMatcher<ProgressHudState>());
   }

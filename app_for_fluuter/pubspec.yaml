@@ -53,6 +53,8 @@ dependencies:
   #progrees
   #bmprogresshud: ^0.0.5
 
+  progress_dialog: ^1.1.0+1
+
   #cache image
   cached_network_image: ^1.1.0
 

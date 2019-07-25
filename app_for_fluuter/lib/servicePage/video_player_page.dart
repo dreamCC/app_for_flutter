@@ -117,3 +117,48 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
 
   }
 }
+
+// 子类不一定要实现父类的所有方法。但是，如果父类有有参构造函数，那么就必须实现。
+// 如果父类是抽象类，那么子类也是一定要实现的。dart 像对于java 对abstract 抽象关键字做了一定的改进。而且抽象类很想协议。
+// 必须下的例子。如果类声明为抽象类，那么其内部的方法，如果实现就不是抽象方法，如果不实现就是抽象方法。
+// 但是java里面。如果不实现，还必须要加上abstract关键字。而且如果父类不实现，那么子类就必须要实现。
+// 抽象关键字，很想协议。起规定作用。  非抽象方法，子类可以不用去重写。
+// dart语言中，放弃的interface接口关键字。
+abstract class Animal {
+
+  void hasFlag();
+
+  void canRun() {
+
+  }
+}
+
+class Animal1 {
+
+  void canEat() {
+
+  }
+}
+
+mixin Animal2 on Animal{
+
+  void canJump() {
+
+  }
+
+
+}
+
+
+class Cat extends Animal with Animal1, Animal2 {
+  @override
+  void hasFlag() {
+    // TODO: implement hasFlag
+
+  }
+
+
+}
+
+
+
