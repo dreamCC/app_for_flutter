@@ -102,8 +102,18 @@ class DialogPage extends StatelessWidget {
 
                   DialogUtil.showFailedDialog('这是一个很大的错误', context);
                 }else {
-                  DialogUtil.showIconDialog(context, Icon(Icons.print));
+
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (ctx){
+
+                        return Container(
+                          color: Colors.purple,
+                        );
+                      });
+
                 }
+
 
 
                },
@@ -116,6 +126,9 @@ class DialogPage extends StatelessWidget {
       )
     );
   }
+
+
+
 
 }
 

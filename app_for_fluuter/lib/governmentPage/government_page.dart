@@ -30,19 +30,23 @@ class _GovernmentPageState extends State<GovernmentPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          RaisedButton(
+          MediaQuery.removeViewInsets(context: context,
+          removeTop: true,
+          removeRight: true,
+          child: RaisedButton(
               child: Text('TextFieldWidget'),
               color: Colors.purple,
               highlightColor: Colors.red,
               elevation: 5,
-              onPressed: (){
+              onPressed: () {
                 print('RaisedButton click');
 
-                Navigator.push(context, MaterialPageRoute(builder: (context){
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) {
                   return TextFieldWidget();
                 }));
-             }
-          ),
+              }
+          )),
           Container(
             //margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
             width: 150,

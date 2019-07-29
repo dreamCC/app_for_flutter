@@ -23,10 +23,6 @@ class ProgressHud extends StatefulWidget {
   final double offsetY;
   final Widget child;
 
-  static ProgressHudState of(BuildContext context) {
-    return context.ancestorStateOfType(const TypeMatcher<ProgressHudState>());
-  }
-  
   ProgressHud({ @required this.child, this.offsetY = -50, Key key })
     : super(key: key);
 

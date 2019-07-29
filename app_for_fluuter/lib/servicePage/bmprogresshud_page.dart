@@ -7,6 +7,7 @@ import 'package:progress_dialog/progress_dialog.dart';
 
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 
 class BMProgressHudPage extends StatefulWidget {
 
@@ -24,7 +25,10 @@ class _BMProgressHudState extends State<BMProgressHudPage> {
   List<String> _contents = ['show','showLoading','showSuccessAndDismiss','showErrorAndDismiss','showAndDismiss','showMessage','ProgressDialog',
   'progressHud_dialog-normal', 'progressHud_dialog-downlog'];
 
-  String _name;
+  StringBuffer _name = StringBuffer();
+
+
+  GlobalKey<ProgressHudState> _progressKey;
 
 
   @override
@@ -36,25 +40,22 @@ class _BMProgressHudState extends State<BMProgressHudPage> {
     return GestureDetector(
       onTap: (){
 
-        print(ProgressHud.of(context));
-        ProgressHud.of(context).dismiss();
+        print(_progressKey.currentState);
+        _progressKey.currentState.dismiss();
 
       },
       child: Scaffold(
         appBar: AppBar(
           title: Text('BMProgressHudPage'),
         ),
-        body: Builder(
-            builder: (context){
-              return ProgressHud(
-                  child:  ListView.separated(
-                      itemBuilder: _itemCreate,
-                      separatorBuilder: _seperateCreate,
-                      itemCount: _contents.length
-                  )
-              );
-            }
-        ),
+        body: ProgressHud(
+            child:  ListView.separated(
+                itemBuilder: _itemCreate,
+                separatorBuilder: _seperateCreate,
+                itemCount: _contents.length,
+            ),
+          key: _progressKey = GlobalKey(),
+        )
       ),
     );
   }
@@ -66,30 +67,36 @@ class _BMProgressHudState extends State<BMProgressHudPage> {
 
         if(index == 0) {
 
-          ProgressHud.of(context).show(ProgressHudType.loading, '加载中...');
+          _progressKey.currentState.show(ProgressHudType.loading, '加载中...');
 
           Future.delayed(Duration(seconds: 3)).then((value){
-            ProgressHud.of(context).dismiss();
+            _progressKey.currentState.dismiss();
 
           });
         }else if(index == 1) {
-          ProgressHud.of(context).showLoading();
+          _progressKey.currentState.showLoading();
 
           Future.delayed(Duration(seconds: 3)).then((value){
-            ProgressHud.of(context).showSuccessAndDismiss(text: 'chenggong');
+            _progressKey.currentState.showSuccessAndDismiss(text: 'chenggong');
 
           });
         }else if(index == 2) {
-          ProgressHud.of(context).showSuccessAndDismiss(text: 'showSuccessAndDismiss');
+          _progressKey.currentState.showSuccessAndDismiss(text: 'showSuccessAndDismiss');
         }else if(index == 3) {
-          ProgressHud.of(context).showErrorAndDismiss();
+          _progressKey.currentState.showErrorAndDismiss();
         }else if(index == 4) {
-          ProgressHud.of(context).showAndDismiss(ProgressHudType.progress, 'showAndDismiss');
+          _progressKey.currentState.showAndDismiss(ProgressHudType.progress, 'showAndDismiss');
         }else if(index == 5) {
-          ProgressHud.of(context).showAndDismiss(ProgressHudType.message, 'showAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismiss');
+          _progressKey.currentState.showAndDismiss(ProgressHudType.message, 'showAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismiss');
         }else {
 
           //ProgressHud.of(context).showLoading();
+
+          _name.writeln('hello, world');
+
+
+
+          print(_name);
         }
       },
     );
@@ -112,3 +119,17 @@ class StateLessColor extends StatelessWidget {
     );
   }
 }
+
+
+class Person extends StatelessWidget {
+
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    // TODO: implement build
+    return null;
+  }
+}
+

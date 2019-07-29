@@ -119,7 +119,8 @@ class _MyAppState extends State<MyApp> {
           splashColor: null,
           splashFactory: NoSplashFactory(),
 
-          materialTapTargetSize: MaterialTapTargetSize.padded
+          materialTapTargetSize: MaterialTapTargetSize.padded,
+
       ),
 
       home: _showWelcomPage(),

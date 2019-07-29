@@ -6,6 +6,8 @@ import 'dart:async';
 import 'package:app_for_fluuter/common/notification_tool.dart';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
+
 
 
 class AnimationWidget extends StatefulWidget {
@@ -15,10 +17,74 @@ class AnimationWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _AnimationWidgetState();
+    return _AnimationWidgetS();
   }
 }
 
+
+// 通过这种方式，我们是不需要创建AnimtionController的。
+class _AnimationWidgetS extends State<AnimationWidget> with SingleTickerProviderStateMixin {
+
+  double _width = 100;
+
+
+  @override
+  Widget build(BuildContext context) {
+
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('AnimationWidget'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+
+          AnimatedContainer(
+              duration: Duration(seconds: 2),
+            color: Colors.purple,
+
+            width: _width,
+            height: 200,
+
+          ),
+          Divider(),
+
+          RaisedButton(
+              onPressed: () {
+                setState(() {
+                  _width += 10;
+                });
+              },
+              child: Text('RaisedButton')
+          ),
+
+          SizedBox(height: 20,),
+          Dismissible(
+              direction: DismissDirection.horizontal,
+
+              background: Container(
+                color: Colors.black,
+              ),
+              key: UniqueKey(),
+              child: Container(
+                alignment: Alignment(0, 0),
+                child: Text('hello,fluuter'),
+                color: Colors.purple,
+                width: 200,
+                height: 50,
+              )
+          )
+
+
+        ],
+      ),
+    );
+  }
+}
+
+
+/// 通过这种方式创建动画，一般比较麻烦。
 class _AnimationWidgetState extends State<AnimationWidget> with SingleTickerProviderStateMixin {
 
 
@@ -70,6 +136,7 @@ class _AnimationWidgetState extends State<AnimationWidget> with SingleTickerProv
     })..addListener((){
 
       // 如果不使用AnimatioWidget， 我们可以使用_animation.value取值，然后通过setState、或者是StreamBuilt来对动画进行刷新。
+      // 也可以通过。AnimationBuilder来实现动画通知，这种情况下，就不需要setState，但是和setState的效果是一样的。
       print('动画value----${_animation.value}');
 
 
@@ -131,6 +198,8 @@ class _AnimationWidgetState extends State<AnimationWidget> with SingleTickerProv
                 height: 200,
                 child: Stack(
                   children: <Widget>[
+
+                    // PositionTransition 必须在stack 中使用。
                     PositionedTransition(
                         rect: _relativeAnimation,
                         child: FlutterLogo(size: 50,)
@@ -140,7 +209,13 @@ class _AnimationWidgetState extends State<AnimationWidget> with SingleTickerProv
               ),
 
               // 平移动画的实现，目前没有找到相应的widget，那么我们就只能使用setState的方式来进行动画。
-
+              AnimatedBuilder(
+                  animation: _animation,
+                  builder: (context, widget){
+                    print('AnimatedBuilder');
+                    return FlutterLogo(size: 50 + _animation.value*100,);
+                  }
+              )
 
 
 
@@ -208,6 +283,7 @@ class _AnimationWidgetState extends State<AnimationWidget> with SingleTickerProv
     // TODO: implement dispose
     super.dispose();
 
+    _timer.cancel();
     _animationController.dispose();
     _animation.removeListener(null);
     _animation.removeStatusListener(null);

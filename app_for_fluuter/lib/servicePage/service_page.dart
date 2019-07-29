@@ -45,6 +45,7 @@ import 'slivers_page.dart';
 import 'cache_image_page.dart';
 import 'future_builder_page.dart';
 import 'flutter_inherit_page.dart';
+import 'animated_widget.dart';
 
 
 
@@ -88,7 +89,8 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
   List<String> _titles = ["Video_Player","sharePreferens","EventBus","HttpPage","DioPage",
     "DeviceInfo","Dialog","StreamController","GesturePage","InheritedPage","ConstrainsPage",
     "SliverAppBarPage","ScrollViewPage", "CustomPaintPage","OffStagePage",'BMPorgressHUDPage',
-    'ValueLisentedBuilderPage','WidgetKeyPage','SliverPage','CacheImagePage','FutureBuilderPage',"FlutterInheritPage",""];
+    'ValueLisentedBuilderPage','WidgetKeyPage','SliverPage','CacheImagePage','FutureBuilderPage',
+    "FlutterInheritPage","AnimatedListSample",""];
 
   CustomPaintPage _customPaintPage;
 
@@ -224,6 +226,9 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
                      }else if (index == 21) {
                        Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
                            builder: (context) => FlutterInheritPage()));
+                     }else if (index == 22) {
+                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
+                           builder: (context) => AnimatedListSample()));
                      }else {
 
                         setState(() {

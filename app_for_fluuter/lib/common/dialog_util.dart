@@ -238,7 +238,6 @@ class _CustomDialog extends StatelessWidget {
             )
             ,
           )
-          ,
         ),
       ),
     );
