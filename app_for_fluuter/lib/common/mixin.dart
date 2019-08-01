@@ -101,32 +101,40 @@ mixin CanShowEmptyWidgetMixin<T extends StatefulWidget> on State<T> {
 
 
 
-mixin CanShowProgressHudWidgetMixin {
+mixin CanShowProgressHudWidgetMixin<T extends StatefulWidget> on State<T> {
 
   Widget mixinProgressHudWidget({@required Widget body}){
-    return ProgressHud(child: body, key: _progressHudKey = GlobalKey(),);
+    return ProgressHud(child: body, key: _progressHudKey,);
   }
 
 
   /// progresshud key。
   GlobalKey<ProgressHudState> _progressHudKey;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _progressHudKey = GlobalKey();
+  }
+
 
   // ignore: slash_for_doc_comments
   /***************************** progress start *************************************/
-  void showHintProgressHud(String hint) {
+  Future showHintProgressHud(String hint) {
     judgetHasProgressHudValue();
-    _progressHudKey.currentState.showMessageAndDismiss(text: hint);
+    return _progressHudKey.currentState.showMessageAndDismiss(text: hint);
   }
 
-  void showSuccessProgressHud({String msg}) {
+  Future showSuccessProgressHud({String msg}) {
     judgetHasProgressHudValue();
-    _progressHudKey.currentState.showSuccessAndDismiss(text: msg);
+    return _progressHudKey.currentState.showSuccessAndDismiss(text: msg);
   }
 
-  void showErrorProgressHud({String msg}) {
+  Future showErrorProgressHud({String msg}) {
     judgetHasProgressHudValue();
-    _progressHudKey.currentState.showErrorAndDismiss(text: msg);
+    return _progressHudKey.currentState.showErrorAndDismiss(text: msg);
   }
 
 

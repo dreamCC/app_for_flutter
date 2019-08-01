@@ -11,6 +11,8 @@ import 'package:app_for_fluuter/servicePage/dio_page.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import 'dart:core';
+
 
 // 物理动画库
 import 'package:flutter/physics.dart';
@@ -46,9 +48,13 @@ import 'cache_image_page.dart';
 import 'future_builder_page.dart';
 import 'flutter_inherit_page.dart';
 import 'animated_widget.dart';
-
-
-
+import 'transform_page.dart';
+import 'url_launch_page.dart';
+import 'web_view_plugin_page.dart';
+import 'location_page.dart';
+import 'root_bundle_page.dart';
+import 'CustomWidget/custom_widget_page.dart';
+import 'regex_page.dart';
 
 @immutable
 class Person {
@@ -90,9 +96,11 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
     "DeviceInfo","Dialog","StreamController","GesturePage","InheritedPage","ConstrainsPage",
     "SliverAppBarPage","ScrollViewPage", "CustomPaintPage","OffStagePage",'BMPorgressHUDPage',
     'ValueLisentedBuilderPage','WidgetKeyPage','SliverPage','CacheImagePage','FutureBuilderPage',
-    "FlutterInheritPage","AnimatedListSample",""];
+    "FlutterInheritPage","AnimatedListSample","TransformPage","UrlLaunchPage","WebViewPluginPage",
+    "LocationPage","RootBundlePage","CustomWidgetPage","RegexPage",""];
 
   CustomPaintPage _customPaintPage;
+
 
   @override
   void initState() {
@@ -134,14 +142,12 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
 
     print("++++++++++++++++++++++++++");
 
+
   }
 
 
   @override
   Widget build(BuildContext context) {
-
-
-    print('------sericepage-build');
 
 
     return Scaffold(
@@ -229,11 +235,38 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
                      }else if (index == 22) {
                        Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
                            builder: (context) => AnimatedListSample()));
+                     }else if (index == 23) {
+                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
+                           builder: (context) => TransformPage()));
+                     }else if (index == 24) {
+                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
+                           builder: (context) => UrlLaunchPage()));
+                     }else if (index == 25) {
+                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
+                           builder: (context) => WebViewPluginPage()));
+                     }else if (index == 26) {
+                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
+                           builder: (context) => LocationPage()));
+                     }else if (index == 27) {
+                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
+                           builder: (context) => RootBundlePage()));
+                     }else if (index == 28) {
+                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
+                           builder: (context) => CustomWidgetPage()));
+                     }else if (index == 29) {
+                       Navigator.of(context, rootNavigator: false).push( MaterialPageRoute(
+                           builder: (context) => RegexPage()));
                      }else {
 
-                        setState(() {
 
-                        });
+                       num a = 2.0;
+                       num b = 1.1;
+                       print(a - b);
+                       
+                       // 数据num 可以进行小数保留。
+                       print(a.toStringAsFixed(4));
+                       print(a.toStringAsPrecision(4));
+
                      }
                    },
                  );

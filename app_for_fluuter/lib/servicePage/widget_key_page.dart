@@ -18,8 +18,8 @@ import 'package:flutter/material.dart';
  * 会发现需要更新updatechilde，所以就会刷新界面。比如，如果新的widget树，某个节点和旧的widget树的同一个节点对比[canupdate = true],
  * 那么Element就不是更新对于节点的element，而是使用原来的widget，更改其属性就ok。canUpdte会比较widget的runtimeType和key。所以key有时会显得特别重要。
  * 比如：下面这个例子。如果我们不传key的时候，flutter会对比新旧widget，canupdate，然后发现，runtimeType是一样的，然后返回ture
- * 所以不会使用newElement，而是使用了旧element（element不会调用updateChirld），所以我们会发现widget不会调用createStata 和 initState方法。
- * 同理如果传key，两次的key不一样。那么通过调用widget.canupdate返回true。所以这个时候会进行界面刷新，调用createState和 initState方法。
+ * 所以不会使用newElement，而是使用了旧element，所以我们会发现widget不会调用createStata 和 initState方法。
+ * 同理如果传key，两次的key不一样。那么会将旧的element从element树中移除，将widget映射的新的element插入到新的element树种。
  * */
 
 /**
@@ -36,6 +36,25 @@ import 'package:flutter/material.dart';
  * UnicodeKey() 作为唯一标识。一般用来控制子widget是否刷新。
  * GlobleKey() 一般用来获取子widget的state。*/
 
+/**
+ * widget是Element的配置信息。 Element是用来显示的。而真正渲染的其实是Rendobject.
+ * Element同时拥有widget和RenderObject两个对象。*/
+
+/**
+ * 我们发现Widget，表示Element的配置信息。Widget里面的方法也是很少，里面有createElement和canUpdate两个重要方法。
+ * StateLessWidget是继承Element的，并且重写了createElement方法。和暴露的一个build方法。
+ * StateFullWidget也是继承Element的，并且重写了createElement方法。和暴露的一个createState方法。*/
+
+
+/**
+ * ios中，事件的传递和响应。
+ * 1、传递是有UIWindow开始，通过遍历subViews的方式来寻找和是的view。
+ *    牵扯到两个重要的方法。-hitText(返回合适的view), -positionInside（判断点击点，是否在view上面。）
+ *    其中，-hitText方法的内部实现，
+ *       1.1、首选判断self的 userInfterface 、alpha、hidden属性（也就是判读self实现可见）。
+ *       1.2、判断-positionInside是否在self上。
+ *       1.3、遍历subViews，同样调用subViews的hitTest 和postionInside两个方法，来进行子view是否是合适的view。
+ * 2、事件的响应和传递刚好相反。但是事件是否会向父view传递，关键是看当前view是否重写touchBegin并且同时不调用super方法。*/
 
 class WidgetKeyPage extends StatefulWidget{
 
@@ -60,6 +79,7 @@ class _WidgetKeyPageState extends State<WidgetKeyPage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+
 
     return Scaffold(
       appBar: AppBar(
@@ -113,6 +133,7 @@ class _WidgetKeyPageState extends State<WidgetKeyPage> {
           ),
 
 
+          Opacity(opacity: 0.5)
 
         ],
       ),

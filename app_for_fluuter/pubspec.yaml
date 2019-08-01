@@ -58,6 +58,14 @@ dependencies:
   #cache image
   cached_network_image: ^1.1.0
 
+  #url_launch。通过默认浏览器来打开url。类似ios中，openUrl。
+  url_launcher: ^5.1.1
+
+  #web_view_plugin。webView
+  flutter_webview_plugin: ^0.3.5
+
+  #定位。
+  geolocator: ^5.1.1+1
 
 
 dev_dependencies:
