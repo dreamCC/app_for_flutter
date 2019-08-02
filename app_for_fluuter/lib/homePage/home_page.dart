@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:app_for_fluuter/common/event_bus.dart';
-import 'package:app_for_fluuter/servicePage/event_bus_page.dart';
+import 'package:app_for_fluuter/servicePage/plugin/event_bus_page.dart';
 
 class HomePage  extends StatefulWidget {
   @override

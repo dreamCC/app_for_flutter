@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'custom_paint_page.dart';
+import 'single_child_widget_layout_page.dart';
+import 'multity_child_widget_layout_page.dart';
 
 class CustomWidgetPage extends StatefulWidget {
 
@@ -12,7 +14,8 @@ class CustomWidgetPage extends StatefulWidget {
 
 class _CustomWidgetPageState extends State<CustomWidgetPage> {
 
-  List<String> _list = ["CustomPaintPage",""];
+  List<String> _list = ["CustomPaintPage","SingleChirldLayoutPage","MultiChildLayoutPage",""];
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,12 @@ class _CustomWidgetPageState extends State<CustomWidgetPage> {
               onTap: (){
                 if(index == 0){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => CustomPaintPage()));
+                }if(index == 1){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => SingleChirldLayoutPage()));
+                }if(index == 2){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => MultiChildLayoutPage()));
                 }else {
+
 
                 }
               },

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-export 'scrollview_page.dart';
+export 'package:app_for_fluuter/servicePage/SystermKnowledge/SysWidget/scrollview_page.dart';
 //import 'scrollview_page.dart';
 
 

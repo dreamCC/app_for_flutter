@@ -10,6 +10,16 @@ import 'package:flutter/gestures.dart';
 
 
 
+// flutter 动画的几种方式。
+// 使用AnimationController，可以通过Tween进行插值，获取Animatable， 通过Animation.addListen 进行监听，然后通过setState进行rebuild。
+// 利用AnimationBuilder，和AniamtionController进行动画,通过AnimationController.forfawd来驱动动画。
+// 利用xxxTransition，和AnimationController来进行动画，通过AnimationContrller.forward来驱动动画。
+// 利用AniatedxxWidget来进行动画。同时动画是通过，改变其属性来驱动的。
+
+//
+
+
+
 class AnimationWidget extends StatefulWidget {
 
 
@@ -26,6 +36,22 @@ class AnimationWidget extends StatefulWidget {
 class _AnimationWidgetS extends State<AnimationWidget> with SingleTickerProviderStateMixin {
 
   double _width = 100;
+
+  AnimationController _controller ;
+  Animation<double> _animation;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _controller = AnimationController(vsync: this);
+    _animation = Tween(begin: 10.0, end: 100.0).animate(_controller);
+
+    _controller.duration = Duration(seconds: 1);
+
+
+  }
 
 
   @override
@@ -53,7 +79,9 @@ class _AnimationWidgetS extends State<AnimationWidget> with SingleTickerProvider
           RaisedButton(
               onPressed: () {
                 setState(() {
-                  _width += 10;
+                  _width += 50;
+
+                  _controller.forward();
                 });
               },
               child: Text('RaisedButton')
@@ -74,6 +102,17 @@ class _AnimationWidgetS extends State<AnimationWidget> with SingleTickerProvider
                 width: 200,
                 height: 50,
               )
+          ),
+          AnimatedBuilder(
+              animation: _animation,
+              builder: (context, child){
+                return Container(
+                  color: Colors.purple,
+                  width: _animation.value,
+                  height: _animation.value,
+                  child: FlutterLogo(),
+                );
+              }
           )
 
 

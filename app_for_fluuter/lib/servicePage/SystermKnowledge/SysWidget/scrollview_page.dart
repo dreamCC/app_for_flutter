@@ -1,10 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'dart:ui';
 
 import 'package:app_for_fluuter/common/utils.dart';
-
-import 'bmprogresshud_page.dart';
 
 
 
@@ -49,10 +46,8 @@ class _ScrollViewPageState extends State<ScrollViewPage> {
     return ListTile(
       leading: Icon(Icons.android),
       title: Text('无与伦比的标题+$index'),
-      onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: (context){
-          return BMProgressHudPage();
-        }));
+      onTap: () {
+
       },
     );
   }
