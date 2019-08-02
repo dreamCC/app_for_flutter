@@ -6,6 +6,7 @@ import 'regex_page.dart';
 import 'root_bundle_page.dart';
 import 'stream_controller.dart';
 import 'widget_key_page.dart';
+import 'dart_io_page.dart';
 
 
 class SysUtilPage extends StatefulWidget {
@@ -19,7 +20,7 @@ class SysUtilPage extends StatefulWidget {
 class _SysUtilPageState extends State<SysUtilPage> {
 
   List<String> _list = ["HttpPage","InheritedPage","RegexPage","RootBundlePage","StreamControllerPage","WidgetKeyPage",
-    "","",""];
+    "DartIoPage","",""];
 
 
   @override
@@ -45,6 +46,8 @@ class _SysUtilPageState extends State<SysUtilPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => StreamControllerPage()));
                 }if(index == 5){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => WidgetKeyPage()));
+                }if(index == 6){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => DartIoPage()));
                 }else {
 
 
