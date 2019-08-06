@@ -7,9 +7,11 @@ import 'root_bundle_page.dart';
 import 'stream_controller.dart';
 import 'widget_key_page.dart';
 import 'dart_io_page.dart';
+import 'dart_future_page.dart';
 
 
 class SysUtilPage extends StatefulWidget {
+
 
   @override
   State<StatefulWidget> createState() {
@@ -20,7 +22,7 @@ class SysUtilPage extends StatefulWidget {
 class _SysUtilPageState extends State<SysUtilPage> {
 
   List<String> _list = ["HttpPage","InheritedPage","RegexPage","RootBundlePage","StreamControllerPage","WidgetKeyPage",
-    "DartIoPage","",""];
+    "DartIoPage","DartFuturePage",""];
 
 
   @override
@@ -48,8 +50,15 @@ class _SysUtilPageState extends State<SysUtilPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => WidgetKeyPage()));
                 }if(index == 6){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => DartIoPage()));
+                }if(index == 7){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => DartFuturePage()));
                 }else {
 
+                  // Dart中的所有类都是继承Object类。
+                  Iterator iterator = _list.iterator;
+                  while(iterator.moveNext()) {
+                    print(iterator.current);
+                  }
 
                 }
               },
@@ -61,3 +70,4 @@ class _SysUtilPageState extends State<SysUtilPage> {
     );
   }
 }
+

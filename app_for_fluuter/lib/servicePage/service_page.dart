@@ -81,14 +81,13 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
                        Navigator.push(context, MaterialPageRoute(builder: (context) => SystermKnowledgePage()));
                      }else {
 
+                       try{
+                         dotoS();
+                       }catch( error){
+                         print(error);
+                       }
 
-                       num a = 2.0;
-                       num b = 1.1;
-                       print(a - b);
-                       
-                       // 数据num 可以进行小数保留。
-                       print(a.toStringAsFixed(4));
-                       print(a.toStringAsPrecision(4));
+
 
                      }
                    },
@@ -119,6 +118,7 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
                 await Future.delayed(Duration(seconds: 3));
 
 
+
                 setState(() {
                   for(int i = 0; i<10; i++) {
                     _titles.add('$i');
@@ -131,6 +131,10 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
       ),
     );
 
+  }
+
+  void dotoS() {
+    throw FlutterError("error");
   }
 
 }
