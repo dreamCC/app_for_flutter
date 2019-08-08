@@ -34,10 +34,23 @@ class _OffStagePage extends State<OffStagePage> {
             ),
           ),
           Divider(),
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.purple,
+
+          Dismissible(
+              key: UniqueKey(),
+              child: Container(
+                color: Colors.purple,
+                height: 46,
+              ),
+              direction: DismissDirection.startToEnd,
+              dismissThresholds: {
+                DismissDirection.startToEnd:0.2
+              },
+              background: Container(
+                color: Colors.red,
+                height: 46,
+                child: Text("hell,world"),
+              ),
+
           )
         ],
       ),

@@ -16,7 +16,7 @@ class PathProviderPage extends StatefulWidget {
 // 其中Document和Perference是会自动备份。而且，app更新后，会将其从旧的沙盒中拷贝到新的沙盒中。所以我们做引导页的时候，
 // 如果想要使用NSUserDefault，那么就需要进行版本号匹配。
 
-// Android的本地缓存要复杂的偶。
+// Android的本地缓存要复杂的多。
 // Android有内部存储和外部存储（SDCard）两大类。
 // Internal Storage是一直可以使用的，而且不能被其它的app访问（也就是一个app，有相应的Internal Storage），而且当app卸载，那么会将其清空。
 //    内部存储有一般我们会使用两部分。lib(getFilesDir())和cache(getCacheDir())其区别是cache目录下面的文件，当app内存不足的时候就会将其清空。

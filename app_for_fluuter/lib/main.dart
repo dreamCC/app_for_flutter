@@ -7,8 +7,6 @@ import 'servicePage/service_page.dart';
 import 'common/battery_level.dart';
 import 'dart:ui';
 
-import 'package:dio/dio.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:app_for_fluuter/common/guide_page.dart';

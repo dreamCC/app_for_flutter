@@ -15,9 +15,6 @@ class GovernmentPage  extends StatefulWidget {
 
 class _GovernmentPageState extends State<GovernmentPage> {
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

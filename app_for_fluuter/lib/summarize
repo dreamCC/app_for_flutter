@@ -1,0 +1,25 @@
+2019.8.6
+1、手势。GestureDecorator、Inkwell、Listener几个监听手势。可以配合Transform使用。
+2、Transform的使用。一般不直接使用，因为内部嵌套的Matrix4使用比较麻烦。
+    配合暴露的方法。Transform.rotation、Transfor.scale、Transform.translate使用起来会方便很多。
+3、动画。牵扯到几个关键类。AnimatedController、Animatable（通过插值类Tween及其衍生类获取的）、Animation（通过Animatable获取）。
+    真正进行动画的可以有几种方式。Animation.addListen(){ setState() }、使用xxxTransition、使用Animatedxxxx(如AnimatedContainer等)。
+4、线程问题。Future类。Dart中，事件循环的两个主要事件类，MicroTask和EventTask，我们需要知道其工作方式。
+    Future()、Future.microTask() 创建异步线程。这里需要注意的是：创建的异步线程都是串行队列。
+    dart/ioslate 可以创建并发队列。但是不同线程间的传递有点麻烦。
+    sleep() 函数，存放在dart/foundation里面。
+5、IO操作。File类操作文件、Director类操作文件夹。
+    Director操作文件夹其实很简单。
+    File类，操作文件。牵扯到两种情况，其实和其它语言一样。字符流操作、字节流操作。
+    字符流：直接调用其方法。
+    字节流：牵扯到读流Stream、写流IOSink。
+6、Regex。正则表达式。
+
+
+2019.8.7
+1、Overlay和OverlayEntry的搭配使用。
+2、Materail控件的使用。
+3、ReorderListView。用于cell间的位置交换。需要注意onReorder方法的实现。
+4、Dismissable的使用。注意是滑动删除。
+5、DataTable的使用。用于数据的展示。但是其样式比较固定。可能不会直接使用，或者使用需要进行改动。
+

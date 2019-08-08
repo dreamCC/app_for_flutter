@@ -48,7 +48,7 @@ class _AnimationWidgetS extends State<AnimationWidget> with SingleTickerProvider
     _controller = AnimationController(vsync: this);
     _animation = Tween(begin: 10.0, end: 100.0).animate(_controller);
 
-    _controller.duration = Duration(seconds: 1);
+    _controller.duration = Duration(seconds: 3);
 
 
   }
@@ -113,7 +113,18 @@ class _AnimationWidgetS extends State<AnimationWidget> with SingleTickerProvider
                   child: FlutterLogo(),
                 );
               }
+          ),
+
+          // 跟着滑动的。
+          SlideTransition(
+            position: Tween(begin: Offset(0, 0.0), end: Offset(0, 0.5)).animate(_controller),
+            child: Container(
+              color: Colors.purple,
+              width: 100,
+              height: 40,
+            ),
           )
+
 
 
         ],
@@ -254,7 +265,8 @@ class _AnimationWidgetState extends State<AnimationWidget> with SingleTickerProv
                     print('AnimatedBuilder');
                     return FlutterLogo(size: 50 + _animation.value*100,);
                   }
-              )
+              ),
+
 
 
 
