@@ -11,7 +11,8 @@
 5、IO操作。File类操作文件、Director类操作文件夹。
     Director操作文件夹其实很简单。
     File类，操作文件。牵扯到两种情况，其实和其它语言一样。字符流操作、字节流操作。
-    字符流：直接调用其方法。
+    字符流：直接调用其方法。字符流，只能用于操作文本文件，因为其内部原理，相当于将字节转为字符，然后在将字符转字节，所以如果有比如音频文件，
+        那么转字符的时候会出现乱码。导致文件孙华。
     字节流：牵扯到读流Stream、写流IOSink。
 6、Regex。正则表达式。
 
@@ -22,4 +23,29 @@
 3、ReorderListView。用于cell间的位置交换。需要注意onReorder方法的实现。
 4、Dismissable的使用。注意是滑动删除。
 5、DataTable的使用。用于数据的展示。但是其样式比较固定。可能不会直接使用，或者使用需要进行改动。
+
+
+2019.8.8
+1、Form搭配FormTextField使用。其作用是，可以用来进行字段校验validation。
+2、extents、with、implement三个关键字的区别。
+    extents继承，当父类方法没有实现，那么就必须重写。
+    implement不管父类有没有实现，其子类都需要实现。
+    wit比较特殊，当我们像要实现多继承的时候，需要用到with关键字。而且with后面的，如果是class，那么就必须要继承Object类。如果继承的不是Object类，
+        需要用到关键字mixin和on来实现。
+3、字符串String = r"xxxxx \n xxxxx"; 创建的raw字符。里面的所以字符都是字符比如\n就是字符，而不是换行。正则表达式可以使用。其实类似\n前面加\。
+    即\\n。
+4、const修饰List数组，那么就不能向里面添加内容。const 修饰construction函数。那么其属性都必须是final类型的。
+    const相对于final，其不可变是会传递的。比如，用final修饰 数组，数组还是可以变的。但是const修饰那么数组是不会变的。
+5、函数中的参数，有可选命名参数和可选位置参数。主要是参数名字是否写上的问题。可选位置参数是不需要写的，可选命名参数需要写。
+6、factory工厂方法。 和其它的构造方法的区别就是。factory构造方法需要手动return 对象。
+7、ListView可以通过。buildChildLayout来将其转换为，SliderListView。
+8、Opacity控件。SingleChildRenderObjectWidget。
+9、继承自Widget的有，StatelessWidget、StatefullWidget、RenderObjectWidget。其中：
+    RenderObjectWidget有三个子类，SingleChildRenderObjectWidget、LeafRenderObjectWidget、MulitChirldRenderObjectWidget。
+    我们使用的所有Widget的本质，其实就是上面三种。但是我们接触的一些Widget会发现经常继承StateLessWidget、StateFullWidget，这些widget会调用
+        build方法，而系统的一些Widget的build的实现还是RenderObjectWidget。比如Text是StatelessWidget，但在build方法中，会创建RichText，
+        而RichText是SingleChirldRenderObjectWidget。
+    所以说，真正搬砖的是我们这些程序员。
+10、Widget、Element、RenderObject关系。Widget配置信息，Element显示的控件，而使其显示的绘画过程右RenderObject来完成。
+    其实是Element将RenderObject挂载到RenderTree上面。
 

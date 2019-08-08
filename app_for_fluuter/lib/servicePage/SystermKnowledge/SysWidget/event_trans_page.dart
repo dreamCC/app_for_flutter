@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/diagnostics.dart';
 
 
 
@@ -35,11 +36,14 @@ class _EventTransPageState extends State<EventTransPage> {
             child: RaisedButton(
                 onPressed: (){
                   print("RaisedButton click");
+                  
                 },
             ),
           ),
 
           Divider(),
+
+
           
 
 
@@ -50,3 +54,14 @@ class _EventTransPageState extends State<EventTransPage> {
 
 
 }
+
+
+
+class Person {
+
+  final String name;
+
+  Person(this.name);
+
+}
+

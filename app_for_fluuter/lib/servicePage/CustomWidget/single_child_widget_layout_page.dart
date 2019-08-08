@@ -58,3 +58,13 @@ class CustomChildLayoutDelegate extends SingleChildLayoutDelegate {
   }
 }
 
+
+class P extends SingleChildRenderObjectWidget {
+
+  @override
+  RenderObject createRenderObject(BuildContext context) {
+    // TODO: implement createRenderObject
+    return null;
+  }
+
+}

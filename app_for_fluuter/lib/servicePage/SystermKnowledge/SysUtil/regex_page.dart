@@ -27,7 +27,7 @@ class _RegexPageState extends State<RegexPage> {
         children: <Widget>[
           RaisedButton(
             onPressed: (){
-              RegExp regex = RegExp('1[3587]\\d{9}');
+              RegExp regex = RegExp(r'1[3587]\d{9}');
               Iterable<Match> allMatchs = regex.allMatches("我的电话号码18553098742，以前用过18823746391");
               for(Match m in allMatchs) {
                 for(int i = 0; i < m.groupCount+1 ; i++){

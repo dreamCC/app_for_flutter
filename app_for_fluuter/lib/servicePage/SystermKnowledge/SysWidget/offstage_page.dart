@@ -50,8 +50,8 @@ class _OffStagePage extends State<OffStagePage> {
                 height: 46,
                 child: Text("hell,world"),
               ),
+          ),
 
-          )
         ],
       ),
       floatingActionButton: IconButton(
@@ -65,3 +65,5 @@ class _OffStagePage extends State<OffStagePage> {
     );
   }
 }
+
+
