@@ -7,7 +7,7 @@
 4、线程问题。Future类。Dart中，事件循环的两个主要事件类，MicroTask和EventTask，我们需要知道其工作方式。
     Future()、Future.microTask() 创建异步线程。这里需要注意的是：创建的异步线程都是串行队列。
     dart/ioslate 可以创建并发队列。但是不同线程间的传递有点麻烦。
-    sleep() 函数，存放在dart/foundation里面。
+    sleep() 函数，存放在dart/io里面。
 5、IO操作。File类操作文件、Director类操作文件夹。
     Director操作文件夹其实很简单。
     File类，操作文件。牵扯到两种情况，其实和其它语言一样。字符流操作、字节流操作。
@@ -36,6 +36,7 @@
     即\\n。
 4、const修饰List数组，那么就不能向里面添加内容。const 修饰construction函数。那么其属性都必须是final类型的。
     const相对于final，其不可变是会传递的。比如，用final修饰 数组，数组还是可以变的。但是const修饰那么数组是不会变的。
+    总的来说，const限制条件更加苛刻。
 5、函数中的参数，有可选命名参数和可选位置参数。主要是参数名字是否写上的问题。可选位置参数是不需要写的，可选命名参数需要写。
 6、factory工厂方法。 和其它的构造方法的区别就是。factory构造方法需要手动return 对象。
 7、ListView可以通过。buildChildLayout来将其转换为，SliderListView。
@@ -48,4 +49,113 @@
     所以说，真正搬砖的是我们这些程序员。
 10、Widget、Element、RenderObject关系。Widget配置信息，Element显示的控件，而使其显示的绘画过程右RenderObject来完成。
     其实是Element将RenderObject挂载到RenderTree上面。
+
+2019.8.9
+1、MethodChannel实现native和flutter进行交互。
+2、PreferrSize对Appbar进行包裹，可以设置appbar的高度。PreferSize单独使用并不会限制子控件的尺寸，只是表明了想要子控件呈现的高度。
+3、PreferSizeWidget，抽象类。其实现该类的有，AppBar、ToolBar、PreferSize。
+4、WidgetsBindingObserver用来监听app的状态。其中有几个方法需要知道其作用：
+    didChangeMetrics() 尺寸改变。横竖屏、键盘弹出。
+    didChangeAppLifecycleState() app状态改变。前后台方面。
+5、State的deactivate()方法，是在widget从widgteTree中移除的时候调用。会在dispose()方法调用前调用。
+6、Context.size 获取widget的尺寸，前提是build（）结束。
+7、context.findRenderObject()  获取widget相应的RenderObject。
+8、window和MeidaQueyaData都能获取设备的一些信息。
+
+2019.8.12
+1、widget中key的作用。主要是确定widget相对应的ElementTree中的Element是通过什么方式来进行更新的。如果Widget的runtimeType和key都相等，
+    那么Widget的canUpdate方法返回true。相应的Element会通过update方法来进行更新。如果不同，那么会通过Element的remove、add的方式更新。
+2、Element的生命周期。
+    a、框架通过widget的creatElement创建element。
+    b、然后框架调用mount方法，将element添加到element tree中。并且会根据需要，调用attachRenderObject方法，将相对应的renderObject添加到
+        Render tree中。此时，element变为 active状态。
+    c、如果widget进行了rebuild，那么会通过widget的runtimeType和key来判断element是进行udpate还是进行remove操作。如果remove那么element
+        变成无效状态。并且会将其从element tree中进行卸载。
+3、RenderObject类是负责渲染的（主要包括布局和绘制）。因为其没有坐标系，所以我们一般使用其子类RenderBox（内置一个笛卡尔坐标系和原生ios、android坐标系一样）。
+    一般情况，自定义UI。我们通过自定义Widget和CustomPaint就能够实现。但是，如果需要特殊情况，我们可以通过继承RenderBox来实现。
+4、时间DateTime。通过showDatetimePicker 可以显示日期选择器。 TimeOfDay。通过showTimeOfPicker() 显示时间选择器。
+5、Timer定时器。在dart：async库中。方法很简单，创建延迟调用和重复调用的两种情况。
+6、Theme。默认MaterialApp有一个默认主题。同时我们可以使用Theme这个Widget进行局部主题设置。
+    所以Theme都是由ThemeDate来进行数据管理的。 有几个重要方法，copy、of(context)。
+    ThemeData(
+          primarySwatch: Colors.purple, //样本颜色。其很多主题受此影响。
+          accentColor: Colors.purple, // 文本、按钮。
+          accentColorBrightness: Brightness.light, // 亮度。
+          primaryColor: Colors.purple, // 主要颜色。Appbar、TabBar。
+          textTheme: TextTheme(
+            button: TextStyle(fontSize: 20)
+          )
+        ); // 常用的可能就这么多。内部有很多配置，其实在使用的时候在进行配置就可以。
+7、关键字。
+    show、hidden一般用于import 'xxxx' show/hidden xx;  表示使用库中的一部分。 比如.dart 文件中有多个类，我们可以通过使用
+        show（导入整个库中的 xxxx）、hidden（导入整个库除了xxxx）来进行选择导入指定的类。
+
+    final 会进行类型推导。
+
+    as、is、is！其中is和is！很好理解，就是判断是是否是一个类或其子类。其实就是oc中，isMemberOf和isKindOf两个的结合体。
+    as有两个用途。1、类型转换。向下转换。(superClass as subClass).xxxx父类转子类，调用其子类方法。
+                2、给指定.dart文件添加前缀。
+                    import 'aaa.dart';
+                    impoot 'bbb.dart';
+                    如果aaa.dart 和bbb.dart中，同时有相同类xxx。那么我们使用xxx去创建的时候就有问题。此时可以通过
+                    import 'bbb.dart' as B; 那么使用bbb.dart中的类就需要通过B.xxxx 来进行创建。有点类似swift中的命名空间。
+
+    mixin on / with（混入。如果类没有是实现，那么就必须要实现） implements(和java一样必须要实现) extents（继承）。
+    mixin on xxx 指定只有实现了on 后面的xxx才能进行混入，on其实也就是进行了混入限定。 常用于继承state类。
+    with后面的类有一个特点：如果with后面是class，那么class必须是继承自Object类。所以，这大概就是引入mixin on的原因吧。
+
+    typedef 和其它语言的typedef的作用没什么区别。但是语法有些不同。比如oc中，我们可以声明任意类型、block： typedef int xxx;
+    dart中只能声明函数。typedef XXX = xx Function();
+
+    defferred as 常用语import 'xxxxx.dart' defferred as XXX;表示该库为延时加载库，通常还需要给其重命名。
+
+    covariant 协变。
+
+    operator 操作符。如果我们想要一些操作符比如 + - == 等操作符，需要用该关键字，比如重写==方法。
+    @override
+      bool operator ==(other) {
+        // TODO: implement ==
+        return true;
+      }
+
+2019.8.13
+1、Android Studio调试。 Systerm.out.println("xxxxx"); 比如断点打在这个位置：
+    a、step over（使用比较频繁）。表示我们println方法视为一步，越过该函数（该函数执行完毕）执行下一步。
+    b、step into。 跟上面的刚好相反，它会进入println方法内部执行。（严格意义上的一步一执行）。
+    c、force step into。 感觉和step into效果一样。
+    d、step out。一般配合step into使用。表示跳出进入的函数。step into和step out成对使用，其实就是step over的效果。
+    e、step to curse。 执行到光标所在位置。这个就很好理解。
+
+    上面是比较基础的调试。像一些高级调试技巧：
+    a、Evaluate Expression。就是step to curse右边的小计算器。功能很强大。我们可以通过输入一些调教，来获取相应的输出。
+    b、条件断点。我们可以给断点输入条件，来进行筛选。比如for循环中，我们使用条件断点。
+    c、异常断点。xcode其实也有这个功能。通过Run->View breakPoints来进行添加。这样就能够更加准确的定位错误信息。
+
+
+2019.9.9
+1、flutter中，set & get。
+    默认添加属性（非私有），系统会提供set、get方法。我们通过.语法可以调用set和get。这个和oc的原理很像。和java就很不一样。java中的点语法
+    其实是直接访问成员变量，java虚拟机并不会给其添加set、get方法，如果想要添加，我们需要手动添加set、get方法。
+
+    flutter中，点语法的写法。 String get name {}, set name(String xx){} 后面大括号可以使用 => 来代替。
+2、 flutter中，资源文件的控制。通过 pubspec.yaml 文件，来指定资源文件路径如下，assets就是我们穿件的文件夹（当然，我们不一定非要使用这个名字）。
+      assets:
+        - assets/
+     我们通过import 'package:flutter/services.dart'; 文件下面，我们可以使用rootAssetBundle 或者 PlateFormAssetBundle来获取pubspec.yaml指定
+     的资源路径。
+3、 对fullter， StreamController的理解。 StreamController相当于一机器，该机器有入口sink（StreamSink）， 出口stream（Stream），
+    通过sink.add 添加数据， stream.listen（StreamSubscribe） 来监听数据。
+    StreamController两种初始化方法，StreamController()单订阅，即只能调用一次listent，取消后不能再次监听 和 StreamController.broadcast()广播，即可以多次listent。
+    StreamController注意关闭。
+4、Theme和ThemeDate的搭配使用可以有效的控制主题。
+
+
+
+
+
+
+
+
+
+
 

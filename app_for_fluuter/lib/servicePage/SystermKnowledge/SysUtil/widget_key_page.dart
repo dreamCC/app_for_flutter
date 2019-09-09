@@ -110,6 +110,7 @@ class _WidgetKeyPageState extends State<WidgetKeyPage> {
           _textWidget = TextWidget(text: text,),
           //TextKeyWidget(key: _globalKey,),
 
+
           // 根据品台创建不同分格的widget。
           Switch.adaptive(
               value: _switchValue,

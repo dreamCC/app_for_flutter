@@ -33,8 +33,12 @@ class _RootBundlePageState extends State<RootBundlePage> {
           RaisedButton(
             onPressed: () async{
 
+              // PlateFormAssetBundle（）其实是一样的。
               _rootString = await rootBundle.loadString("assets/locationInfo.json");
               setState(() { });
+
+
+              PlatformAssetBundle();
 
 
 

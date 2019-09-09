@@ -50,10 +50,12 @@ class _DartIoPageState extends State<DartIoPage> {
                     file.createSync(recursive: true);
                   }
 
-                  // 向文件里面写内容。
+                  // 向文件里面写内容。字符流的两种方式，字符串和bytes。
                   file.writeAsStringSync('这是我写入的内容----');
                   // 通过bytes的方式写。 注意写文件会覆盖原来的内容。
                   file.writeAsBytesSync(Utf8Encoder().convert("hello,world"));
+
+                  file.writeAsBytesSync("hello.world".codeUnits);
 
                   print(file.absolute.path);
 
@@ -64,7 +66,6 @@ class _DartIoPageState extends State<DartIoPage> {
                   // file.rename 给文件重新命名。
 
                 }else if(index == 1) {
-
 
                   // fileStream 其实就是文件流的方式。 其实这个模拟stream操作。我们其实可以直接copy进行操作。
                   File readFile = File("/Users/zhuchaojun/Documents/宝藏/个人简历.docx");

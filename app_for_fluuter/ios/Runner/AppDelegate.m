@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "GeneratedPluginRegistrant.h"
 
+#import "CustomPluginRegistrant.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application
@@ -13,6 +14,8 @@
 
     
     [GeneratedPluginRegistrant registerWithRegistry:self];
+    
+    [CustomPluginRegistrant registerWithRegistry:self];
     
     
     NSLog(@"%@", NSHomeDirectory());

@@ -32,7 +32,7 @@ class _HttpPage extends State<HttpPage> {
     // 一般我们发送网络氢气，如果该请求需要进行验证，那么reponseCode = 401，而且会增加www-authenticte 字段。
     // 如WWW-Authenticate: Basic realm="admin" 。realm表示认证域。
     // 服务器及需要增加authenticate字段。如 Authorization: Basic YXXFISDJFISJFGIJIJG
-    //client.addCredentials(url, 'admin', HttpClientBasicCredentials('', ''));
+    // client.addCredentials(url, 'admin', HttpClientBasicCredentials('', ''));
 
     // 还有一种是动态验证。即，我们可以监听client是否需要验证的毁掉，如果需要验证，那么我们就动态的添加验证。
 //    client.authenticate = (url, schem, realm) async {

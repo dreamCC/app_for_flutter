@@ -9,6 +9,7 @@ import 'web_view_plugin_page.dart';
 import 'bmprogresshud_page.dart';
 import 'cache_image_page.dart';
 import 'path_provider_page.dart';
+import 'keybord_actions_page.dart';
 
 class PluginPage extends StatefulWidget {
 
@@ -21,7 +22,7 @@ class PluginPage extends StatefulWidget {
 class _PluginPageState extends State<PluginPage> {
 
   List<String> _list = ["DioPage","EventBus","LocationPage","UrlLaunchPage","Video_Player","WebViewPluginPage",
-    "BMProgressHudPage","CacheImagePage","PathProviderPage",""];
+    "BMProgressHudPage","CacheImagePage","PathProviderPage","KeyboardActionsPage",""];
 
 
   @override
@@ -53,7 +54,12 @@ class _PluginPageState extends State<PluginPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => CacheImagePage()));
                 }if(index == 8){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => PathProviderPage()));
+                }if(index == 9){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => KeyboardActionsPage()));
                 }else {
+
+
+                  FocusScope.of(context).requestFocus(FocusNode());
 
 
                 }

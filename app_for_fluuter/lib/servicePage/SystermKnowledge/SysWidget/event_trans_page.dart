@@ -1,7 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/diagnostics.dart';
-
 
 
 class EventTransPage extends StatefulWidget {
@@ -14,10 +12,27 @@ class EventTransPage extends StatefulWidget {
 
 }
 
-class _EventTransPageState extends State<EventTransPage> {
+class _EventTransPageState extends State<EventTransPage> with TestMixin{
+
+
+  void testMethod() {
+
+    print("hello,world");
+
+    for(int a in [1,2,4]) {
+      print(a);
+    }
+
+    print("hello,world");
+  }
 
   @override
   Widget build(BuildContext context) {
+
+
+    testMethod();
+
+    print("hello,world");
 
     // TODO: implement build
     return Scaffold(
@@ -34,9 +49,12 @@ class _EventTransPageState extends State<EventTransPage> {
             width: 150,
             height: 150,
             child: RaisedButton(
-                onPressed: (){
+                onPressed: () {
                   print("RaisedButton click");
-                  
+
+
+
+
                 },
             ),
           ),
@@ -44,7 +62,7 @@ class _EventTransPageState extends State<EventTransPage> {
           Divider(),
 
 
-          
+
 
 
         ],
@@ -57,11 +75,7 @@ class _EventTransPageState extends State<EventTransPage> {
 
 
 
-class Person {
+mixin TestMixin<T extends StatefulWidget> on State<T> {
 
-  final String name;
-
-  Person(this.name);
 
 }
-

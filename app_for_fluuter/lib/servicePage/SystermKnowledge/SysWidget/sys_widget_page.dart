@@ -15,7 +15,7 @@ import 'data_table_page.dart';
 import 'reorder_list_view_page.dart';
 import 'over_lay_page.dart';
 import 'form_field_page.dart';
-
+import 'notifycation_listen_page.dart';
 
 class SysWidgetPage extends StatefulWidget {
 
@@ -29,11 +29,12 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
 
   List<String> _list = ["AnimatedWidgetPage","ConstransiPage","FutureBuilderPage","GesturePage",
     "OffstagePage","ScrollviewPage","SliverAppBarPage","SliversPage","TransformPage","ValueListenBuilderPage",
-    "EventTransPage","DataTablePage","ReorderListViewPage","OverlayPage","FormFieldPage",""];
+    "EventTransPage","DataTablePage","ReorderListViewPage","OverlayPage","FormFieldPage","NotifacationListsenPage",""];
 
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text("SysWidgetPage"),
@@ -73,6 +74,8 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => OverLayPage()));
                 }if(index == 14){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => FormFieldPage()));
+                }if(index == 15){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => NotifacationListsenPage()));
                 }else {
                 }
               },

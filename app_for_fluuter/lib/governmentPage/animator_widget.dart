@@ -66,6 +66,7 @@ class _AnimationWidgetS extends State<AnimationWidget> with SingleTickerProvider
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
 
+          // 有点类似oc中的隐式动画。
           AnimatedContainer(
               duration: Duration(seconds: 2),
             color: Colors.purple,

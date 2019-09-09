@@ -17,6 +17,7 @@ class _RegexPageState extends State<RegexPage> {
 
   @override
   Widget build(BuildContext context) {
+
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
@@ -28,6 +29,7 @@ class _RegexPageState extends State<RegexPage> {
           RaisedButton(
             onPressed: (){
               RegExp regex = RegExp(r'1[3587]\d{9}');
+
               Iterable<Match> allMatchs = regex.allMatches("我的电话号码18553098742，以前用过18823746391");
               for(Match m in allMatchs) {
                 for(int i = 0; i < m.groupCount+1 ; i++){

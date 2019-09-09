@@ -22,6 +22,7 @@ class _ReorderListViewPageState extends State<ReorderListViewPage> {
       body: ReorderableListView(
           children: _list.map((content){
 
+
             return Card(
               key: UniqueKey(),
               color: Colors.grey,
@@ -35,6 +36,7 @@ class _ReorderListViewPageState extends State<ReorderListViewPage> {
           }).toList(),
           onReorder: (oldIndex, newIndex){
             print("oldeIndex-$oldIndex   newIndex-$newIndex");
+
 
             // 这个操作非常重要。不然会错乱。
             if(oldIndex < newIndex){

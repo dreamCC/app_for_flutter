@@ -24,7 +24,7 @@ class ServicePage  extends StatefulWidget {
 
 /**
  * 对于AutomaticKeepAliveClientMixin的作用的深刻理解。
- * 1、能够保持状态的前提是。widget.canupdate 返回的是false。也就是说，在指定节点，widget.runtimeType 和 key 是一样的。
+ * 1、能够保持状态的前提是。widget.canupdate 返回的是true。也就是说，在指定节点，widget.runtimeType 和 key 是一样的。
  * 所以，flutter中tabBar是可以使用的。bottomNavigationBar是不能够使用的。*/
 
 class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClientMixin{

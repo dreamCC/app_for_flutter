@@ -8,7 +8,7 @@ import 'package:flutter/foundation.dart';
 // Dart的事件循环机制。
 // 其执行顺序。
 // 1、执行main()。
-// 2、检测microTask队列，是否有任务。如果有，那么会先执行microTask的任务。知道执行完成。
+// 2、检测microTask队列，是否有任务。如果有，那么会先执行microTask的任务。直到执行完成。
 // 3、到microTask队列执行完后，检测eventTask队列，是否有任务。如果有，那么会eventTask队列的任务。执行完后，跳到2.
 
 
@@ -41,17 +41,22 @@ class _DartFuturePageState extends State<DartFuturePage> {
 
                   // event Task
                   Future((){
+                    sleep(Duration(seconds: 3));
                     print('event Task');
                   });
 
+
                   // 添加micro task的两种方式。
                   scheduleMicrotask((){
+                    sleep(Duration(seconds: 3));
                     print('micro Task');
                   });
                   Future.microtask((){
+                    sleep(Duration(seconds: 3));
                     print("microTask Task");
                   });
 
+                  print("main task");
                   // 输出结果。可以看出，是先执行micro Task。
                   // flutter: microTask Task
                   // flutter: event Task

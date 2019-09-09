@@ -26,10 +26,7 @@ class NotificationRouteState extends State<NotificationRoute> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-//          RaisedButton(
-//           onPressed: () => MyNotification("Hi").dispatch(context),
-//           child: Text("Send Notification"),
-//          ),
+
               Builder(
                 builder: (context) {
                   return RaisedButton(

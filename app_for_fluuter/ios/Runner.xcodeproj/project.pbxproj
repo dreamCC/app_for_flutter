@@ -20,6 +20,8 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		A6037D4622FD0D0F00CAD981 /* CustomPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = A6037D4522FD0D0F00CAD981 /* CustomPluginRegistrant.m */; };
+		A6037D4A22FD0DDB00CAD981 /* CustomPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6037D4922FD0DDB00CAD981 /* CustomPluginManager.m */; };
 		A61FB04822B1F878006E3C02 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A61FB04722B1F878006E3C02 /* ViewController.m */; };
 		A6A5C00022B2331A00E89702 /* SecondeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A5BFFF22B2331A00E89702 /* SecondeViewController.m */; };
 		A6A5C00322B2332300E89702 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A5C00222B2332300E89702 /* ThirdViewController.m */; };
@@ -62,6 +64,10 @@
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99EF3090899E25AA57FC7B2B /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		A0D1FCA0FA4088759C571F48 /* libPods-Runner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Runner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6037D4422FD0D0F00CAD981 /* CustomPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPluginRegistrant.h; sourceTree = "<group>"; };
+		A6037D4522FD0D0F00CAD981 /* CustomPluginRegistrant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPluginRegistrant.m; sourceTree = "<group>"; };
+		A6037D4822FD0DDB00CAD981 /* CustomPluginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPluginManager.h; sourceTree = "<group>"; };
+		A6037D4922FD0DDB00CAD981 /* CustomPluginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPluginManager.m; sourceTree = "<group>"; };
 		A61FB04622B1F878006E3C02 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A61FB04722B1F878006E3C02 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A6A5BFFE22B2331A00E89702 /* SecondeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondeViewController.h; sourceTree = "<group>"; };
@@ -129,6 +135,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				A6037D4722FD0D5900CAD981 /* MethodChannel */,
 				7AFFD8ED1D35381100E5BB4D /* AppDelegate.h */,
 				7AFFD8EE1D35381100E5BB4D /* AppDelegate.m */,
 				A61FB04622B1F878006E3C02 /* ViewController.h */,
@@ -156,6 +163,17 @@
 				97C146F21CF9000F007C117D /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A6037D4722FD0D5900CAD981 /* MethodChannel */ = {
+			isa = PBXGroup;
+			children = (
+				A6037D4422FD0D0F00CAD981 /* CustomPluginRegistrant.h */,
+				A6037D4522FD0D0F00CAD981 /* CustomPluginRegistrant.m */,
+				A6037D4822FD0DDB00CAD981 /* CustomPluginManager.h */,
+				A6037D4922FD0DDB00CAD981 /* CustomPluginManager.m */,
+			);
+			path = MethodChannel;
 			sourceTree = "<group>";
 		};
 		D888D94BAF0DAEFB584D2CAC /* Pods */ = {
@@ -322,11 +340,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6037D4622FD0D0F00CAD981 /* CustomPluginRegistrant.m in Sources */,
 				A6A5C00022B2331A00E89702 /* SecondeViewController.m in Sources */,
 				A6A5C00622B23A7900E89702 /* SecondeSubViewController.m in Sources */,
 				978B8F6F1D3862AE00F588F7 /* AppDelegate.m in Sources */,
 				A6A5C00322B2332300E89702 /* ThirdViewController.m in Sources */,
 				97C146F31CF9000F007C117D /* main.m in Sources */,
+				A6037D4A22FD0DDB00CAD981 /* CustomPluginManager.m in Sources */,
 				A61FB04822B1F878006E3C02 /* ViewController.m in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 			);

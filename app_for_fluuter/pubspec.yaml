@@ -67,8 +67,15 @@ dependencies:
   #定位。
   geolocator: ^5.1.1+1
 
-  #文件操作。
+  #文件路径获取操作。
   path_provider: ^1.2.0
+
+  #扫描二维码
+  barcode_scan: ^1.0.0
+
+  #键盘
+  keyboard_actions: ^2.1.2
+
 
 
 dev_dependencies:

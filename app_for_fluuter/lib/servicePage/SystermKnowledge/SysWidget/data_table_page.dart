@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart'; 
 
+
+class Person {
+
+}
+
 class DataTablePage extends StatefulWidget {
   
   @override
