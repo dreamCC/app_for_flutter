@@ -19,7 +19,7 @@ class _KeyboardActionsPageState extends State<KeyboardActionsPage>with WidgetsBi
     // TODO: implement initState
     super.initState();
 
-    //WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
   }
 
 

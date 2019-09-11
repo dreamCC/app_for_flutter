@@ -25,6 +25,8 @@ class _CacheImagePageState extends State<CacheImagePage> with CanShowEmptyWidget
       print('WidgetsBinding.instance.addPostFrameCallback--$value');
     });
 
+
+
     // 会频繁调用。界面每刷新一次。都会调用一次。
 //    WidgetsBinding.instance.addPersistentFrameCallback((value){
 //      print('WidgetsBinding.instance.addPersistentFrameCallback--$value');

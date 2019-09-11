@@ -26,11 +26,16 @@ class _InheritedPageState extends State<InheritedPage> {
         alignment: Alignment.center,
         child: InheritedShareInfo(
             name: 'hello,wold',
-            child: Column(
-              children: <Widget>[
-                Text(InheritedShareInfo.of(context).name ?? 'name is null')
+            child: Center(
+              child: Column(
+                children: <Widget>[
+                  Builder(builder: (context){
 
-              ],
+                    return Text(InheritedShareInfo.of(context).name ?? 'name is null');
+                  })
+
+                ],
+              ),
             )
         ),
       ),
@@ -60,3 +65,5 @@ class InheritedShareInfo extends InheritedWidget {
   }
 
 }
+
+

@@ -5,8 +5,7 @@ class OffStagePage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return _OffStagePage();
+     return _OffStagePage();
   }
 }
 
@@ -57,6 +56,7 @@ class _OffStagePage extends State<OffStagePage> {
       floatingActionButton: IconButton(
           icon: Icon(Icons.priority_high),
           onPressed: (){
+
             setState(() {
               _isHidden = !_isHidden;
             });

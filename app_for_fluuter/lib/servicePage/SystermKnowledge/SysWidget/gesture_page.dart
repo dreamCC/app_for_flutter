@@ -17,6 +17,7 @@ class _GesturePageState extends State<GesturePage> with SingleTickerProviderStat
 
   GlobalKey<_CustomRoutePageState> _customKey = GlobalKey();
 
+
   // 转场动画。
   void _customTransform() {
 

@@ -38,7 +38,7 @@
     const相对于final，其不可变是会传递的。比如，用final修饰 数组，数组还是可以变的。但是const修饰那么数组是不会变的。
     总的来说，const限制条件更加苛刻。
 5、函数中的参数，有可选命名参数和可选位置参数。主要是参数名字是否写上的问题。可选位置参数是不需要写的，可选命名参数需要写。
-6、factory工厂方法。 和其它的构造方法的区别就是。factory构造方法需要手动return 对象。
+6、factory工厂构造方法。 和其它的构造方法的区别就是。factory构造方法需要手动return 对象。
 7、ListView可以通过。buildChildLayout来将其转换为，SliderListView。
 8、Opacity控件。SingleChildRenderObjectWidget。
 9、继承自Widget的有，StatelessWidget、StatefullWidget、RenderObjectWidget。其中：
@@ -149,11 +149,25 @@
     StreamController注意关闭。
 4、Theme和ThemeDate的搭配使用可以有效的控制主题。
 
+2019.9.10
+1、widget树间的传值。
+    自上向下——继承自InheritedWidget实现。 我们常用的MediaQurey其实就是继承自InheritedWidget的。
+        其实自上向下传值，我们直接借助参数传值也是可以实现的。
+    自下向上——继承自Notifycation配合，NotifycationLisent实现。
+2、通过WidgetBindingObserver需要配合WidgetBing.instance.addOberser(this)；来实现一些监听。当然，我们也可以直接使用，
+    WidgetBinding.instance.addxxxxxxxxx来进行一些监听。
+3、dart:math 库中，Random()生产随机数类、pi、常用函数。
+4、Transfom.translate( chirld: GestureDecrator() )。 Transform.translate搭配GestureDecorater使用，可以进行拖动动画等。
+5、AnmatedList可删除、增加的Widget的使用。主要是globleKey、数据、动画的搭配使用。
+    关于动画，Animation本身是一个抽象类。我们一般使用Tween插值(Animationable)动画来获取Animation。有一个drive方法。
 
-
-
-
-
+2019.9.11
+1、Material控件的使用。
+2、Image和ImageProvider的区别。Image通过Image.asset等方法获取，ImageProvider通过AssetImage等获取。FadeInImage可以添加占位图。
+3、自定义路由。PageRouteBuilder的使用，注意蒙版的使用。
+4、圆形/圆角。圆形：ClipOvral、CircleAdapte。 圆角：ClipRRect。
+5、ShaderMask添加蒙版。 注意Shade着色，可以通过Griender.createShader来进行获取。
+6、直接使用 .0表示一个浮点型数据。
 
 
 

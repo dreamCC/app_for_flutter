@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'SysUtil/sys_util_page.dart';
 import 'SysWidget/sys_widget_page.dart';
 import 'dart:async';
-
+import 'dart:io';
+import 'dart:convert';
 
 
 
@@ -19,6 +20,7 @@ class SystermKnowledgePage extends StatefulWidget {
 class _SystermKnowledgePageState extends State<SystermKnowledgePage> {
 
   List<String> _list = ["SysUtilPage","SysWidgetPage",""];
+
 
 
   @override
@@ -39,8 +41,6 @@ class _SystermKnowledgePageState extends State<SystermKnowledgePage> {
                 }else {
 
 
-
-
                 }
               },
             );
@@ -50,4 +50,5 @@ class _SystermKnowledgePageState extends State<SystermKnowledgePage> {
       ),
     );
   }
+
 }

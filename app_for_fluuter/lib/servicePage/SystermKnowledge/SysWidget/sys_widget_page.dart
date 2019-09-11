@@ -16,6 +16,10 @@ import 'reorder_list_view_page.dart';
 import 'over_lay_page.dart';
 import 'form_field_page.dart';
 import 'notifycation_listen_page.dart';
+import 'animated_list_page.dart';
+import 'material_page.dart';
+import 'hero_page.dart';
+import 'shader_mask_page.dart';
 
 class SysWidgetPage extends StatefulWidget {
 
@@ -29,7 +33,8 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
 
   List<String> _list = ["AnimatedWidgetPage","ConstransiPage","FutureBuilderPage","GesturePage",
     "OffstagePage","ScrollviewPage","SliverAppBarPage","SliversPage","TransformPage","ValueListenBuilderPage",
-    "EventTransPage","DataTablePage","ReorderListViewPage","OverlayPage","FormFieldPage","NotifacationListsenPage",""];
+    "EventTransPage","DataTablePage","ReorderListViewPage","OverlayPage","FormFieldPage","NotifacationListsenPage",
+    "AnimatedListPage","MaterialPage","HeroPage","ShaderMaskPage",""];
 
 
   @override
@@ -76,7 +81,16 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => FormFieldPage()));
                 }if(index == 15){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => NotifacationListsenPage()));
+                }if(index == 16){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => AnimatedListPage()));
+                }if(index == 17){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => MaterialPage()));
+                }if(index == 18){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => HeroPage()));
+                }if(index == 19){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShaderMaskPage()));
                 }else {
+
                 }
               },
             );
