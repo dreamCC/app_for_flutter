@@ -169,7 +169,12 @@
 5、ShaderMask添加蒙版。 注意Shade着色，可以通过Griender.createShader来进行获取。
 6、直接使用 .0表示一个浮点型数据。
 
-
-
+2019.9.12
+1、源于Picker的使用，flutter自带，MonthPicker、DayPicker、TimePicker等，一般不会直接使用，通过show来实现。
+2、CupertenoPicker一般不会直接使用，需要通过showCupertenoModalPopup()来实现。
+3、Scaffold脚手架有几个重要方法，Scaffold.of(Context).showSnakeBar/showBottomSheetxxxxx，主要可以成功是因为，Scaffold在源码里面，
+    有添加相应的控件，便于我们使用。
+    1、我们可以从其中学习到其中的设计思路。 当调用show的时候，会调用其setState，而setState里面会添加相应的标识，在build的时候，通过相应的
+    标识，来确定界面显示方式。
 
 

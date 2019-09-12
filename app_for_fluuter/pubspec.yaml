@@ -76,6 +76,9 @@ dependencies:
   #键盘
   keyboard_actions: ^2.1.2
 
+  #选择器
+  flutter_picker: ^1.0.15
+
 
 
 dev_dependencies:
