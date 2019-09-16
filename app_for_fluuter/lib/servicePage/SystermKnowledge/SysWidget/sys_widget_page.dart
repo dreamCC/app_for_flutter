@@ -21,6 +21,8 @@ import 'material_page.dart';
 import 'hero_page.dart';
 import 'shader_mask_page.dart';
 import 'picker_page.dart';
+import 'show_page.dart';
+import 'media_query_page.dart';
 
 class SysWidgetPage extends StatefulWidget {
 
@@ -35,7 +37,7 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
   List<String> _list = ["AnimatedWidgetPage","ConstransiPage","FutureBuilderPage","GesturePage",
     "OffstagePage","ScrollviewPage","SliverAppBarPage","SliversPage","TransformPage","ValueListenBuilderPage",
     "EventTransPage","DataTablePage","ReorderListViewPage","OverlayPage","FormFieldPage","NotifacationListsenPage",
-    "AnimatedListPage","MaterialPage","HeroPage","ShaderMaskPage","PickerPage",""];
+    "AnimatedListPage","MaterialPage","HeroPage","ShaderMaskPage","PickerPage","ShowPage","MediaQueryPage",""];
 
 
   @override
@@ -92,6 +94,10 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShaderMaskPage()));
                 }if(index == 20){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => PickerPage()));
+                }if(index == 21){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShowPage()));
+                }if(index == 22){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => MediaQueryPage()));
                 }else {
 
                 }

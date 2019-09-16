@@ -67,7 +67,7 @@ class _PickerPageState extends State<PickerPage> with SingleTickerProviderStateM
                 showCupertinoModalPopup(context: context, builder: (context){
                   return Container(
                     height: 200,
-                    child: _picker,
+//                    child: _picker,
                   );
                 });
               },
@@ -78,18 +78,29 @@ class _PickerPageState extends State<PickerPage> with SingleTickerProviderStateM
             child: FlutterLogo(),
           ),
           Divider(),
-          RaisedButton(
-            onPressed: (){
 
-              print(_animationController.isAnimating);
+          Builder(builder: (context){
+            return  RaisedButton(
+              onPressed: (){
 
-              _animationController.isAnimating? _animationController.stop(canceled: true):_animationController.forward();
+                print(_animationController.isAnimating);
 
-            },
-            child: Text("start animation"),
-          ),
+                Scaffold.of(context).showBottomSheet((context){
 
-          
+                  return Container(
+                    height: 200,
+                  );
+
+                });
+
+                //_animationController.isAnimating? _animationController.stop(canceled: true):_animationController.forward();
+
+              },
+              child: Text("start animation"),
+            );
+          })
+
+
         ],
       ),
     );

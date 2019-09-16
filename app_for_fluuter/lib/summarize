@@ -177,4 +177,34 @@
     1、我们可以从其中学习到其中的设计思路。 当调用show的时候，会调用其setState，而setState里面会添加相应的标识，在build的时候，通过相应的
     标识，来确定界面显示方式。
 
+2019.9.16
+1、Flutter中，提供的show方法的使用。
+    showGeneralDiaolog，这个是最原始的方法。其中，showDiaolog、ShowCupetenoDialog、showDatePicker等都是直接或间接使用该方法显示的。
+    showBottomsheet和showModalBottomSheet的区别。
+        showBottomSheet是通过Scafold.of(context).showxxx来实现。
+        showModalBottomSheet是通过自定义转场来是吸纳。
+    showCupertinaoModalpopup 也是通过自定义转场来实现。 其实效果都是一样的，从下往上。
+2、SafeArea的使用。
+3、MediaQuery.removePadding这个其实也是移除安全距离的，和SafeArea类似，如果我们看源码就会发现，其实SafeArea的源码就是，通过removepadding来实心的。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
