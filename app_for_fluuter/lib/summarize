@@ -172,7 +172,7 @@
 2019.9.12
 1、源于Picker的使用，flutter自带，MonthPicker、DayPicker、TimePicker等，一般不会直接使用，通过show来实现。
 2、CupertenoPicker一般不会直接使用，需要通过showCupertenoModalPopup()来实现。
-3、Scaffold脚手架有几个重要方法，Scaffold.of(Context).showSnakeBar/showBottomSheetxxxxx，主要可以成功是因为，Scaffold在源码里面，
+3、Scaffold脚手架有几个重要方法，Scaffold.of(Context).showSnakeBar/showBottomSheetxxxxx/showBodyScrim(显示一个蒙版)，主要可以成功是因为，Scaffold在源码里面，
     有添加相应的控件，便于我们使用。
     1、我们可以从其中学习到其中的设计思路。 当调用show的时候，会调用其setState，而setState里面会添加相应的标识，在build的时候，通过相应的
     标识，来确定界面显示方式。
@@ -187,11 +187,24 @@
 2、SafeArea的使用。
 3、MediaQuery.removePadding这个其实也是移除安全距离的，和SafeArea类似，如果我们看源码就会发现，其实SafeArea的源码就是，通过removepadding来实心的。
 
-
-
-
-
-
+2019.9.18
+1、关于Appbar。evalution阴影高度、centerTitle=true
+2、TabBar和TabBarView的搭配使用，牵扯到TabController。 AppBar和TabBar都是可以通过PreferSize来进行高度设定。
+    TabBar是可以单独使用的。
+3、Flutter创建app的层次结构。其实和ios（window->rootViewController->TabBarController->chirldControllers->NavigationController）一样。
+    Flutter相当于，MateralApp(bottomNavigationBar、body)，其中body就是每个页面，而Scaffold直接可以设置body的naviagtionBar。
+    其实每个页面都可以有，bottomNavigationBar，上面只是我们正常app的一般层次结构，根据实际开发，可以调整。
+    所以Flutter更像是搭积木的形式，每个部位的widget都是随意搭配。
+4、BottomNavigationBar重要属性，onTap和currentIndex来控制index显示。
+    注意，因为Scaffold中，bottomNavigationBar是widget类型，所以我们可以使用自定义的，比如Container和BottomAppBar搭配使用。
+5、BottomAppBar的特点是，有一个evalution，而且样式已经有默认的。
+6、Flex、Row、Column其实功能一样。类似Android的线性布局。其中Row、Column是继承自Flex。所以，如果能使用Row、Column那么就一定能使用Flex。
+    Flex、Row、Column内部配合Expanded使用。
+    Expanded的特点，就是会占用剩余空间，所以Row里面有多个widget和多个Expanded时候的样式，我们需要知道其规律。
+    Flexible也是配合Flex、Row、Column使用。但是他不会强制使子widget铺满空间。感觉使用场景不多。
+    Space(),默认提供一个flex = 1的间距。用来控制间距使用。
+    对于mainAligment，crosAligment（其中strtch表示交叉轴上面铺满）、texDirection（水平方向）、verifyDirection的理解。
+7、Color的使用，直接初始化，传16进制数。0xAARRGGBB 是上诉格式，其中aa可以是00透明或者ff不透明。
 
 
 

@@ -10,19 +10,42 @@ class ShowPage extends StatefulWidget {
   }
 }
 
-class _ShowPageState extends State<ShowPage> {
+class _ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin {
 
 
   List<String> _list = ["showBottomSheet","showDatePicker","showTimePicker","showDialog",
   "showCupertinoDialog","showAboutDialog","showGeneralDialog","showBottomSheet","showModalBottomSheet",
-  "showLicensePage","showCupertinoModalPopup" ];
+  "showLicensePage","showCupertinoModalPopup","---" ];
+
+
+  TabController _tabController;
+  AppBar _appBar;
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _tabController = TabController(length: _list.length, vsync: this);
+    _appBar = AppBar(
+      title: Text("ShowPage"),
+      centerTitle: true,
+      elevation: 1,
+      bottom: PreferredSize(child: TabBar(
+        tabs: _list.map((value){
+          return SizedBox(height: 30,child: Text(value),);
+        }).toList(),
+        controller: _tabController,
+        isScrollable: true,
+      ), preferredSize: Size(double.infinity, 30))
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("ShowPage"),
-      ),
+      appBar: _appBar,
       body: SafeArea(
           bottom: false,
           child: ListView.separated(
@@ -56,9 +79,8 @@ class _ShowPageState extends State<ShowPage> {
 
                         return Center(
                           child: Container(
-                            width: 100,
-                            height: 100,
                             color: Colors.purple,
+                            child: RaisedButton(onPressed: (){}, child: Text("rase button"),),
                           ),
                         );
                       });
@@ -130,6 +152,10 @@ class _ShowPageState extends State<ShowPage> {
                           child: Text("hello, Dialog",),
                         );
                       });
+
+                    }else {
+
+                      Scaffold.of(context).showBodyScrim(true, 0.5);
                     }
 
 
@@ -140,6 +166,13 @@ class _ShowPageState extends State<ShowPage> {
               separatorBuilder: (context, index) => Divider(),
               itemCount: _list.length
           ),
+      ),
+      bottomNavigationBar: Container(
+        color: Colors.purple,
+        height: 50,
+        child: BottomAppBar(
+
+        ),
       )
     );
   }

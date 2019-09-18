@@ -9,13 +9,14 @@ class FormFieldPage extends StatefulWidget {
   }
 }
 
-class _FormFieldPageState extends State<FormFieldPage> {
+class _FormFieldPageState extends State<FormFieldPage>  {
 
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   FocusNode _nameFocusNode = FocusNode();
   FocusNode _pwdFocusNode  = FocusNode();
 
+  TabController _tabController;
 
   @override
   void initState() {
@@ -88,7 +89,10 @@ class _FormFieldPageState extends State<FormFieldPage> {
                   },
                   child: Text("登录"),
                 ),
-              )
+              ),
+
+              SizedBox(height: 50,),
+
             ],
           ),
         ),

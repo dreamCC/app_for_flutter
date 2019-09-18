@@ -23,6 +23,7 @@ import 'shader_mask_page.dart';
 import 'picker_page.dart';
 import 'show_page.dart';
 import 'media_query_page.dart';
+import 'flex_flexable_expanded_page.dart';
 
 class SysWidgetPage extends StatefulWidget {
 
@@ -37,7 +38,8 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
   List<String> _list = ["AnimatedWidgetPage","ConstransiPage","FutureBuilderPage","GesturePage",
     "OffstagePage","ScrollviewPage","SliverAppBarPage","SliversPage","TransformPage","ValueListenBuilderPage",
     "EventTransPage","DataTablePage","ReorderListViewPage","OverlayPage","FormFieldPage","NotifacationListsenPage",
-    "AnimatedListPage","MaterialPage","HeroPage","ShaderMaskPage","PickerPage","ShowPage","MediaQueryPage",""];
+    "AnimatedListPage","MaterialPage","HeroPage","ShaderMaskPage","PickerPage","ShowPage","MediaQueryPage",
+    "FlexableExpandedPage",""];
 
 
   @override
@@ -98,6 +100,8 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShowPage()));
                 }if(index == 22){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => MediaQueryPage()));
+                }if(index == 23){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => FlexableExpandedPage()));
                 }else {
 
                 }

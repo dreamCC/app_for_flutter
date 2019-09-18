@@ -49,56 +49,53 @@ class _OverLayPageState extends State<OverLayPage> {
           width: 200,
           height: 320,
           child:  SafeArea(child:
-          Material(
-            textStyle: TextStyle(fontSize: 12, color: Colors.purple),
-            child:  Container(
-              color: Colors.black,
-              child:  Column(
-                children: <Widget>[
-                  Expanded(
-                    child:  ListTile(
-                      leading: Icon(
-                        Icons.add,
-                        color: Colors.white,
-                      ),
-                      title:  Text(
-                        "发起群聊",
-                        style: TextStyle(color: Colors.white),
-                      ),
+          Container(
+            color: Colors.black,
+            child:  Column(
+              children: <Widget>[
+                Expanded(
+                  child:  ListTile(
+                    leading: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    ),
+                    title:  Text(
+                      "发起群聊",
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
-                  Expanded(
-                    child:  ListTile(
-                      leading: Icon(Icons.add, color: Colors.white),
-                      title:  Text("添加朋友",
-                          style: TextStyle(color: Colors.white)),
-                    ),
+                ),
+                Expanded(
+                  child:  ListTile(
+                    leading: Icon(Icons.add, color: Colors.white),
+                    title:  Text("添加朋友",
+                        style: TextStyle(color: Colors.white)),
                   ),
-                  Expanded(
-                    child:  ListTile(
-                      leading: Icon(Icons.add, color: Colors.white),
-                      title:  Text("扫一扫",
-                          style: TextStyle(color: Colors.white)),
-                    ),
+                ),
+                Expanded(
+                  child:  ListTile(
+                    leading: Icon(Icons.add, color: Colors.white),
+                    title:  Text("扫一扫",
+                        style: TextStyle(color: Colors.white)),
                   ),
-                  Expanded(
-                    child:  ListTile(
-                      leading: Icon(Icons.add, color: Colors.white),
-                      title:  Text("首付款",
-                          style: TextStyle(color: Colors.white)),
-                    ),
+                ),
+                Expanded(
+                  child:  ListTile(
+                    leading: Icon(Icons.add, color: Colors.white),
+                    title:  Text("首付款",
+                        style: TextStyle(color: Colors.white)),
                   ),
-                  Expanded(
-                    child:  ListTile(
-                      leading: Icon(Icons.add, color: Colors.white),
-                      title:  Text("帮助与反馈",
-                          style: TextStyle(color: Colors.white)),
-                    ),
+                ),
+                Expanded(
+                  child:  ListTile(
+                    leading: Icon(Icons.add, color: Colors.white),
+                    title:  Text("帮助与反馈",
+                        style: TextStyle(color: Colors.white)),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ))
+          ),)
       );
     },
     );
