@@ -106,9 +106,12 @@ class _MyAppState extends State<MyApp> {
 
       theme: ThemeData(
 
+          appBarTheme: AppBarTheme(
+            elevation: 1,
+            brightness: Brightness.dark
+          ),
         // 脚手架背景颜色。
           scaffoldBackgroundColor: Colors.white,
-
 
           primarySwatch: Colors.blue,
 

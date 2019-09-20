@@ -8,6 +8,7 @@ class FlexableExpandedPage extends StatelessWidget {
     title: Text("FlexableExpandedPage"),
     centerTitle: true,
     elevation: 1,
+    brightness: Brightness.dark,
   );
   
   @override

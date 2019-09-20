@@ -20,8 +20,6 @@ class HttpUtils {
   }
 
 
-
-
   // /wallet/user/wallet/userInfo
   static request(
       String url,

@@ -12,6 +12,8 @@ import 'mehod_channel_page.dart';
 import 'widget_binding_observer_page.dart';
 import 'date_time_page.dart';
 import 'theme_page.dart';
+import 'json_modal_page.dart';
+import 'future_page.dart';
 
 
 class SysUtilPage extends StatefulWidget {
@@ -26,7 +28,8 @@ class SysUtilPage extends StatefulWidget {
 class _SysUtilPageState extends State<SysUtilPage> {
 
   List<String> _list = ["HttpPage","InheritedPage","RegexPage","RootBundlePage","StreamControllerPage","WidgetKeyPage",
-    "DartIoPage","DartFuturePage","MethodChannelPage","WidgetBindingObserverPage","DateTimePage","ThemePage",""];
+    "DartIoPage","DartFuturePage","MethodChannelPage","WidgetBindingObserverPage","DateTimePage","ThemePage","JsonModalPage",
+    "Future",""];
 
 
   @override
@@ -64,6 +67,10 @@ class _SysUtilPageState extends State<SysUtilPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => DateTimePage()));
                 }if(index == 11){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => ThemePage()));
+                }if(index == 12){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => JsonModalPage()));
+                }if(index == 13){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => FuturePage()));
                 }else {
 
                   // Dart中的所有类都是继承Object类。

@@ -206,13 +206,31 @@
     对于mainAligment，crosAligment（其中strtch表示交叉轴上面铺满）、texDirection（水平方向）、verifyDirection的理解。
 7、Color的使用，直接初始化，传16进制数。0xAARRGGBB 是上诉格式，其中aa可以是00透明或者ff不透明。
 
+2019.9.19
+1、json相关知识。json属于convert包。
+    所以与json相关的知识，有一个总的封装类JsonCodec，可以处理json->modal、modal->json。
+    JsonCodec，有两个get方法分别获取，JsonDecoder和JsonEncoder来分别处理，当然也暴露两个方法encode()、decode()两个方法。
+    所以json中，转换的本质是通过JsonEncode().convert()、JsonDecoder().convert()进行的。
+    实际上我们可以直接使用，jsonEncode()、jsonDecode()来进行转换，这是flutter封装好的方法。
+2、关于dio知识点。
+    Dio dio =Dio([BaseOptions options])；进行初始化时候，可以设置baseoptions。
+    dio.request(); 进行网络请求。 其中我们可以设置options，（RequestOptions、Options）进行请求方法等设置。
+        当然，我们可以直接使用post、get、put等封装后的方法进行请求。
+    因为该方法是Future类，我们可以通过.catchError或者是try{ } on DioError catch(error) { }来进行错误捕捉。
+3、Flutter中app运行机制，就是有两个队列，microTasks、EventTasks。而Flutter中，所以任务都是存放在任务队列eventTasks中，而且是串行执行。
+    和oc、java不同的是，oc、java不管是什么线程如果异常没有处理就会直接崩溃。但是flutter不会，flutter中，如果异常那么知识该队列不会执行，
+    并不会程序退出。而会继续执行队列中的其他任务。
+    Flutter中，通过Future() 来创建一个异步操作，如果有返回值，那么必须是Future类型。async、await其实是dart对异步操作的一个语法糖。
+    这个其实和ios中的dispatch差不多。
+4、Flutter中的异常捕获，
+    如果是正常方法中throw 的异常，通过try-catch进行捕获。
+    future中throw的异常，通过 future.catchError捕获、或者是通过try{ await futurnFunc()  }catch { }捕获。
+5、async标识一个方法具有异步能力。如果如果内部调用Future创建对象，那么才会是异步方法。
 
-
-
-
-
-
-
+2019.9.20
+1、对于Card组件的使用，由于Card组件的特性，我们可以多使用Card组件来代替Container组件。
+2、Hero组件，配合PageRoute来进行一些特殊效果。PageRoute中，重要属性，pageBuilder、transitionBuilder(常见SliderTransition、FadeTransition)等。
+3、Dart是单线程模型语言。 Dart的循环机制。 isloate。
 
 
 
