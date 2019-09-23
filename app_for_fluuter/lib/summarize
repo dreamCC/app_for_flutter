@@ -232,6 +232,15 @@
 2、Hero组件，配合PageRoute来进行一些特殊效果。PageRoute中，重要属性，pageBuilder、transitionBuilder(常见SliderTransition、FadeTransition)等。
 3、Dart是单线程模型语言。 Dart的循环机制。 isloate。
 
+2019.9.23
+1、ExpensionTitle二级及多级菜单的展示，其实和ListTitle的基本功能是一样的，其trailing默认是个向下箭头，知识增加了点击，展示chirldren的能力。
+    ListView配合ExpensionTitle就可以实现展开效果。
+    ExpansionPanelList其实和上面组合实现的效果一样。
+2、AspectRadio用于调整控件的宽高比。
+3、FittedBox，主要属性fit(BoxFit类型)用于控制子控件显示的方式。这个其实和Image的fit很类似。
+4、Stepper的使用，用于一步一步执行的widget。
+5、chip小控件的使用。有几个特殊的，ActionChip带点击事件的、FilterChip点击时候左侧有✅的、
+    ChoiceChip（和FilterChip不同的是，其左侧没有✅）最常用的。
 
 
 

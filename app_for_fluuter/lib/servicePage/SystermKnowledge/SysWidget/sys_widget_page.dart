@@ -24,6 +24,9 @@ import 'picker_page.dart';
 import 'show_page.dart';
 import 'media_query_page.dart';
 import 'flex_flexable_expanded_page.dart';
+import 'expension_widget_page.dart';
+import 'step_page.dart';
+import 'chips_page.dart';
 
 class SysWidgetPage extends StatefulWidget {
 
@@ -39,7 +42,7 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
     "OffstagePage","ScrollviewPage","SliverAppBarPage","SliversPage","TransformPage","ValueListenBuilderPage",
     "EventTransPage","DataTablePage","ReorderListViewPage","OverlayPage","FormFieldPage","NotifacationListsenPage",
     "AnimatedListPage","MaterialPage","HeroPage","ShaderMaskPage","PickerPage","ShowPage","MediaQueryPage",
-    "FlexableExpandedPage",""];
+    "FlexableExpandedPage","ExpansionTitlePage","StepperPage","ChipsPage"];
 
 
   @override
@@ -102,6 +105,12 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => MediaQueryPage()));
                 }if(index == 23){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => FlexableExpandedPage()));
+                }if(index == 24){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ExpensionWidgetPage()));
+                }if(index == 25){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => StepperPage()));
+                }if(index == 26){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChipsPage()));
                 }else {
 
                 }

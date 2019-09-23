@@ -26,8 +26,6 @@ class HeroPage extends StatelessWidget {
             );
 
 
-
-
           },
           child: Hero(
               tag: "header",
