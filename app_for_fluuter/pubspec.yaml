@@ -82,6 +82,8 @@ dependencies:
   #地图
   flutter_map: ^0.7.2
 
+  #类似Stream，用于UI和业务的分离。
+  flutter_bloc: ^0.21.0
 
 
 dev_dependencies:

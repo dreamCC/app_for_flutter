@@ -12,6 +12,7 @@ import 'path_provider_page.dart';
 import 'keybord_actions_page.dart';
 import 'flutter_picker_page.dart';
 import 'flutter_map_page.dart';
+import 'flutter_bloc_page.dart';
 
 class PluginPage extends StatefulWidget {
 
@@ -24,7 +25,8 @@ class PluginPage extends StatefulWidget {
 class _PluginPageState extends State<PluginPage> {
 
   List<String> _list = ["DioPage","EventBus","LocationPage","UrlLaunchPage","Video_Player","WebViewPluginPage",
-    "BMProgressHudPage","CacheImagePage","PathProviderPage","KeyboardActionsPage","FlutterPickerPage","FlutterMapPage",""];
+    "BMProgressHudPage","CacheImagePage","PathProviderPage","KeyboardActionsPage","FlutterPickerPage",
+    "FlutterMapPage","FlutterBlocPage",""];
 
 
   @override
@@ -62,6 +64,8 @@ class _PluginPageState extends State<PluginPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => FlutterPickerPage()));
                 }if(index == 11){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => FlutterMapPage()));
+                }if(index == 12){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => FlutterBlocPage()));
                 }else {
 
 
