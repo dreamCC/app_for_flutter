@@ -3,7 +3,7 @@
 2、Transform的使用。一般不直接使用，因为内部嵌套的Matrix4使用比较麻烦。
     配合暴露的方法。Transform.rotation、Transfor.scale、Transform.translate使用起来会方便很多。
 3、动画。牵扯到几个关键类。AnimatedController、Animatable（通过插值类Tween及其衍生类获取的）、Animation（通过Animatable获取）。
-    真正进行动画的可以有几种方式。Animation.addListen(){ setState() }、使用xxxTransition、使用Animatedxxxx(如AnimatedContainer等)。
+    真正进行动画的可以有几种方式。Animation.addListen(){ setState() }、使用xxxTransition、使用Animatedxxxx(如AnimatedContainer等，这种实现方式需要利用其value值)。
 4、线程问题。Future类。Dart中，事件循环的两个主要事件类，MicroTask和EventTask，我们需要知道其工作方式。
     Future()、Future.microTask() 创建异步线程。这里需要注意的是：创建的异步线程都是串行队列。
     dart/ioslate 可以创建并发队列。但是不同线程间的传递有点麻烦。
@@ -18,7 +18,7 @@
 
 
 2019.8.7
-1、Overlay和OverlayEntry的搭配使用。
+1、Overlay和OverlayEntry的搭配使用。Overlay的本质就是MeteralApp会创建一个Stack组件，内部包含了OverLay。
 2、Materail控件的使用。
 3、ReorderListView。用于cell间的位置交换。需要注意onReorder方法的实现。
 4、Dismissable的使用。注意是滑动删除。
@@ -226,9 +226,34 @@
     如果是正常方法中throw 的异常，通过try-catch进行捕获。
     future中throw的异常，通过 future.catchError捕获、或者是通过try{ await futurnFunc()  }catch { }捕获。
 5、async标识一个方法具有异步能力。如果如果内部调用Future创建对象，那么才会是异步方法。
+    async、Future、await的关系。
+    注意async关键字的使用场景，并不是有Future的函数一定要使用async进行标记。
+    一般async和await是成对出现的（没有使用await，函数标记为async也没什么意义。 使用await就必须要使用async来进行函数标记。）
+    async/await只是相对于标记的函数的。
+    Future才是实现异步的核心代码。Future包裹的代码块里面才是执行异步的操作。如果出现Future，那么里面的耗时操作就是开启子线程执行，Future
+    类似ios中的Dispath。
+    而async/await只是相对于标记函数是否等Future内部代码执行完在执行。
+
+  Future<T>的返回写法。 注意下面返回值是11。而且需要注意的是then返回的也是Future类型。在实际开发中，一般不用这样写，直接返回Future就ok了。
+  then只是表示，Future代码块执行完后，执行该操作。
+  Future<int> futureMehod() {
+    print("开始");
+    return Future((){
+      sleep(Duration(seconds: 2));
+      print("future 执行");
+
+      return 12;
+
+    }).then((value){
+      print("future then");
+
+      return 11;
+    });
+  }
 
 2019.9.20
 1、对于Card组件的使用，由于Card组件的特性，我们可以多使用Card组件来代替Container组件。
+    其实Card的源码可以看出，Card其实就是Container，增加evaluation的结果。
 2、Hero组件，配合PageRoute来进行一些特殊效果。PageRoute中，重要属性，pageBuilder、transitionBuilder(常见SliderTransition、FadeTransition)等。
 3、Dart是单线程模型语言。 Dart的循环机制。 isloate。
 
@@ -242,9 +267,54 @@
 5、chip小控件的使用。有几个特殊的，ActionChip带点击事件的、FilterChip点击时候左侧有✅的、
     ChoiceChip（和FilterChip不同的是，其左侧没有✅）最常用的。
 
+2019.9.30
+1、关于动画。通过源码我们知道，使用XXXTransition和AnimatedXXX都是继承AnimatedWidget。
+    AnimatedWidget的特点：通过传入的一个LisenAble（Animation继承Lisenable），会进行动画监听（其实就是调用addLissent方法），
+    调用_handleChange() { setState}。
+    XXXTransition和AnimatedXXX的不同点就是：
+    XXXTransiton在setState的时候会获取lisentable.value的值。
+    AnimtedXXX在setState的时候不会去重新获取lisentable.value的值。 所以，一般使用XXXTransition会方便一些。
+
+   我们知道动画AnmationController需要传入sync: Tikerprovider。TikerProvider的作用就是生成Tiker。而Tiker就是
+   获取屏幕每一帧的刷新通知（实现动画的核心）。类似ios中，CADisplayLink。所以有动画的地方就需要TikerProvider。
+
+   、、所以动画的原理其实就是，通过TikeProvider获取每一帧的刷新通知，当通知来了获取Tween插值所计算出来的动画值，然后
+   调用setState进行刷新。
+
+   需要注意一点就是：动画当页面销毁时候，我们需要手动调用xxxx.dispose()避免浪费资源。其实通过源码发现就是移除了监听。
+
+2、Flutter中所有能够滚动的控件都是直接或者间接使用ScrolleAble组件的。而ScrollerAble能实现滚动的核心是有ViewPort组件。
+3、PageView使用了ScrollAble组件，而且还使用了TikerProvider来提供动画。
+4、WillPopScop用来监听Navigator.of().pop。
 
 
+2019.10.12
+1、关于extents、with、implement的加深理解。 其实dart中的类也可以理解为接口（没有interface关键字）。
+    1、extents继承父类。 如果父类方法没有实现（父类是抽象类）,那么子类必须要实现。如果父类实现了，子类可以不去重写。
+    2、implements也是继承父类。和java中的implement含义不一样。dart中implements不管父类有没实现，子类都要实现。
+    3、mixin混入。 mixin修饰的也是一个类（最少可以理解为一个类, 但是不能使用关键字extents）。
+        使用场景。比如一个 A extents B with C 这个时候C也是一个类，而且C必须要继承Object。 如果C 不是继承Object，
+        那么就需要使用mixin C on State{} ，通过mixin/on来修饰C。
+
+2、CircleAdvate的误区。如果使用该控件进行切圆角，我们必须将圆角图片设置为backgroudImage。从这个角度来讲我们使用Container
+    也是可以实现的。 它的chirld的属性的理解，相当于在原控件上放一个subView, 从源码可以发现，其实就是一个AnimatedContainer。
+    所以实现切圆角，最好使用ClipOvel、ClipRRect。
+
+3、AutomaticKeepAliveClientMixin该混入类。 注意其build方法是@mustcallSuper的。如果我们with AutomaticKeepAliveClientMixin。
+    那么build方法，就必须要调用super.build()。 如果不调用我们会发现有一个小警告。
+    注意AutomaticKeepAliveClientMixin的源码。
+
+    AutomaticKeepAliveClientMixind常用使用场景是PageView、TabView的子widget使用。但是实际上，使用不局限于此。之所以需要调用
+    super.build(context)的原因就是，其内部是通过_ensureKeepAlive()方法确保切面状态保护，之所以能保存状态就是需要我们在state各种
+    生命周期方法中调用该方法才行。。 有个场景就是，当我们push到下一页面，然后在pop回来的时候，，调用build方法，如果我们不调用super.build就无法调用到_ensureKeepAlive()
+    方法来保存状态。
 
 
+2019.10.14
+1、dart中的mixin其实更像abstract class。 里面可以声明方法，而且声明的方法可以实现或不实现。
+2、dart中的set、get方法和swift中set、get方法一样，只能作为计算属性。
 
-
+2019.10.16
+1、Column中的chirld： 会尽可能缩小子控件大小。所以我们才需要配合Expande使用。
+2、对于手势GestureDecorator的源码理解。之所以能进行手势识别，其核心是，GestureRecognize（手势识别器。）。
+    起源码也是很简单，就是使用RawGestureDecorator。

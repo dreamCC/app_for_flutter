@@ -41,6 +41,7 @@ class _OverLayPageState extends State<OverLayPage> {
     // TODO: implement initState
     super.initState();
 
+
     weixinOverlayEntry =  OverlayEntry(builder: (context) {
 
       return  Positioned(
@@ -49,6 +50,7 @@ class _OverLayPageState extends State<OverLayPage> {
           width: 200,
           height: 320,
           child:  SafeArea(child:
+          Material(child:
           Container(
             color: Colors.black,
             child:  Column(
@@ -95,7 +97,7 @@ class _OverLayPageState extends State<OverLayPage> {
                 ),
               ],
             ),
-          ),)
+          ),),)
       );
     },
     );

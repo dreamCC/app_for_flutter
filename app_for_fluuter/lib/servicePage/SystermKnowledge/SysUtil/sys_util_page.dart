@@ -14,6 +14,8 @@ import 'date_time_page.dart';
 import 'theme_page.dart';
 import 'json_modal_page.dart';
 import 'future_page.dart';
+import 'route_page.dart';
+import 'mixin_page.dart';
 
 
 class SysUtilPage extends StatefulWidget {
@@ -29,7 +31,7 @@ class _SysUtilPageState extends State<SysUtilPage> {
 
   List<String> _list = ["HttpPage","InheritedPage","RegexPage","RootBundlePage","StreamControllerPage","WidgetKeyPage",
     "DartIoPage","DartFuturePage","MethodChannelPage","WidgetBindingObserverPage","DateTimePage","ThemePage","JsonModalPage",
-    "Future",""];
+    "Future","RoutePage","MixinPage",""];
 
 
   @override
@@ -71,6 +73,10 @@ class _SysUtilPageState extends State<SysUtilPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => JsonModalPage()));
                 }if(index == 13){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => FuturePage()));
+                }if(index == 14){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => RoutePage()));
+                }if(index == 15){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => MixinPage()));
                 }else {
 
                   // Dart中的所有类都是继承Object类。
@@ -78,6 +84,8 @@ class _SysUtilPageState extends State<SysUtilPage> {
                   while(iterator.moveNext()) {
                     print(iterator.current);
                   }
+
+
 
                 }
               },

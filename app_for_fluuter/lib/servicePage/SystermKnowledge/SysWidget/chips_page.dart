@@ -56,6 +56,7 @@ class _ChipsPageState extends State<ChipsPage> {
             ),
             Divider(),
             ActionChip(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                 label: Text("ActionChip"),
                 onPressed: (){
                   print("ActionChip");

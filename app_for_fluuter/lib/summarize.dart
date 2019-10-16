@@ -27,6 +27,12 @@ class _SummarizePageState extends State<SummarizePage> {
     super.initState();
 
 
+    PageController page;
+
+    AnimationController con;
+
+
+
   }
 
   @override
@@ -39,10 +45,7 @@ class _SummarizePageState extends State<SummarizePage> {
         child: RaisedButton(
             onPressed: (){
 
-
               },
-
-
 
         ),
       ),

@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class SliverPage extends StatefulWidget {
 
@@ -19,29 +18,34 @@ class _SliverPageState extends State<SliverPage> {
       appBar: AppBar(
         title: Text('SliverPage'),
       ),
-      body: CustomScrollView(
-        slivers: <Widget>[
-
-          ListView.separated(
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text("-----$index"),
-                );
-              }, 
-              separatorBuilder: (context, index) => Divider(), 
-              itemCount: 20
-          ).buildChildLayout(context)
-        ],
-      )
+      body: CustomScrollViewWidget(),
+//      body: CustomScrollView(
+//        slivers: <Widget>[
+//
+//          ListView.separated(
+//              itemBuilder: (context, index) {
+//                return ListTile(
+//                  title: Text("-----$index"),
+//                );
+//              },
+//              separatorBuilder: (context, index) => Divider(),
+//              itemCount: 20
+//          ).buildChildLayout(context)
+//        ],
+//      )
     );
   }
 }
 
 
 class CustomScrollViewWidget extends StatelessWidget {
-  
+
+
+
   @override
   Widget build(BuildContext context) {
+
+
     // TODO: implement build
     return CustomScrollView(
       slivers: <Widget>[
@@ -53,7 +57,6 @@ class CustomScrollViewWidget extends StatelessWidget {
             child: Text('SliverToBoxAdapter', style: TextStyle(fontSize: 20),),
           ),
         ),
-
 
         SliverList(
           delegate: SliverChildBuilderDelegate((context, index){
@@ -103,6 +106,7 @@ class CustomScrollViewWidget extends StatelessWidget {
 
 
 
+
       ],
     );
   }
@@ -138,5 +142,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
         minHeight != oldDelegate.minHeight ||
         child != oldDelegate.child;
   }
+
+
 }
 

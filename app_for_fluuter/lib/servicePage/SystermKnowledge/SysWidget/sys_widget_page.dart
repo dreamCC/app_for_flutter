@@ -27,6 +27,8 @@ import 'flex_flexable_expanded_page.dart';
 import 'expension_widget_page.dart';
 import 'step_page.dart';
 import 'chips_page.dart';
+import 'pageview_page.dart';
+import 'text_span_page.dart';
 
 class SysWidgetPage extends StatefulWidget {
 
@@ -42,7 +44,7 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
     "OffstagePage","ScrollviewPage","SliverAppBarPage","SliversPage","TransformPage","ValueListenBuilderPage",
     "EventTransPage","DataTablePage","ReorderListViewPage","OverlayPage","FormFieldPage","NotifacationListsenPage",
     "AnimatedListPage","MaterialPage","HeroPage","ShaderMaskPage","PickerPage","ShowPage","MediaQueryPage",
-    "FlexableExpandedPage","ExpansionTitlePage","StepperPage","ChipsPage"];
+    "FlexableExpandedPage","ExpansionTitlePage","StepperPage","ChipsPage","PageViewPage","TextSpanPage",""];
 
 
   @override
@@ -111,6 +113,10 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => StepperPage()));
                 }if(index == 26){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChipsPage()));
+                }if(index == 27){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => PageViewPage()));
+                }if(index == 28){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => TextSpanPage()));
                 }else {
 
                 }

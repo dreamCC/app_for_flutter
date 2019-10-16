@@ -30,6 +30,23 @@ class _FuturePageState extends State<FuturePage> {
 
   }
 
+  Future<int> futureMehod() {
+
+    print("开始");
+    return Future((){
+      sleep(Duration(seconds: 2));
+      print("future 执行");
+
+      return 12;
+
+    }).then((value){
+      print("future then");
+
+      return 11;
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -44,7 +61,7 @@ class _FuturePageState extends State<FuturePage> {
           RaisedButton(
             onPressed: () async{
 
-              
+
 
               try{
                 await futureFunc();
@@ -66,6 +83,15 @@ class _FuturePageState extends State<FuturePage> {
 
             },
             child: Text("report error"),
+          ),
+          Divider(),
+          RaisedButton(
+            onPressed: () async{
+
+               int value = await futureMehod();
+              print("futureMehod----函数后面$value");
+            },
+            child: Text("Future method"),
           ),
         ],
       ),
