@@ -16,9 +16,9 @@ class _KeyboardActionsPageState extends State<KeyboardActionsPage>with WidgetsBi
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
+    //WidgetsFlutterBinding.ensureInitialized();
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -27,13 +27,11 @@ class _KeyboardActionsPageState extends State<KeyboardActionsPage>with WidgetsBi
   void deactivate() {
     print("deactivate");
 
-    // TODO: implement deactivate
     super.deactivate();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     WidgetsBinding.instance.removeObserver(this);
 
     super.dispose();
@@ -51,30 +49,36 @@ class _KeyboardActionsPageState extends State<KeyboardActionsPage>with WidgetsBi
           ),
           preferredSize: Size.fromHeight(46)
       ),
-      body: FormKeyboardActions(
-        child: ChirldWidget(),
-      ),
+      body: Container(),
     );
   }
 
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    // TODO: implement didChangeAppLifecycleState
 
     print("000000000---------");
 
-
     super.didChangeAppLifecycleState(state);
-
   }
 
   @override
   void didChangeMetrics() {
-    // TODO: implement didChangeMetrics
     print("didChangeMetrics---------");
 
     super.didChangeMetrics();
+  }
+
+  @override
+  Future<bool> didPopRoute() {
+    print("didPopRoute---------");
+    return super.didPopRoute();
+  }
+
+  @override
+  Future<bool> didPushRoute(String route) {
+    print("didPushRoute---------");
+    return super.didPushRoute(route);
   }
 
 }
@@ -82,7 +86,6 @@ class _KeyboardActionsPageState extends State<KeyboardActionsPage>with WidgetsBi
 class ChirldWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _ChirldWidgetState();
   }
 }
@@ -96,30 +99,11 @@ class _ChirldWidgetState extends State<ChirldWidget> {
 
   @override
   void initState() {
-
     super.initState();
-    _formKey   = GlobalKey();
+    _formKey = GlobalKey();
     _loginNode = FocusNode();
-    _pwdNode   = FocusNode();
+    _pwdNode = FocusNode();
 
-    FormKeyboardActions.setKeyboardActions(context, KeyboardActionsConfig(
-      actions: [
-        KeyboardAction(focusNode: _loginNode),
-        KeyboardAction(
-          focusNode: _pwdNode,
-          onTapAction: (){
-              print("onTapAction");
-          },
-          footerBuilder: (context){
-            return PreferredSize(
-                child: Text("footer"),
-                //preferredSize: Size(double.infinity, 46),
-                //preferredSize: Size.fromHeight(46)
-            );
-          }
-        )
-      ]
-    ));
   }
 
 
@@ -141,6 +125,7 @@ class _ChirldWidgetState extends State<ChirldWidget> {
                   if(value == null || value.length == 0){
                     return "用户名不能为空";
                   }
+                  return null;
                 },
                 maxLength: 12,
                 decoration: InputDecoration(
@@ -155,6 +140,7 @@ class _ChirldWidgetState extends State<ChirldWidget> {
                   }else if(value.length < 6){
                     return "密码长度不能小于6位";
                   }
+                  return null;
                 },
                 maxLength: 12,
                 decoration: InputDecoration(
@@ -178,6 +164,17 @@ class _ChirldWidgetState extends State<ChirldWidget> {
                     },
                   child: Text("登录"),
                 ),
+              ),
+
+              SizedBox(height: 20,),
+
+              RaisedButton(
+                onPressed: (){
+
+
+                  _loginNode.nextFocus();
+                },
+                child: Text("唤起键盘"),
               ),
             ],
           )

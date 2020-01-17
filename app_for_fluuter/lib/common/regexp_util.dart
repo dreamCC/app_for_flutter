@@ -21,6 +21,7 @@ class RegexpUtil {
 
   static bool isPassword(String password){
     RegExp regExp = RegExp(r"^\w+$");
+    return regExp.hasMatch(password);
   }
 
 

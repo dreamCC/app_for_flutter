@@ -21,6 +21,9 @@
     [super viewDidLoad];
  
     
+    
+
+    
 }
 
 
@@ -63,7 +66,6 @@
 //        
 //        NSLog(@"%@",self.navigationController);
 //        NSLog(@"+++++++++++++++++");
-
         
         result(@"返回的数据");
         
@@ -74,5 +76,5 @@
     
 }
 
-
 @end
+

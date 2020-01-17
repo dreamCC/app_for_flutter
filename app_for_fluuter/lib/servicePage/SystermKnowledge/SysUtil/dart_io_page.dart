@@ -42,11 +42,11 @@ class _DartIoPageState extends State<DartIoPage> {
                   // file相当于操作文件。
 
                   // /Users/zhuchaojun/Documents/宝藏/FlutterApp/app_for_fluuter
-                  File file = File("/Users/zhuchaojun/Documents/宝藏/FlutterApp/back.txt");
+                  File file = File("/Users/zhuchaojun/Documents/宝藏/FlutterApp/back/back.txt");
 
                   // 判断文件是否存在。
                   if(!file.existsSync()) {
-                    // 和create的区别是，这个是同步创建的意思。
+                    // 和create的区别是，这个是同步创建的意思。recursive递归，也就是是否创建中间文件夹。
                     file.createSync(recursive: true);
                   }
 
@@ -58,6 +58,7 @@ class _DartIoPageState extends State<DartIoPage> {
                   file.writeAsBytesSync("hello.world".codeUnits);
 
                   print(file.absolute.path);
+
 
                   // 读取文件内容。 file.readAsLines 一行一行的读。
                   String stringContent = file.readAsStringSync();

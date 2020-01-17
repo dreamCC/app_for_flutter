@@ -16,6 +16,10 @@ import 'json_modal_page.dart';
 import 'future_page.dart';
 import 'route_page.dart';
 import 'mixin_page.dart';
+import 'open_map_app_page.dart';
+import 'show_page.dart';
+import 'lefy_cycle_page.dart';
+import 'random_page.dart';
 
 
 class SysUtilPage extends StatefulWidget {
@@ -31,7 +35,7 @@ class _SysUtilPageState extends State<SysUtilPage> {
 
   List<String> _list = ["HttpPage","InheritedPage","RegexPage","RootBundlePage","StreamControllerPage","WidgetKeyPage",
     "DartIoPage","DartFuturePage","MethodChannelPage","WidgetBindingObserverPage","DateTimePage","ThemePage","JsonModalPage",
-    "Future","RoutePage","MixinPage",""];
+    "Future","RoutePage","MixinPage","OpenMapAppPage","ShowPage",'LefyCyclePage','RandomPage'];
 
 
   @override
@@ -77,6 +81,14 @@ class _SysUtilPageState extends State<SysUtilPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => RoutePage()));
                 }if(index == 15){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => MixinPage()));
+                }if(index == 16){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => OpenMapAppPage()));
+                }if(index == 17){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShowPage()));
+                }if(index == 18){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => LefyCyclePage()));
+                }if(index == 19){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => RandomPage()));
                 }else {
 
                   // Dart中的所有类都是继承Object类。

@@ -63,16 +63,16 @@ class DialogUtil {
 
 
   /// 加载提示框
-  static Future<dynamic> showProgressDialog(
-      BuildContext ctx, {String msg = ''}) {
-
-
-      return showGeneralDialog(
+  static Future<dynamic> showProgressDialog(BuildContext ctx,
+      {String msg = ''}) {
+    return showGeneralDialog(
       context: ctx,
       pageBuilder: (context, a, b) => _CustomDialog(_progressDialog(msg)),
       barrierDismissible: false,
       barrierColor: _barrierColor,
-      barrierLabel: MaterialLocalizations.of(ctx).modalBarrierDismissLabel,
+      barrierLabel: MaterialLocalizations
+          .of(ctx)
+          .modalBarrierDismissLabel,
       transitionDuration: Duration(milliseconds: 150),
     );
   }

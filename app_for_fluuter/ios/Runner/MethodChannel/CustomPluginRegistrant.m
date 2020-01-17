@@ -8,6 +8,8 @@
 
 #import "CustomPluginRegistrant.h"
 #import "CustomPluginManager.h"
+#import "Runner-Swift.h"
+#import "PlatformViewPlugin.h"
 
 @implementation CustomPluginRegistrant
 
@@ -15,6 +17,10 @@
 
     [CustomPluginManager registerWithRegistrar:[registry registrarForPlugin:@"CustomPluginManager"]];
 
+    [ThirdMapPlugin registerWithRegistrar:[registry registrarForPlugin:@"ThirdMapPlugin"]];
+ 
+    [PlatformViewPlugin registerWithRegistrar:[registry registrarForPlugin:@"PlatformViewPlugin"]];
+    
 }
 
 @end

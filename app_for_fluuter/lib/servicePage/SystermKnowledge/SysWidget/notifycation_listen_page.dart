@@ -60,7 +60,6 @@ class CansendButton extends StatelessWidget {
           File file = File("");
 
 
-
       },
       child: Text("send notify"),
     );

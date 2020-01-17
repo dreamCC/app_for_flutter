@@ -83,7 +83,7 @@ class CustomScrollViewWidget extends StatelessWidget {
                 maxHeight: 200,
                 child: Container(
                   color: Colors.purple,
-                  child: Image.asset('assets/image0@2x.png', fit: BoxFit.cover,),
+                  child: Image.asset('assets/home/image0.png', fit: BoxFit.cover,),
                 )
             )
         ),

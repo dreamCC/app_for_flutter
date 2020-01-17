@@ -5,7 +5,8 @@ import 'SysWidget/sys_widget_page.dart';
 import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
-
+import 'SysWidget2/SysWidgetPage2.dart';
+import 'dart:ui';
 
 
 
@@ -19,12 +20,14 @@ class SystermKnowledgePage extends StatefulWidget {
 
 class _SystermKnowledgePageState extends State<SystermKnowledgePage> {
 
-  List<String> _list = ["SysUtilPage","SysWidgetPage",""];
+  List<String> _list = ["SysUtilPage","SysWidgetPage","SysWidgetPage2",""];
 
 
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text("SystermKnowledge"),
@@ -38,7 +41,10 @@ class _SystermKnowledgePageState extends State<SystermKnowledgePage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => SysUtilPage()));
                 }if(index == 1){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => SysWidgetPage()));
+                }if(index == 2){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => SysWidgetPage2()));
                 }else {
+
 
 
                 }

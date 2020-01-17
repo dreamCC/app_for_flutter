@@ -1,8 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/services.dart';
 
 
@@ -34,17 +31,17 @@ class _LocationPageState extends State<LocationPage> {
 
               rootBundle.loadString("");
 
-              Geolocator _geolocator = Geolocator();
-              Position position = await _geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-
-              List<Placemark> marks = await _geolocator.placemarkFromCoordinates(position.latitude, position.longitude);
-              Placemark currentMark = marks.first;
-
-              _locationString = currentMark.country + "-" + currentMark.administrativeArea + "-" + currentMark.subAdministrativeArea;
-              setState(() {
-      
-
-              });
+//              Geolocator _geolocator = Geolocator();
+//              Position position = await _geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+//
+//              List<Placemark> marks = await _geolocator.placemarkFromCoordinates(position.latitude, position.longitude);
+//              Placemark currentMark = marks.first;
+//
+//              _locationString = currentMark.country + "-" + currentMark.administrativeArea + "-" + currentMark.subAdministrativeArea;
+//              setState(() {
+//
+//
+//              });
             },
             child: Text('获取位置信息'),
           ),

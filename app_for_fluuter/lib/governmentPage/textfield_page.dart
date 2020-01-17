@@ -34,7 +34,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> with CanShowProgressH
         },
         child: Padding(
           padding: EdgeInsets.all(20),
-          child: mixinProgressHudWidget(
+          child: CanShowProgressHudWidget(
               body: Column(
                 children: <Widget>[
                   TextField(
@@ -45,14 +45,19 @@ class _TextFieldWidgetState extends State<TextFieldWidget> with CanShowProgressH
                         fontSize: 20
                     ),
                     decoration: InputDecoration(
-                      labelText: '姓名',
                       border: OutlineInputBorder(
                           borderSide: BorderSide(width: 2, color: Colors.purple, style: BorderStyle.solid)
                       ),
                       hintText: '请输入姓名',
-                      icon: Icon(Icons.add),
+                      icon: Icon(Icons.add, size: 20,),
 
                       prefixIcon: Icon(Icons.camera),
+                      prefixText: "prefixText ",
+                      suffixText: "suffixText ",
+                      helperText: "helperText ",
+                      counterText: "counterText",
+                      errorText: "errorText",
+                      labelText: '姓名',
 
                     ),
                     controller: _textFieldVc,
@@ -61,9 +66,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> with CanShowProgressH
                   ),
                   SizedBox(height: 20,),
 
-                  TextFormField(
-                    focusNode: _focusNode,
-                  ),
+//                  TextFormField(
+//                    focusNode: _focusNode,
+//
+//                  ),
+
+
 
                 ],
 

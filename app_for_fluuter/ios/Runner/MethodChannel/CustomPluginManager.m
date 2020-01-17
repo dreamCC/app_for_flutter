@@ -23,6 +23,14 @@
 
 + (void)registerWithRegistrar:(nonnull NSObject<FlutterPluginRegistrar> *)registrar {
 
+//    FlutterMethodChannel *channel =
+//    [FlutterMethodChannel methodChannelWithName:@"plugins.flutter.io/url_launcher"
+//                                binaryMessenger:registrar.messenger];
+//    UIViewController *viewController =
+//    [UIApplication sharedApplication].delegate.window.rootViewController;
+//    FLTUrlLauncherPlugin *plugin =
+//    [[FLTUrlLauncherPlugin alloc] initWithViewController:viewController];
+//    [registrar addMethodCallDelegate:plugin channel:channel];
     
     NSLog(@"%@",registrar);
     CustomPluginManager *pluginManager  = [[CustomPluginManager alloc] init];
@@ -36,6 +44,8 @@
     pluginManager.viewController = (FlutterViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     
     [registrar addMethodCallDelegate:pluginManager channel:methodChannel];
+    
+    
 }
 
 

@@ -23,7 +23,8 @@ mixin CanShowEmptyWidgetMixin<T extends StatefulWidget> on State<T> {
     _emptyWidgetState = EmptyWidgetState.hidden;
   }
 
-  Widget mixinEmptyWidget({@required Widget body}) {
+  // ignore: non_constant_identifier_names
+  Widget CanShowEmptyWidget({@required Widget body}) {
     switch(_emptyWidgetState) {
       case EmptyWidgetState.Loading:
         return Center(child: _loadingWidget,);
@@ -32,6 +33,7 @@ mixin CanShowEmptyWidgetMixin<T extends StatefulWidget> on State<T> {
       case EmptyWidgetState.hidden:
         return  body;
       default:
+        return null;
         break;
     }
   }
@@ -103,7 +105,10 @@ mixin CanShowEmptyWidgetMixin<T extends StatefulWidget> on State<T> {
 
 mixin CanShowProgressHudWidgetMixin<T extends StatefulWidget> on State<T> {
 
-  Widget mixinProgressHudWidget({@required Widget body}){
+
+
+  // ignore: non_constant_identifier_names
+  Widget CanShowProgressHudWidget({@required Widget body}){
     return ProgressHud(child: body, key: _progressHudKey,);
   }
 
@@ -113,7 +118,6 @@ mixin CanShowProgressHudWidgetMixin<T extends StatefulWidget> on State<T> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     _progressHudKey = GlobalKey();
@@ -124,7 +128,7 @@ mixin CanShowProgressHudWidgetMixin<T extends StatefulWidget> on State<T> {
   /***************************** progress start *************************************/
   Future showHintProgressHud(String hint) {
     judgetHasProgressHudValue();
-    return _progressHudKey.currentState.showMessageAndDismiss(text: hint);
+    return _progressHudKey.currentState.showTextAndDismiss(text: hint);
   }
 
   Future showSuccessProgressHud({String msg}) {
@@ -156,6 +160,9 @@ mixin CanShowProgressHudWidgetMixin<T extends StatefulWidget> on State<T> {
 // ignore: slash_for_doc_comments
 /***************************** progress  end *************************************/
 }
+
+
+
 
 
 

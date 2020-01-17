@@ -22,6 +22,17 @@ class _WidgetBindingObserverPageState extends State<WidgetBindingObserverPage> w
     super.initState();
 
     WidgetsBinding.instance.addObserver(this);
+
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+
+      print('addPostFrameCallback--------页面绘制完成，调用，只调用一次。');
+    });
+
+    WidgetsBinding.instance.addPersistentFrameCallback((_){
+      //print('addPersistentFrameCallback-------每次页面绘制完成，都会调用。频繁调用');
+
+    });
   }
 
   /// 注意移除。
@@ -30,7 +41,8 @@ class _WidgetBindingObserverPageState extends State<WidgetBindingObserverPage> w
     // TODO: implement dispose
     super.dispose();
 
-    //WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
+
   }
 
   @override
@@ -71,6 +83,7 @@ class _WidgetBindingObserverPageState extends State<WidgetBindingObserverPage> w
             ),
           ),
 
+
         ],
       ),
     );
@@ -103,12 +116,7 @@ class _WidgetBindingObserverPageState extends State<WidgetBindingObserverPage> w
     double ratio = WidgetsBinding.instance.window.devicePixelRatio;
 
 
-    // 获取键盘高度。
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      EdgeInsets s = MediaQuery.of(context).viewInsets;
 
-      print(s);
-    });
     print("------didChangeMetrics:$size|$ratio");
   }
 

@@ -18,7 +18,67 @@ class DioPage extends StatefulWidget {
   }
 }
 
+
+typedef ResponseValue = void Function(dynamic value);
 class _DioPage extends State<DioPage> {
+
+
+
+  
+  void _diofetchNetwork() async {
+
+    Dio dio = Dio();
+    try{
+      Response re = await dio.get('http://www.wanandroid.com/article/list/0/json');
+      print('----${re.data}');
+    }on DioError catch(error) {
+      print('----$error');
+
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('DioPage'),
+      ),
+      body: Column(
+        children: <Widget>[
+          RaisedButton(
+            onPressed: (){
+              _diofetchNetwork();
+            },
+            child: Text('DioRequest'),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          ),
+          Divider(),
+          RaisedButton(
+            onPressed: (){
+              _jsonToDic();
+            },
+            child: Text('DartJson'),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          ),
+          Divider(),
+          RaisedButton(
+            onPressed: (){
+
+              _throwsMethod().catchError((error){
+
+                print('-----$error');
+              });
+              
+
+            },
+            child: Text('throws'),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          ),
+        ],
+      )
+    );
+  }
+
 
 
 
@@ -35,7 +95,7 @@ class _DioPage extends State<DioPage> {
     print(user.email);
 
 
-     final String mockdata = ''' {
+    final String mockdata = ''' {
   "by" : "dhouston",
   "descendants" : 71,
   "id" : 8863,
@@ -55,42 +115,16 @@ class _DioPage extends State<DioPage> {
     print(data.by);
 
 
-
-
-
   }
 
-  
-  void _diofetchNetwork() async {
 
+  Future _throwsMethod() async{
+    print('start throws Method');
 
-    
-    Dio dio = Dio();
+    Future((){
 
-    Response re = await dio.get('https://www.baidu.com');
-
-
-
-    print(re.data);
-
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('DioPage'),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: (){
-            _jsonToDic();
-//            _diofetchNetwork();
-          },
-          child: Text('DartJson'),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        ),
-      ),
-    );
+      Future.error('Future error');
+    });
+    print('end throws Method');
   }
 }

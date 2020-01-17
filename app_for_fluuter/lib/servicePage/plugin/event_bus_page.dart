@@ -48,6 +48,8 @@ class EventBusPage extends StatelessWidget {
 
                 //bus1.fire('hello,wold--bus1');
                 EventBusUtil.instance.fire("EventBusUtil.sent, meg2");
+                EventBusUtil.instance.fire("EventBusUtil.sent, meg3");
+
                 EventBusUtil.instance.fire(EventBusUtilEvent(eventType: EventBusUtilEventType.jumpToGoverment, value: "EventBusUtil.sent, meg2"));
 
               },

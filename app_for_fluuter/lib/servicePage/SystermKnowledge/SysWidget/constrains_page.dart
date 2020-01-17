@@ -7,6 +7,7 @@ class ConstrainsPage extends StatelessWidget {
 
 
 
+
   @override
   Widget build(BuildContext context) {
 
@@ -95,7 +96,7 @@ class StackPostionWidget extends StatelessWidget {
               bottom: 0,
             ),
             Positioned(
-              child: ClipRRect(child: Image.asset('assets/image0@2x.png', fit: BoxFit.cover,), borderRadius: BorderRadius.circular(10),),
+              child: ClipRRect(child: Image.asset('assets/home/image0.png', fit: BoxFit.cover,), borderRadius: BorderRadius.circular(10),),
               width: 150,
               right: 0,
               bottom: 0,

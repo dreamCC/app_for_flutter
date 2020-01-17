@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 
-
-
 import 'CustomWidget/custom_widget_page.dart';
 import 'plugin/pluginPage.dart';
 import 'SystermKnowledge/systerm_knowledget_page.dart';
+import 'dialog_page.dart';
 
 
 class ServicePage  extends StatefulWidget {
@@ -38,8 +37,7 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
   RefreshController _refreshVc = RefreshController(initialRefresh: false);
 
 
-  List<String> _titles = ["CustomWidgetPage","PluginPage", "SystermknowledgetPage",""];
-
+  List<String> _titles = ["CustomWidgetPage","PluginPage", "SystermknowledgetPage","DialogPage"];
 
 
   @override
@@ -48,11 +46,7 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
     super.initState();
 
     print("++++++++++++++++++++++++++");
-
-
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -79,13 +73,9 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
                        Navigator.push(context, MaterialPageRoute(builder: (context) => PluginPage()));
                      }else if (index == 2) {
                        Navigator.push(context, MaterialPageRoute(builder: (context) => SystermKnowledgePage()));
+                     }else if (index == 3) {
+                       Navigator.push(context, MaterialPageRoute(builder: (context) => DialogPage()));
                      }else {
-
-                       try{
-                         dotoS();
-                       }catch( error){
-                         print(error);
-                       }
 
 
 
@@ -103,38 +93,11 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
                controller: _scrollVc,
              ),
             enablePullUp: false,
-            onRefresh: () async {
-              await Future.delayed(Duration(seconds: 3));
-
-              setState(() {
-                _titles = ["Video_Player","sharePreferens","EventBus","HttpPage","DioPage",
-                  "DeviceInfo","Dialog","StreamController","GesturePage","InheritedPage","ConstrainsPage","SliverAppBarPage","ScrollViewPage",""];
-                _refreshVc.refreshCompleted();
-                _refreshVc.resetNoData();
-
-              });
-            },
-            onLoading: () async{
-                await Future.delayed(Duration(seconds: 3));
-
-
-
-                setState(() {
-                  for(int i = 0; i<10; i++) {
-                    _titles.add('$i');
-                  }
-                  _refreshVc.refreshCompleted();
-
-                });
-            },
+            enablePullDown: false,
           )
       ),
     );
 
-  }
-
-  void dotoS() {
-    throw FlutterError("error");
   }
 
 }

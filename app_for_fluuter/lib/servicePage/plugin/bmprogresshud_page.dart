@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:app_for_fluuter/common/progress_hud.dart';
 
 
+import 'dart:io';
 import 'package:progress_dialog/progress_dialog.dart';
 
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 
+import 'dart:async';
 class BMProgressHudPage extends StatefulWidget {
 
   @override
@@ -22,26 +24,21 @@ class BMProgressHudPage extends StatefulWidget {
 class _BMProgressHudState extends State<BMProgressHudPage> {
 
 
-  List<String> _contents = ['show','showLoading','showSuccessAndDismiss','showErrorAndDismiss','showAndDismiss','showMessage','ProgressDialog',
-  'progressHud_dialog-normal', 'progressHud_dialog-downlog'];
-
-  StringBuffer _name = StringBuffer();
+  List<String> _contents = ['show','showLoading','showSuccessAndDismiss','showErrorAndDismiss','showAndDismiss','showMessage'];
 
 
-  GlobalKey<ProgressHudState> _progressKey;
+  GlobalKey<ProgressHudState> _progressKey = GlobalKey();
 
+  double progress = 0;
 
   @override
   Widget build(BuildContext context) {
-
-    print('build start');
 
 
     return GestureDetector(
       onTap: (){
 
-        print(_progressKey.currentState);
-        _progressKey.currentState.dismiss();
+        //_progressKey.currentState.dismiss();
 
       },
       child: Scaffold(
@@ -54,7 +51,7 @@ class _BMProgressHudState extends State<BMProgressHudPage> {
                 separatorBuilder: _seperateCreate,
                 itemCount: _contents.length,
             ),
-          key: _progressKey = GlobalKey(),
+          key: _progressKey
         )
       ),
     );
@@ -67,7 +64,7 @@ class _BMProgressHudState extends State<BMProgressHudPage> {
 
         if(index == 0) {
 
-          _progressKey.currentState.show(ProgressHudType.loading, '加载中...');
+          _progressKey.currentState.show(ProgressHudType.loading, text: '加载中...');
 
           Future.delayed(Duration(seconds: 3)).then((value){
             _progressKey.currentState.dismiss();
@@ -81,22 +78,28 @@ class _BMProgressHudState extends State<BMProgressHudPage> {
 
           });
         }else if(index == 2) {
-          _progressKey.currentState.showSuccessAndDismiss(text: 'showSuccessAndDismiss');
+          _progressKey.currentState.showSuccessAndDismiss(text: 'showSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismiss');
         }else if(index == 3) {
           _progressKey.currentState.showErrorAndDismiss();
         }else if(index == 4) {
-          _progressKey.currentState.showAndDismiss(ProgressHudType.progress, 'showAndDismiss');
+          _progressKey.currentState.showProgress(progress, text: '下载中...');
+
+
+          Timer.periodic(Duration(seconds: 1 ), (timer){
+            progress += 0.1;
+            if(progress > 1) {
+              timer.cancel();
+              _progressKey.currentState.dismiss();
+              return;
+            }
+           _progressKey.currentState.updateProgress(progress, text:'下载中...');
+          });
+
         }else if(index == 5) {
-          _progressKey.currentState.showAndDismiss(ProgressHudType.message, 'showAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismissshowAndDismiss');
+          _progressKey.currentState.showTextAndDismiss(text:'下载失败');
         }else {
 
-          //ProgressHud.of(context).showLoading();
 
-          _name.writeln('hello, world');
-
-
-
-          print(_name);
         }
       },
     );
@@ -104,32 +107,6 @@ class _BMProgressHudState extends State<BMProgressHudPage> {
 
   Widget _seperateCreate(BuildContext context, int index) {
     return Divider();
-  }
-
-
-}
-
-class StateLessColor extends StatelessWidget {
-  final Color color = Color.fromARGB(1, Random.secure().nextInt(255), Random.secure().nextInt(255), Random.secure().nextInt(255));
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: this.color,
-    );
-  }
-}
-
-
-class Person extends StatelessWidget {
-
-
-
-  @override
-  Widget build(BuildContext context) {
-
-    // TODO: implement build
-    return null;
   }
 }
 

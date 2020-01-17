@@ -16,16 +16,24 @@ import 'package:app_for_fluuter/common/shared_preferences_keys.dart';
 
 import 'package:app_for_fluuter/common/adapt.dart';
 
+import 'package:amap_map_fluttify/amap_map_fluttify.dart';
+
 
 SpUtil _sp;
 void main() async {
 
+
+  //await AmapService.init('bcc3c084823fe998bd85ec2a52e9c760');
+
+  //6a7170dd704fc48e171b7645a094fe93
+  await AmapService.init('6a7170dd704fc48e171b7645a094fe93');
 
   _sp = await SpUtil.getInstance();
 
   AdaptSr.instance.setupFromAxure(414 , 896);
 
   runApp(MyApp());
+
 }
 
 
@@ -106,22 +114,42 @@ class _MyAppState extends State<MyApp> {
       ],
 
       theme: ThemeData(
-
+          // AppBar的主题样式。
           appBarTheme: AppBarTheme(
             elevation: 1,
-            brightness: Brightness.dark
+            brightness: Brightness.dark,
           ),
-        // 脚手架背景颜色。
+          // 脚手架背景颜色。
           scaffoldBackgroundColor: Colors.white,
 
+          // 主要的颜色。一般导航导航类颜色。比如Appbar、dateTimePick的导航。
           primarySwatch: Colors.blue,
+          // 特点颜色。比如，radioButton、checkBox、floatingButton、progress等颜色。
+          accentColor: Colors.blue,
 
+          // 按钮背景颜色。
+          buttonColor: null,
+
+          // TabBar的indicator
+          indicatorColor: null,
+
+          // 分割线颜色。
+          dividerColor: null,
+          dividerTheme: null,
+
+          // 高亮颜色。所有的按钮，按下去就是hightlight样式。
           highlightColor: Colors.purple.withAlpha(0),
 
+          // 水波纹效果。带有点击事件的，点击下去的效果。。
           splashColor: null,
           splashFactory: NoSplashFactory(),
 
           materialTapTargetSize: MaterialTapTargetSize.padded,
+
+
+          inputDecorationTheme: InputDecorationTheme(
+            border: OutlineInputBorder(),
+          )
 
       ),
 
@@ -230,17 +258,7 @@ class _MyHomePageState extends State<MyHomePage>  {
 //        children: _routePages,
 //        index: _currentIndex,
 //      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: Padding(padding: EdgeInsets.only(top: 0), child: FloatingActionButton(
-        onPressed: (){
 
-          // push
-          Navigator.push(context, MaterialPageRoute(builder: (context){
-            return BatteryLevel();
-          }));
-        },
-        child: Icon(Icons.add),
-      ),)
 
     );
   }

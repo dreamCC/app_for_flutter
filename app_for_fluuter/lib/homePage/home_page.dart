@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:app_for_fluuter/common/event_bus.dart';
 import 'package:app_for_fluuter/servicePage/plugin/event_bus_page.dart';
+import 'dart:ui';
 
 class HomePage  extends StatefulWidget {
   @override
@@ -28,8 +29,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       print('HomePage-bus1--收到消息:$ondate');
     });
 
-    EventBusUtil.instance.listen((value){
-      print('homePage--收到消息:${value}');
+    EventBusUtil.instance.listen<String>((value){
+      print('homePage--收到消息:$value');
     });
   }
 
@@ -64,6 +65,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             Center(child: Text('Three'),),
           ]
       ),
+
+      floatingActionButton: IconButton(icon: Icon(Icons.add ), onPressed: (){
+        print(window.padding);
+      }),
     );
   }
 }

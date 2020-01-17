@@ -318,3 +318,313 @@
 1、Column中的chirld： 会尽可能缩小子控件大小。所以我们才需要配合Expande使用。
 2、对于手势GestureDecorator的源码理解。之所以能进行手势识别，其核心是，GestureRecognize（手势识别器。）。
     起源码也是很简单，就是使用RawGestureDecorator。
+
+2019.10.17
+1、Semantics组件，包括一些空间中semanticsValue/lable的含义。
+    其实该属性或控件是可选属性。
+    意味着可以与Android TalkBack或iOS VoiceOver一起使用（例如主要由视障人士使用），包括屏幕阅读器。
+
+2、AppTheme中比较重要的一些属性。
+    appbarTheme：   appBar的主题。
+
+    primarywatch：  一些导航颜色。如appbar的颜色但优先级低（也就是如果设置appbarTheme的颜色，该属性就补齐作用）。
+                    datetimepicker的导航颜色。
+                    同时会影响radio、chexbox、progress、floatingbutton的颜色。优先级低（如果accentColor有值，那么该属性不管用）
+
+    accentColor:   特点颜色。具有一些突出特性的颜色。比如radio、checbox、progress、floatingbutton等颜色。
+                    Slider的颜色比较特殊，受primarywatch影响。
+                                      min: 0,
+                                      max: 100,
+                                      divisions: 10, 这三个属性的作用。
+    // 分割线样式。
+    dividerColor: 分割线。
+
+    // 设置输入框样式。
+    inputDecorationTheme： 输入框主题。默认是下划线样式。
+
+3、注意ProgressIndicator的使用。包括LinerProgressIndicator、CircleProgressIndicator。即可显示进度，也可以显示value。
+    特别是其valueColor：AlwaysStoppedAnimation(Colors.red), backGroudColor：的设置。
+
+
+
+2019.11.13
+1、Slide和ios的UISlide一样。
+2、ScrollBar是滚动条。一般chirld是一个滚动视图，比如SingleChirldScrollView。
+3、Form和TextFormFiled是一起使用的。
+    Form(child: Column(
+                children: <Widget>[
+                  TextFormField(
+
+                  ),
+                  TextFormField()
+                ],
+              ))
+
+4、IgnorePointer和AborbingPointer，用于控制事件传递的。也就是能否在子控件中监听事件。
+
+5、关于进度条。CirleProgressBar、LineProgressBar的valueColor，使用AlwaysStoppedAnimation<Color>（Colors.purper）来进行设置。
+
+6、flutter中，Column的一个属性mainAxisSize，用于设置其大小，默认是MainAxisSize.max，所以，Column默认是撑满父控件的。如果社会组其为.min
+    则会为最小，有点类似Container是否设置子控件的一些状态。
+
+2019.11.14
+1、Flutter动画梳理。
+    AnimtionController，继承Animation。
+    Tween，继承AnimationAble。
+    Animation、一般通过Tweenxxxx.animtion(AnimtionConroller获取)。
+
+    AnimtionController用来启动动画的。常见方法，froward、stop、reverse、dispose。
+    Animtion用来监听动画变化。
+    Tween用来指定动画变化方式。
+
+    其实AnimationController和Animation都是可以监听，动画变化的，和status的变化，注意status中dissimiss的对应的是reverse执行完成后的状态。
+
+2、对于Key的理解。以及常用的UniqueKey和ValueKey的区别。
+    UniqueKey()，其源码就是，拿该key的hash值作为比较对象，所以每次初始化UniqueKey都是不同的。
+    ValueKey(value), 其实比较的是其value值，如果一样就是相等的。ValueKey（1） 和ValueKey(1) 是一样的，如果使用该key，那么就不会更新elementtree。
+    ObjectKey(obj), 其实比较的是obj的地址是否相同，源码中，使用了一个方法，identical(a,b)，其实使用比较的identityHashCode（obj）。
+
+3、AnimatedSwitch的使用，用于控件内容显示的动态变化，注意其chirld配合ValueKey的使用。
+    AnimatedSwitcher(
+                duration: Duration(seconds: 2),
+                child: Icon(_iconData,key: ValueKey(_iconData),),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return ScaleTransition(child: child, scale: animation);
+                },
+              ),
+
+
+2019.11.18
+1、Materail控件的使用场景。当我们开始一个新界面的时候常常需要该控件。比如，showxxxDialog、Overlay等里面。 当我们使用了Scallfold不需要该控件，是因为，
+    Scallfold默认内部是有Materal的。
+
+2、关于Image的fit属性。
+    BoxFit.fill。填满，图片有可能出现拉伸现象。
+    BoxFit.Container。 等比例拉伸，但是图片不会出现剪切现象。类似ios中，aspactScallxxx
+    BoxFit.Cover。     等比例拉伸，图片会出现剪切现象。也就是拉伸后的图片会铺满Image。
+    BoxFit.Fitxx。     只拉伸xxx（宽\高）。
+    BoxFit.ScallDowm。 和Container差不多，但是只能等比例缩小，不能等比例扩大。
+
+
+3、关Dart语言的构造函数。默认，我们创建类，系统默认的构造函数是，无参数、无名称构造函数。
+    子类不会继承父类构造函数，如果父类有构造函数，那么子类一定也要定义构造函数，并且同时需要调用父类的构造函数。
+    oc、swift是会继承父类的构造方法。
+
+
+4、关于Flutter和Native的交互问题。
+    普通pulugin。
+    和使用UIKitView、AndroidView来加载部分view。
+
+2019.11.19
+1、iphoneX 系列手机，只有xr使用@2x图。其它的是@3x图。
+2、关于图片适配问题。
+    我们可以设置
+    xx/xx/.../2.0x/
+    xx/xx/.../3.0x/
+    等2倍图和3倍图。
+
+    具体配置，只需要在pubspec.yaml 中指定使用路径就可以。比如xx/xx/.../xx.png(不需要带上2.0x或者是3.0x，系统会根据手机分辨率来记载。)
+    而且在没有1倍图的情况下，不能出现汉字。
+
+3、Future中的异常，不能通过try-catch进捕获。
+
+
+2019.11.20
+1、ValueListenableBuilder用来监听Value的变化。配合ValueNotifier使用。
+    NotifyListen 通过Notify进行传值。反向传值。
+
+2、InheritedWidget正向传值的使用。如果出现，widget节点过多的时候，并且在不同的页面，那么这个控件就格外游泳。
+
+3、关于GestureDecorator中的Behavior的作用，因为默认如果控件是透明的，那么就不会响应事件，这点和ios很像。通过设置behavior能够使其接受事件。
+
+4、Dart/io中，文件操作File类和文件夹操作类Directory。
+
+5、关于GridView的使用。
+
+6、Size的一个重要使用场景，Size.square(value) 生成一个长宽都是value的尺寸。
+
+7、关于动画。Interval控制动画执行的范围。
+
+8、Matrix4来控制，矩阵变换。配合Transform实现不同的变换。
+    因为默认Transform.rotation 只能围绕中心点（也就是z轴进行旋转，有时不满足要求）。其中Aligment是控制锚点的。
+    Transfom的默认中心点是start，即左上角，我们需要设置为Aligment.center。
+
+   Matrix4的使用。
+   1、Matrix4.identify()取初始矩阵状态。和Matrix4.zero（）含义差不过。
+   2、Matrix4.diagonal3Values缩放变换，直接相当于Matrix4.zero()的基础上进行变换。
+
+9、Interval用于控制多长时间进行完成。有点类似ios中，CABasicAnimation的beginTime = CACurrentMediaTime()+xx。
+   在进行组合动画的时候，Interval显得格外重要。
+ _animation = Tween(begin: 0.0, end: pi/4).animate(
+      CurvedAnimation(
+          parent: _animationController,
+          curve: Interval(0.5, 1)
+      )
+    )..addListener(()=>setState((){}));
+
+    ios中核心动画的继承关系。
+    CAAnimation是基类。 实现了CAMediaTiming协议，能够控制动画执行曲线。
+        CAAnimtionGroup，组动画。
+        CAPropertyAnimtion， 属性动画。
+            CABasicAnimation，基础动画。
+            CAKeyFrameAnimtion，帧动画。
+        CATranstion，转场动画。UINavigationController就是通过该动画实现的转场效果。
+
+
+  通过SpinKit，我们发现一个复杂的动画，显然通过控件Transform使用。
+
+
+10、Flutter关于动画实现方式。
+    1、通过AnimtionController.forward（)执行动画。
+        Animtion.lisent() => setState((){}) 通过animtion监听动画，然后setState进行赋值。 一般配合Transform使用。
+
+    2、通过系统暴露的能够动画的组件，如AnimtedContainer、AnimtedOpacity等进行动画。类似ios中，CALayer的隐式动画（也就是我们给其赋值时候，会
+        有从旧值到新值的动画。）。
+        其实现原理就是，这些控件继承ImplicitlyAnimatedWidget -> StatefullWidget。ImplicitlyAnimatedWidgetState内部，initState的时候
+        初始化一个AnimtionController，widget进行赋值的时候，会调用 didUpdateWidget 方法，而该方法内部，创建一个Animtion并赋值其begin和end
+        同时开始进行动画。
+
+    3、通过系统暴露组件，xxTransition进行动画，继承自AnimtedWidget。直接赋值Animtion。
+        其实现原理就简单一些，在内部，给Animation增加监听事件，当动画执行的时候，监听到动画，同时执行setState，而在build方法中就帮我们获取到了值。
+        其实就是对方式1进行了简化，将其监听动画和setState和或者value值，系统帮我们处理了。
+
+    4、AnimatedBuilder，该方式创建动画也是继承自AnimatedWidget。其实和3的唯一区别就是系统帮我们监听到动画，不会获取当animmation.value的值（
+        其实也是理所当然，因为系统根本不知道build里面你想取什么值）。
+
+    所以我们也可以自定义动画 XXWidget extents AnimtedWidget。初始化的时候，需要传一个Animation。
+
+11、关于Flutter的Widget生命周期。
+    initState（） 相当于重新创建的时候才会调用。 相当于Element tree改变了就会调用。
+        类似android中的oncreate、ios中的viewdidLoad。这个时候，widget对应的element还没有渲染，但是已经加载到渲染树种，此时mount变成了true，
+        当dispose的时候会变成false。
+
+    didChangeDepandcy() 当initState调用后，立即调用。
+
+    didUpdateWidget(）会在build的前调用。注意一定是update的时候调用，初始化的时候不会调用。所以一般initState和didUpdateWidget不会同时调用。
+        其实相当于每次hot load的时候会调用。
+
+    build()  这两个很像，当调用setState，或者父widget调用setState都会调用。
+
+
+  Flutter中，App的生命周期需要借助widgetbind.instanse.addobserve来实现监听。
+
+
+2019.11.21
+1、关于ShaderMask的使用。给控件进行渐变着色。
+
+
+
+2019.11.22
+1、Stack组件的特点。首先是撑满父控件的。
+    fit：StackFit.loose\.expand 该属性是，在子控件没有Position包裹的时候才起作用。
+        StackFit.expand 是将子控件撑满父控件，优先级特别高。
+
+2、Column组件的特点。
+    Column和Row默认都是撑满父类的。 而且需要知道子widget的尺寸。常见的问题就是，Colum内部有scrollView，需要用Expand进包裹。
+
+
+
+
+2019.11.26
+1、关于flutter，状态栏颜色的设置。 通过AppBar的brightLess.dark设置。最好，在主题样式里面设置。
+    当然也可在  AnnotatedRegion<SystemUiOverlayStyle>(
+                value: SystemUiOverlayStyle.dark,
+                child: Material(child: Scaffold(body: loginMain(),),),
+              );
+
+2、关于Git的使用。
+    当我们在一个分支上，checkout到某次提交（sourchtree 就是鼠标双击以前的某次提交），会弹出
+
+    你确定你想要检出'bbf5b46ae754b9cc2cd4a6dea41b5265110bea4b'？
+    这样做会使得你的工作区变成一个“分离的HEAD”，这意味着你不会在任何一个分支上。
+    如果你在这之后想要提交，你将很有可能要么检出一个分支，要么创建一个新的分支。这样可以吗？
+
+    以上提示的理解。因为默认比如我们在master分支上，那么master指针和head指针是在一起的，每次做一次提交，两个指针就会同时向后移动，当我们检出到
+    某个提交的时候，这时这种【绑定】状态就会打破，就会出现上述提示，那么如果这个时候我们想要做修改，那么只需要修改后，新建branch就可以了。
+    不然修改的内容会丢失。
+
+
+    关于提交回滚和将xx重置到这次提交的区别。
+    比如。1、2、3、4、5、6、7。 我们在3上面执行提交回滚操作，那么只是将3这次提交的代码移除掉（相当于没有做3这次操作），但是4、5、6、7还在，执行完后
+    的顺序是1、2、4、5、6、7。而且sourcetree会显示落后一个版本（因为我们做的是本地操作），如果要同步需要进一次提交。
+
+    重置xx到这次提交。
+    1、2、3、4、5、6、7。选择3，右击选择重置到这次提交，选择硬合并。这个时候发现本地代码已经回到选中的那次，如果想要远程服务器
+
+
+2019.12.6
+1、关于showDialog，中，build的创建。 需要使用center和Matero进行包裹。不然，设置会出现失败。
+
+
+2019.12.11
+1、ListWheelScrollView 实现轮子是滚动。有点3d效果。
+2、注意ListView默认是没有滚动条的，滚动条需要通过ScrollBar来加。
+3、注意ListView有Padding属性。内容会实现偏移。
+4、TabBar也是可以通过lablePadding来实现内容的padding。
+5、关于ListView的理解。我们知道，ios中，UITableView，有自身高度，如果滚动需要知道contentSize。
+    但是flutter中，有点区别，Listview的高度其实就是自widget的高度（也就是没有contentSize的概念，这和android有点类似）。这也就是说，要渲染必须
+    知道子控件的高度。其实ios也是一样。
+    这就带来一个问题，如果ListView嵌套ListView或者GridView的时候，会出现问题。这时候就需要使用shrinkWrap属性，因为默认ListView是尽可能大的。
+
+
+
+2019.12.12
+关于FocusScope、Focus、FocusNode的关系。
+
+flutter的源码告诉我们:
+void runApp(Widget app) {
+  WidgetsFlutterBinding.ensureInitialized()
+    ..attachRootWidget(app)
+    ..scheduleWarmUpFrame();
+}
+
+其中，WidgetsFlutterBinding.ensureInitialized() 会进行各种事件的绑定。
+
+void attachRootWidget(Widget rootWidget) {
+    _renderViewElement = RenderObjectToWidgetAdapter<RenderBox>(
+      container: renderView,
+      debugShortDescription: '[root]',
+      child: rootWidget,
+    ).attachToRenderTree(buildOwner, renderViewElement);
+  }
+会创建。buildOwner 其中buildOwner会创建一个FocusManager进行键盘的管理。这也是我们通过，FocustScope.of(context)就是FocusManger.rootScaopNode。
+
+我们发现，所有跟键盘有关的都和 FocusMananger有着关系。
+
+Focus我们从源码发现，如果不传FocusNode，他会默认创建一个FocusNode，这也是Focus能进行键盘换气的根本原因。
+
+FocusScope其实是Focus子类。
+
+2019.12.17。
+1、关于TextField的几个重要属性。
+    enableBoard： 未点击时候样式。命名有点奇怪。
+    highhtBoard： 点击时候样式。
+    contentPadding：TextFiled高度控制，主要是，又是莫名奇妙的高度。Tab里面的padding有相似效果。
+    fill： 配合fillColor使用。
+    fillColor：填充色，前提是fill = true。默认是false。
+
+
+2019.1.7
+1、dart中关键字。extends 继承。 implement和java中implement一样。 with关键字。
+   dart中，没有interface关键字。但是有interface概念。任意类都可以作为interface接口。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

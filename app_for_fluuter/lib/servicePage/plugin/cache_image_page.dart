@@ -51,12 +51,12 @@ class _CacheImagePageState extends State<CacheImagePage> with CanShowEmptyWidget
       appBar: AppBar(
         title: Text('CacheImagePage'),
       ),
-      body: mixinEmptyWidget(
+      body: CanShowEmptyWidget(
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Image.asset('assets/image0@2x.png', width: 200, height: 100,),
+              Image.asset('assets/home/image0.png', width: 200, height: 100,),
               RaisedButton(onPressed: (){
 
               }, child: Text('fetchImage'),),

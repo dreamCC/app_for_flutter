@@ -13,6 +13,11 @@ import 'keybord_actions_page.dart';
 import 'flutter_picker_page.dart';
 import 'flutter_map_page.dart';
 import 'flutter_bloc_page.dart';
+import 'bottom_tab_bar_page.dart';
+import 'photo_view_page.dart';
+import 'spinkit_page.dart';
+import 'sqflite_page.dart';
+import 'flutter_barrier_page.dart';
 
 class PluginPage extends StatefulWidget {
 
@@ -26,7 +31,8 @@ class _PluginPageState extends State<PluginPage> {
 
   List<String> _list = ["DioPage","EventBus","LocationPage","UrlLaunchPage","Video_Player","WebViewPluginPage",
     "BMProgressHudPage","CacheImagePage","PathProviderPage","KeyboardActionsPage","FlutterPickerPage",
-    "FlutterMapPage","FlutterBlocPage",""];
+    "FlutterMapPage","FlutterBlocPage","BottomTabBarPage", "PhotoViewPage","SpinKitPage","SqflitePage",
+    'FlutterBarrage'];
 
 
   @override
@@ -66,6 +72,19 @@ class _PluginPageState extends State<PluginPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => FlutterMapPage()));
                 }if(index == 12){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => FlutterBlocPage()));
+                }if(index == 13){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => BottomTabBarPage()));
+                }if(index == 14){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => PhotoViewPage()));
+                }if(index == 15){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => SpinKitPage()));
+
+                }if(index == 16){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => SqfiltePage()));
+
+                }if(index == 17){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => FlutterBarragePage()));
+
                 }else {
 
 

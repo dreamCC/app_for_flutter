@@ -42,7 +42,7 @@ class _SliverAppBarPageState extends State<SliverAppBarPage> {
         flexibleSpace: FlexibleSpaceBar(
           centerTitle: true,
           title: Text('FlexibleSpaceBar'),
-          background: Image.asset('assets/image0@2x.png', fit: BoxFit.cover,),
+          background: Image.asset('assets/home/image0.png', fit: BoxFit.cover,),
         ),
       )
     ];

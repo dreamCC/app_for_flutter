@@ -31,7 +31,7 @@ class HeroPage extends StatelessWidget {
               tag: "header",
               child: CircleAvatar(
                 radius: 50,
-                backgroundImage: AssetImage("assets/image0@2x.png"),
+                backgroundImage: AssetImage("assets/home/image0.png"),
               )
           ),
         ),
@@ -51,7 +51,7 @@ class HeroAnimatedPage extends StatelessWidget {
         body: Center(
           child: Hero(
               tag: "headre",
-              child: Image.asset("assets/image0@2x.png")
+              child: Image.asset("assets/home/image0.png")
           ),
         ),
       );

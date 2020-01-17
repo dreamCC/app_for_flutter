@@ -23,6 +23,8 @@ class _TextSpanPageState extends State<TextSpanPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
 
+          GestureDetector(),
+
           Text.rich(
             TextSpan(
               text: "公司简介",
@@ -35,7 +37,7 @@ class _TextSpanPageState extends State<TextSpanPage> {
                   },
                   children: [
                     WidgetSpan(child: InkWell(
-                      child: Image.asset("assets/image0@2x.png", width: 15,height: 15,),
+                      child: Image.asset("assets/home/image0.png", width: 15,height: 15,),
                       onTap: (){
                         print("点击图片");
                       },

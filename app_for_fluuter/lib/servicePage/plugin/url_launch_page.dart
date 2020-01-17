@@ -15,13 +15,15 @@ class _UrlLaunchPageState extends State<UrlLaunchPage> {
   // 不添加返回值，默认是dynamic类型。
   _launchUrl() async{
 
-//    Scheme	Action
-//    http:<URL> , https:<URL>, e.g. http://flutter.dev	Open URL in the default browser
-//    mailto:<email address>?subject=<subject>&body=<body>, e.g. mailto:smith@example.org?subject=News&body=New%20plugin	Create email to
-//    tel:<phone number>, e.g. tel:+1 555 010 999	Make a phone call to
-//    sms:<phone number>, e.g. sms:5550101234	Send an SMS message to
+    /*
+    Scheme	Action
+    http:<URL> , https:<URL>, e.g. http://flutter.dev	Open URL in the default browser
+    mailto:<email address>?subject=<subject>&body=<body>, e.g. mailto:smith@example.org?subject=News&body=New%20plugin	Create email to
+    tel:<phone number>, e.g. tel:+1 555 010 999	Make a phone call to
+    sms:<phone number>, e.g. sms:5550101234	Send an SMS message to
+    */
 
-    const String url = 'https://www.baidu.com';
+    const String url = 'http://www.baidu.com';
     bool canLaunchUrl = await canLaunch(url);
 
     print('canLaunchUrl:----------$canLaunchUrl');

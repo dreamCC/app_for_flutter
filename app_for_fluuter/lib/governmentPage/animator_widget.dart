@@ -22,8 +22,6 @@ import 'package:flutter/gestures.dart';
 
 class AnimationWidget extends StatefulWidget {
 
-
-
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -50,6 +48,22 @@ class _AnimationWidgetS extends State<AnimationWidget> with SingleTickerProvider
 
     _controller.duration = Duration(seconds: 3);
 
+    _controller.addListener((){
+      print('---------_controller.addListener:${_controller.value}');
+    });
+    _animation.addListener((){
+      print('---------_animation.addListener:${_animation.value}');
+    });
+
+
+    AnimationStatus s;
+    _controller.addStatusListener((status){
+      print('---------_controller.addStatusListener:$status');
+    });
+    _animation.addStatusListener((status){
+      print('---------_animation.addStatusListener:$status');
+    });
+
 
   }
 
@@ -73,7 +87,6 @@ class _AnimationWidgetS extends State<AnimationWidget> with SingleTickerProvider
 
             width: _width,
             height: 200,
-
           ),
           Divider(),
 
@@ -82,12 +95,44 @@ class _AnimationWidgetS extends State<AnimationWidget> with SingleTickerProvider
                 setState(() {
                   _width += 50;
 
-                  _controller.forward();
                 });
               },
-              child: Text('RaisedButton')
+              child: Text('StartAnimation')
           ),
 
+          Divider(),
+
+          RaisedButton(
+              onPressed: () {
+                setState(() {
+                  _controller.stop();
+                });
+              },
+              child: Text('StopAnimation')
+          ),
+
+          Divider(),
+
+          RaisedButton(
+              onPressed: () {
+                setState(() {
+                  _controller.reverse();
+                });
+              },
+              child: Text('revert')
+          ),
+
+
+          Divider(),
+
+          RaisedButton(
+              onPressed: () {
+                setState(() {
+                  _controller.dispose();
+                });
+              },
+              child: Text('dispose')
+          ),
           SizedBox(height: 20,),
           Dismissible(
               direction: DismissDirection.horizontal,
@@ -190,8 +235,6 @@ class _AnimationWidgetState extends State<AnimationWidget> with SingleTickerProv
       // 也可以通过。AnimationBuilder来实现动画通知，这种情况下，就不需要setState，但是和setState的效果是一样的。
       print('动画value----${_animation.value}');
 
-
-
     });
     
 
@@ -268,6 +311,7 @@ class _AnimationWidgetState extends State<AnimationWidget> with SingleTickerProv
                   }
               ),
 
+              
 
 
 

@@ -28,7 +28,7 @@ class _MixinPageState extends State<MixinPage> with MyDemoMixin {
           Container(
             alignment: Alignment(0, 0),
             child: ClipOval(
-              child: Image.asset("assets/image0@2x.png", width: 100, height: 100, fit: BoxFit.cover,),
+              child: Image.asset("assets/home/image0.png", width: 100, height: 100, fit: BoxFit.cover,),
             ),
           ),
           Divider(color: Colors.purple, height: 10,thickness: 10,),

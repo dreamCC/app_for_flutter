@@ -27,11 +27,6 @@ class _SummarizePageState extends State<SummarizePage> {
     super.initState();
 
 
-    PageController page;
-
-    AnimationController con;
-
-
 
   }
 
@@ -41,14 +36,18 @@ class _SummarizePageState extends State<SummarizePage> {
       appBar: AppBar(
         title: Text("SummarizePage"),
       ),
-      body: Center(
-        child: RaisedButton(
-            onPressed: (){
+      body: Column(
+        children: <Widget>[
+          RaisedButton(
+            onPressed: () {
 
               },
 
-        ),
-      ),
+          ),
+
+
+        ],
+      )
     );
   }
 }
