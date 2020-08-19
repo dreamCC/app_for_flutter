@@ -1,8 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'dart:math';
-import 'package:flutter_spinkit/src/utils.dart';
 
 
 class SpinKitPage extends StatefulWidget {

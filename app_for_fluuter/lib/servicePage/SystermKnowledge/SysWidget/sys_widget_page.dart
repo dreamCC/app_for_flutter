@@ -96,7 +96,7 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
                 }if(index == 16){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => AnimatedListPage()));
                 }if(index == 17){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => MaterialPage()));
+                  //Navigator.of(context).push(MaterialPageRoute(builder: (context) => MaterialPage()));
                 }if(index == 18){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => HeroPage()));
                 }if(index == 19){

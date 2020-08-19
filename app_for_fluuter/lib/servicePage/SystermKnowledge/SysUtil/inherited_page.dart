@@ -66,6 +66,7 @@ class _InheritedPageState extends State<InheritedPage> {
 }
 
 
+// ignore: must_be_immutable
 class InheritedShareInfo extends InheritedWidget {
 
   String name;

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'governmentPage/government_page.dart';
@@ -15,23 +17,16 @@ import 'package:app_for_fluuter/common/shared_preferences.dart';
 import 'package:app_for_fluuter/common/shared_preferences_keys.dart';
 
 import 'package:app_for_fluuter/common/adapt.dart';
-
-import 'package:amap_map_fluttify/amap_map_fluttify.dart';
-
+import 'package:dart_des/dart_des.dart';
 
 SpUtil _sp;
 void main() async {
 
-
-  //await AmapService.init('bcc3c084823fe998bd85ec2a52e9c760');
-
-  //6a7170dd704fc48e171b7645a094fe93
-  await AmapService.init('6a7170dd704fc48e171b7645a094fe93');
+  WidgetsFlutterBinding.ensureInitialized();
 
   _sp = await SpUtil.getInstance();
 
   AdaptSr.instance.setupFromAxure(414 , 896);
-
   runApp(MyApp());
 
 }
@@ -153,7 +148,7 @@ class _MyAppState extends State<MyApp> {
 
       ),
 
-      home: _showWelcomPage(),
+      home: MyHomePage(),
 
       //home: _routeToDartFile(window.defaultRouteName),
 

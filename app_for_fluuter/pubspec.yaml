@@ -44,7 +44,7 @@ dependencies:
 
   #网络知识
   connectivity: ^0.4.3+2
-  dio: ^2.1.6
+  dio: ^3.0.9
 
   #设备信息
   device_info: ^0.4.0+2
@@ -57,7 +57,7 @@ dependencies:
   progress_dialog: ^1.2.0
 
   #cache image
-  cached_network_image: ^1.1.0
+  cached_network_image: ^2.2.0+1
 
   #url_launch。通过默认浏览器来打开url。类似ios中，openUrl。
   url_launcher: ^5.1.1
@@ -82,15 +82,13 @@ dependencies:
   flutter_picker: ^1.0.15
 
   #地图
-  amap_map_fluttify: ^0.5.2+d62f0ad
-
-  flutter_map: ^0.7.2
-
+  #amap_map_fluttify: ^0.5.2+d62f0ad
+  #flutter_map: any
   #third_map_plugin: ^0.0.1
 
 
   #类似Stream，用于UI和业务的分离。
-  flutter_bloc: ^0.21.0
+  #flutter_bloc: ^0.21.0
 
   #图片预览
   photo_view: ^0.7.0
@@ -109,6 +107,8 @@ dependencies:
   flutter_barrage: ^0.4.3
   barrage: ^0.0.1
 
+  # des加密
+  dart_des: ^0.0.2
 
 
 dev_dependencies:

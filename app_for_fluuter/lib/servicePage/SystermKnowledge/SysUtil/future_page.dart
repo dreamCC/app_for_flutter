@@ -62,8 +62,6 @@ class _FuturePageState extends State<FuturePage> {
           RaisedButton(
             onPressed: () async{
 
-
-
               try{
                 await futureFunc();
               }catch(error) {

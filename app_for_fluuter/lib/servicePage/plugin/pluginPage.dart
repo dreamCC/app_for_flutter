@@ -12,7 +12,6 @@ import 'path_provider_page.dart';
 import 'keybord_actions_page.dart';
 import 'flutter_picker_page.dart';
 import 'flutter_map_page.dart';
-import 'flutter_bloc_page.dart';
 import 'bottom_tab_bar_page.dart';
 import 'photo_view_page.dart';
 import 'spinkit_page.dart';
@@ -71,7 +70,7 @@ class _PluginPageState extends State<PluginPage> {
                 }if(index == 11){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => FlutterMapPage()));
                 }if(index == 12){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => FlutterBlocPage()));
+                  //Navigator.of(context).push(MaterialPageRoute(builder: (context) => FlutterBlocPage()));
                 }if(index == 13){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => BottomTabBarPage()));
                 }if(index == 14){
