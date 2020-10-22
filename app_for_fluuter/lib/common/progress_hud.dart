@@ -1,4 +1,4 @@
-import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:ui';
@@ -22,35 +22,42 @@ enum ProgressHudType {
 class ProgressHud extends StatefulWidget {
 
   /// 背景颜色。默认Colors.transparent
-  Color backgroudColor;
+  final Color backgroundColor;
 
   /// 中间Container的颜色。默认Color.fromARGB(255, 232, 234, 236)
-  Color containerColor;
+  final Color containerColor;
 
   /// 中间Container的Y轴偏移。默认-50.
-  double offsetY;
+  final double offsetY;
 
   /// 中间Container最大宽度。 默认屏幕宽度 - 40.
-  double containerMaxW;
+  final double containerMaxW;
 
-  /// 文本样式。TextStyle(fontSize: 16, color: Colors.white
-  TextStyle textStyle;
+  /// 文本样式。TextStyle(fontSize: 16, color: Colors.white)
+  final TextStyle textStyle;
 
   /// 图标大小。默认40。
-  double iconSize;
+  final double iconSize;
 
   /// 子控件。
-  Widget child;
+  final Widget child;
 
 
   ProgressHud({
       Key key,
-      this.backgroudColor = Colors.transparent,
+      @required this.child,
+      this.backgroundColor = Colors.transparent,
       this.containerColor = const Color.fromARGB(255, 232, 234, 236),
       this.offsetY = -50,
       this.textStyle = const TextStyle(fontSize: 16, color: Color(0xFF262626)),
       this.iconSize = 40,
-      this.child}) : super(key: key);
+      this.containerMaxW
+  }) : super(key: key);
+
+  static ProgressHudState of(BuildContext context) {
+    return context.findAncestorStateOfType<ProgressHudState>();
+  }
+
 
   @override
   ProgressHudState createState() => ProgressHudState();
@@ -61,15 +68,19 @@ class ProgressHudState extends State<ProgressHud> with SingleTickerProviderState
 
   
   bool _isVisible = false;
-  String _text = '';
+  String _text;
+  double _progressValue, _containerMaxW;
   ProgressHudType _progressHudType;
-  double _progressValue = 0;
+
+
 
   @override
   void initState() {
     super.initState();
 
-    if(widget.containerMaxW == null) widget.containerMaxW = window.physicalSize.width/window.devicePixelRatio - 40;
+    _progressValue = 0;
+    _containerMaxW = widget.containerMaxW;
+    if(_containerMaxW == null) _containerMaxW = window.physicalSize.width/window.devicePixelRatio - 40;
   }
 
   
@@ -79,19 +90,12 @@ class ProgressHudState extends State<ProgressHud> with SingleTickerProviderState
   ///  * test，内容
   void show(ProgressHudType type,{String text}) {
 
-    setState(() {
-      _isVisible = true;
-      _text = text;
-      _progressHudType = type;
-    });
+    _isVisible = true;
+    _text = text;
+    _progressHudType = type;
+    setState(() {});
   }
 
-  ///  * 隐藏Hud
-  void dismiss() {
-    setState(() {
-      _isVisible = false;
-    });
-  }
 
   ///  * 显示Hud，并自动隐藏
   ///  * type，HUD类型
@@ -99,15 +103,7 @@ class ProgressHudState extends State<ProgressHud> with SingleTickerProviderState
   Future<void> showAndDismiss(ProgressHudType type,{String text}) async {
 
     show(type, text: text);
-    
-    var millisecond;
-    if(_text == null || _text.length == 0){
-      millisecond = 1000;
-    }else {
-      millisecond = max(500 + text.length * 100, 1000);
-    }
-    var duration = Duration(milliseconds: millisecond);
-    await Future.delayed(duration);
+    await Future.delayed(Duration(seconds: 3));
     dismiss();
   }
 
@@ -136,105 +132,133 @@ class ProgressHudState extends State<ProgressHud> with SingleTickerProviderState
   void showProgress(double value, {String text}) async {
 
     show(ProgressHudType.progress, text: text);
-    setState(() {
-      _progressValue = value;
-    });
+    _progressValue = value;
+    setState(() {});
   }
 
   ///  * 更新ProgressHudType.progress的value。
   void updateProgress(double value, {String text}) {
+    assert(value > 0);
     if(value >1) value = 1;
-
-    setState(() {
-      _progressValue = value;
-      _text = text;
-    });
+    _progressValue = value;
+    _text = text;
+    setState(() {});
   }
 
 
+  ///  * 隐藏Hud
+  void dismiss() {
+    _isVisible = false;
+    setState(() {});
+  }
 
+
+  /// private method
   @override
   Widget build(BuildContext context) {
+
+    Widget hud = Container(
+      color: widget.backgroundColor,
+      alignment: Alignment.center,
+      child: Container(
+          margin: _containerWidgetMargin,
+          padding: EdgeInsets.all(12),
+          decoration: BoxDecoration(
+              color: widget.containerColor,
+              borderRadius: BorderRadius.circular(5)
+          ),
+          constraints: BoxConstraints(
+              minHeight: 50,
+              minWidth: 50,
+              maxWidth: _containerMaxW
+          ),
+          child: _ProgressHudContainer(
+            hudType: _progressHudType,
+            progressValue: _progressValue,
+            text: _text,
+            textStyle: widget.textStyle,
+            iconSize: widget.iconSize,
+          )
+      ),
+    );
 
     return Stack(
       children: <Widget>[
         widget.child,
-        Offstage(
-            offstage: !_isVisible,
-            child: _isVisible?_progressHud():null
-        ),
+        Offstage(offstage: !_isVisible, child: _isVisible ? hud:null),
       ],
     );
   }
 
-  //------prvate method
-  Widget _progressHud() {
-    
-    List<Widget> chirlds;
-    switch (_progressHudType) {
+  /// private method
+  // 调整ContainerWidget位置。
+  EdgeInsets get _containerWidgetMargin{
+    if(widget.offsetY < 0) {
+      return EdgeInsets.only(bottom: -widget.offsetY);
+    }else {
+      return EdgeInsets.only(top: widget.offsetY);
+    }
+  }
+
+}
+
+class _ProgressHudContainer extends StatefulWidget {
+
+  final ProgressHudType hudType;
+  final String    text;
+  final TextStyle textStyle;
+  final double    iconSize;
+  final double    progressValue;
+  _ProgressHudContainer({this.hudType, this.textStyle, this.iconSize, this.text, this.progressValue});
+
+  @override
+  _ProgressHudContainerState createState() => _ProgressHudContainerState();
+}
+
+class _ProgressHudContainerState extends State<_ProgressHudContainer> {
+
+  @override
+  Widget build(BuildContext context) {
+
+    List<Widget> childes;
+    switch (widget.hudType) {
       case ProgressHudType.loading:
-        chirlds = _loadingWidgets();
+        childes = _loadingWidgets();
         break;
       case ProgressHudType.error:
-        chirlds = _errorWidgets();
+        childes = _errorWidgets();
         break;
       case ProgressHudType.success:
-        chirlds = _successWidgets();
+        childes = _successWidgets();
         break;
       case ProgressHudType.progress:
-        chirlds = _progressWidgets();
+        childes = _progressWidgets();
         break;
       case ProgressHudType.text:
-        chirlds = _textWidgets();
+        childes = _textWidgets();
         break;
       default:
         throw Exception("not implementation");
     }
-    
-    return Stack(
-      children: <Widget>[
-        
-        // backgroud
-        Container(
-          color: widget.backgroudColor,
-        ),
 
-        // container
-        Center(
-          child: Container(
-              margin: _containerWidgetMargin,
-              padding: EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                  color: widget.containerColor,
-                  borderRadius: BorderRadius.circular(5)
-              ),
-              constraints: BoxConstraints(
-                  minHeight: 50,
-                  minWidth: 50,
-                  maxWidth: widget.containerMaxW
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: chirlds,
-              )
-          ),
-        )
-      ],
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: childes,
     );
   }
 
-  
+  /// private method
   List<Widget> _loadingWidgets() {
-    
+
     List<Widget> _hudList = List();
     _hudList.add(
-         SizedBox(
-             width: widget.iconSize,
-             height: widget.iconSize,
-             child: CupertinoActivityIndicator(animating: true, radius: widget.iconSize/3,)
-         )
-     );
+        SizedBox(
+            width: widget.iconSize,
+            height: widget.iconSize,
+            child: CupertinoActivityIndicator(animating: true, radius: widget.iconSize/3,)
+        )
+    );
 
     if(_textWidget != null) _hudList.add(_textWidget);
     return _hudList;
@@ -269,7 +293,7 @@ class ProgressHudState extends State<ProgressHud> with SingleTickerProviderState
     _hudList.add(
         SizedBox.fromSize(
           child: CircularProgressIndicator(
-            value: _progressValue,
+            value: widget.progressValue,
             valueColor: AlwaysStoppedAnimation<Color>(widget.textStyle.color),
           ),
           size: Size(widget.iconSize, widget.iconSize),
@@ -277,7 +301,7 @@ class ProgressHudState extends State<ProgressHud> with SingleTickerProviderState
     );
 
     _hudList.add(
-        SizedBox(height: 5,),
+      SizedBox(height: 5,),
     );
 
     if(_textWidget != null) _hudList.add(_textWidget);
@@ -292,28 +316,13 @@ class ProgressHudState extends State<ProgressHud> with SingleTickerProviderState
 
 
   Widget get _textWidget {
-
-    int textLength = _text?.length;
-    if(textLength != null && textLength > 0) {
-      return Container(
-        child: Text(
-            _text,
-            textAlign: TextAlign.center,
-            style: widget.textStyle
-        ),
-      );
-    }
-    return null;
+    if(widget.text == null || widget.text.length == 0) return null;
+    return Text(
+        widget.text,
+        textAlign: TextAlign.center,
+        style: widget.textStyle
+    );
   }
-
-  // 调整ContainerWidget位置。
-  EdgeInsets get _containerWidgetMargin{
-    if(widget.offsetY < 0) {
-      return EdgeInsets.only(bottom: -widget.offsetY);
-    }else {
-      return EdgeInsets.only(top: widget.offsetY);
-    }
-  }
-
 }
+
 

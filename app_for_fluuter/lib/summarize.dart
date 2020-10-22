@@ -32,6 +32,8 @@ class _SummarizePageState extends State<SummarizePage> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text("SummarizePage"),

@@ -20,8 +20,13 @@ class _TextFieldWidgetState extends State<TextFieldWidget> with CanShowProgressH
   TextEditingController _textFieldVc = TextEditingController(text: 'enha');
 
   FocusNode _focusNode = FocusNode();
+
+  @override
+  GlobalObjectKey<ProgressHudState> get progressHudKey => GlobalObjectKey("progressHudKey");
+
   @override
   Widget build(BuildContext context) {
+
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
@@ -34,8 +39,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> with CanShowProgressH
         },
         child: Padding(
           padding: EdgeInsets.all(20),
-          child: CanShowProgressHudWidget(
-              body: Column(
+          child: ProgressHud(
+              key: progressHudKey,
+              child: Column(
                 children: <Widget>[
                   TextField(
                     focusNode: _focusNode,
@@ -66,12 +72,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> with CanShowProgressH
                   ),
                   SizedBox(height: 20,),
 
-//                  TextFormField(
-//                    focusNode: _focusNode,
-//
-//                  ),
+                  VChild(),
 
 
+                  IconButton(icon: Icon(Icons.camera), onPressed: (){
+                    showHintProgressHud("内部点击-");
+                  })
 
                 ],
 
@@ -79,6 +85,29 @@ class _TextFieldWidgetState extends State<TextFieldWidget> with CanShowProgressH
           )
         ),
       )
+    );
+  }
+}
+
+class VChild extends StatefulWidget {
+  @override
+  _VChildState createState() => _VChildState();
+}
+
+class _VChildState extends State<VChild> {
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+        ProgressHud.of(context).showTextAndDismiss(text: "错误-");
+        //GlobalObjectKey<ProgressHudState>("progressHudKey").currentState.showTextAndDismiss(text: "tap VChild");
+      },
+      child: Container(
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(color: Colors.blue),
+      ),
     );
   }
 }

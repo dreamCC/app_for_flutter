@@ -6,7 +6,6 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'CustomWidget/custom_widget_page.dart';
 import 'plugin/pluginPage.dart';
 import 'SystermKnowledge/systerm_knowledget_page.dart';
-import 'dialog_page.dart';
 
 
 class ServicePage  extends StatefulWidget {
@@ -21,10 +20,11 @@ class ServicePage  extends StatefulWidget {
   }
 }
 
-/**
- * 对于AutomaticKeepAliveClientMixin的作用的深刻理解。
- * 1、能够保持状态的前提是。widget.canupdate 返回的是true。也就是说，在指定节点，widget.runtimeType 和 key 是一样的。
- * 所以，flutter中tabBar是可以使用的。bottomNavigationBar是不能够使用的。*/
+/*
+  对于AutomaticKeepAliveClientMixin的作用的深刻理解。
+  1、能够保持状态的前提是。widget.canupdate 返回的是true。也就是说，在指定节点，widget.runtimeType 和 key 是一样的。
+  所以，flutter中tabBar是可以使用的。bottomNavigationBar是不能够使用的。
+ */
 
 class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClientMixin{
 
@@ -37,7 +37,7 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
   RefreshController _refreshVc = RefreshController(initialRefresh: false);
 
 
-  List<String> _titles = ["CustomWidgetPage","PluginPage", "SystermknowledgetPage","DialogPage"];
+  List<String> _titles = ["CustomWidgetPage","PluginPage", "SystermknowledgetPage"];
 
 
   @override
@@ -50,7 +50,7 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
 
   @override
   Widget build(BuildContext context) {
-
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('服务'),
@@ -74,7 +74,7 @@ class ServicePageState extends State<ServicePage>  with AutomaticKeepAliveClient
                      }else if (index == 2) {
                        Navigator.push(context, MaterialPageRoute(builder: (context) => SystermKnowledgePage()));
                      }else if (index == 3) {
-                       Navigator.push(context, MaterialPageRoute(builder: (context) => DialogPage()));
+
                      }else {
 
 

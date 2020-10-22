@@ -12,7 +12,7 @@ class CacheImagePage extends StatefulWidget {
   }
 }
 
-class _CacheImagePageState extends State<CacheImagePage> with CanShowEmptyWidgetMixin {
+class _CacheImagePageState extends State<CacheImagePage> {
 
 
   @override
@@ -51,30 +51,28 @@ class _CacheImagePageState extends State<CacheImagePage> with CanShowEmptyWidget
       appBar: AppBar(
         title: Text('CacheImagePage'),
       ),
-      body: CanShowEmptyWidget(
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Image.asset('assets/home/image0.png', width: 200, height: 100,),
-              RaisedButton(onPressed: (){
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Image.asset('assets/home/image0.png', width: 200, height: 100,),
+          RaisedButton(onPressed: (){
 
-              }, child: Text('fetchImage'),),
-              Divider(),
+          }, child: Text('fetchImage'),),
+          Divider(),
 
-              CachedNetworkImage(
-                imageUrl: 'http://via.placeholder.com/200x150',
-                errorWidget: (context, url, error){
-                  return Icon(Icons.error);
-                },
-                placeholder: (context, url){
-                  return CircularProgressIndicator();
-                },
-                width: 200,
-                height: 400,
-              )
-            ],
-          ),
+          CachedNetworkImage(
+            imageUrl: 'http://via.placeholder.com/200x150',
+            errorWidget: (context, url, error){
+              return Icon(Icons.error);
+            },
+            placeholder: (context, url){
+              return CircularProgressIndicator();
+            },
+            width: 200,
+            height: 400,
+          )
+        ],
       )
     );
   }

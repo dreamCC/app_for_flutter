@@ -278,7 +278,7 @@
    我们知道动画AnmationController需要传入sync: Tikerprovider。TikerProvider的作用就是生成Tiker。而Tiker就是
    获取屏幕每一帧的刷新通知（实现动画的核心）。类似ios中，CADisplayLink。所以有动画的地方就需要TikerProvider。
 
-   、、所以动画的原理其实就是，通过TikeProvider获取每一帧的刷新通知，当通知来了获取Tween插值所计算出来的动画值，然后
+   所以动画的原理其实就是，通过TikeProvider获取每一帧的刷新通知，当通知来了获取Tween插值所计算出来的动画值，然后
    调用setState进行刷新。
 
    需要注意一点就是：动画当页面销毁时候，我们需要手动调用xxxx.dispose()避免浪费资源。其实通过源码发现就是移除了监听。
@@ -593,7 +593,7 @@ void attachRootWidget(Widget rootWidget) {
 
 Focus我们从源码发现，如果不传FocusNode，他会默认创建一个FocusNode，这也是Focus能进行键盘换气的根本原因。
 
-FocusScope其实是Focus子类。
+FocusScope其实是Focus子类。 我们通过Focus和FocusScope来进行键盘的控制。
 
 2019.12.17。
 1、关于TextField的几个重要属性。
@@ -608,12 +608,106 @@ FocusScope其实是Focus子类。
 1、dart中关键字。extends 继承。 implement和java中implement一样。 with关键字。
    dart中，没有interface关键字。但是有interface概念。任意类都可以作为interface接口。
 
+2020.9.25
+1、理解Widget、Element和RenderObject之间的关系。
+    根据Widget生成Element，然后创建相应的RenderObject并关联到Element.renderObject属性上，最后再通过RenderObject
+    来完成布局排列和绘制。最终所有Element的RenderObject构成一棵树，我们称之为Render Tree即渲染树。
+    总结一下，我们可以认为Flutter的UI系统包含三棵树：Widget树、Element树、渲染树。他们的依赖关系是：
+    Element树根据Widget树生成，而渲染树又依赖于Element树，最终的UI树其实是由一个个独立的Element节点构成。
+    widget是配置信息（相当于配置文件）。
+    Element同时持有widget和renderObject，用来进行渲染逻辑，同时决定是否将renderObject
+        是否添加到Render tree上。
+    RenderObject是真正用来进行layout、paint等复杂操作。
+
+    当有父Widget的配置数据改变时，同时其State.build返回的Widget结构与之前不同，此时就需要重新构建对应的Element树。为了进行Element复用，
+    在Element重新构建前会先尝试是否可以复用旧树上相同位置的element，element节点在更新前都会调用其对应Widget的canUpdate方法，如果返回true，
+    则复用旧Element，旧的Element会使用新Widget配置数据更新，反之则会创建一个新的Element。Widget.canUpdate主要是判断newWidget与oldWidget的runtimeType和key是否同时相等，
+    如果同时相等就返回true，否则就会返回false。根据这个原理，当我们需要强制更新一个Widget时，可以通过指定不同的Key来避免复用。
+
+
+    我们知道 StatelessWidget 和 StatefulWidget 两种直接继承自 Widget 的类，
+    在 Flutter 中，还有另一个类 RenderObjectWidget 也同样直接继承自 Widget，它没有 build 方法，
+    可通过 createRenderObject 直接创建 RenderObject 对象放入渲染树中。Column 和 Row 等控件都间接继承自 RenderObjectWidget。
+
+作者：心至靜行至遠
+链接：https://www.jianshu.com/p/bcc74f37aba5
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+2、BuildContext的理解。
+   BuildContext就是相应Widget对于的xxxElement。
+
+3、Flutter是如何构建视图的。在flutter中，everything is widget，我们是通过构建widget来编写ui界面。实际上widget并不是显示在屏幕
+    上的东西，只是一个配置信息，它永远是immutable的，而真正显示的是Element tree（并不是Widget tree）。那么显示的如下：
+    a、abstract class StatelessWidget extends Widget {
+        const StatelessWidget({ Key key }) : super(key: key);
+        @override
+        StatelessElement createElement() => StatelessElement(this);
+        ...
+        所以我们发现Widget首先会调用createElement来创建Element，并且传入的widget本身。
+    b、class StatelessElement extends ComponentElement {
+        /// Creates an element that uses the given widget as its configuration.
+        StatelessElement(StatelessWidget widget) : super(widget);
+
+        @override
+        StatelessWidget get widget => super.widget;
+
+        @override
+        Widget build() => widget.build(this);
+
+        @override
+        void update(StatelessWidget newWidget) {
+          super.update(newWidget);
+          assert(widget == newWidget);
+          _dirty = true;
+          rebuild();
+        }
+      }
+      所有我们发现，Element是可以获取widget的（因为createElement的时候回将widget传入进来）。而 build()方法会调用
+      widget.build（this）方法，这个也是我们创建widget的时候的build方法，生成的是newWidget（也就是build后的widget）。
+      然后在update方法中判断是否要重写重载Element。
+
+    c、class StatelessElement extends ComponentElement
+      ...
+      abstract class ComponentElement extends Element
+      ...
+      abstract class Element extends DiagnosticableTree implements BuildContext
+      从上面我们可以看出，BuildContext其实就是StatelessElement或者StatefulElement。继承自ComponentElement和Element。
+
+      所以我们现在再来看官方对于BuildContext的解释:
+      BuildContext objects are actually Element objects. The BuildContext interface is used to discourage direct manipulation of Element objects.
+      BuildContext对象实际上就是Element对象，BuildContext 接口用于阻止对 Element 对象的直接操作。
 
 
 
 
 
 
+
+
+
+
+
+
+前端传参需要加密
+完善个人信息 vet_vcss_iu/api/vet/treat/prftInf
+查询贷款额度 vet_vcss_tr/api/v1/loadtrail/trailLoanAmount
+获取贷款额度验证码  vet_public/api/checkCustGetSmsSend
+获取短信验证码  vet_public/api/getsmscode
+注册 vet_vcss_iu/api/vet/register
+登录 vet_vcss_iu/api/vet/login
+重置密码 vet_vcss_iu/api/vet/usersrestpwd
+获取身份二维码信息 vet_vcss_iu/api/vet/createAppQRCode
+修改密码 vet_vcss_iu/api/vet/chngpwd
+修改用户头像 vet_vcss_iu/api/updateuserinfo
+获取头像及个人信息 vet_vcss_iu/api/vet/queryusrdetail/${userInfoModel.usr_id}
+获取认证后的个人信息 vet_vcss_im/api/im/idv/idvDetailByIdCard/${userInfoModel.crdt_no}
+校验是否是我行客户   vet_public/api/checkIfOurCust
+
+后端返回需要加密
+获取个人信息 vet_vcss_iu/fetchuserinfo
+获取身份二维码信息 vet_vcss_iu/api/vet/createAppQRCode
+获取头像及个人信息 vet_vcss_iu/api/vet/queryusrdetail/${userInfoModel.usr_id}
+获取认证后的个人信息 vet_vcss_im/api/im/idv/idvDetailByIdCard/${userInfoModel.crdt_no}
 
 
 

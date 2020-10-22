@@ -107,7 +107,6 @@ class _DartFuturePageState extends State<DartFuturePage> {
                   print('compute start');
                   compute(_spawnValue, "computer");
                   compute(_spawnValue, "computer1");
-                  compute(_spawnValue, "computer2");
                   print('compute end');
 
                 }

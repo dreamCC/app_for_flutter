@@ -1,4 +1,5 @@
 
+import 'package:app_for_fluuter/servicePage/SystermKnowledge/SysWidget2/builder_page.dart';
 import 'package:flutter/material.dart';
 import 'test_systerm_widget.dart';
 import 'platform_view_page.dart';
@@ -18,7 +19,7 @@ class SysWidgetPage2 extends StatefulWidget {
 class _SysWidgetPage2State extends State<SysWidgetPage2> {
 
   List<String> _list = ["TestSystermWidgetPage","PlatformViewPage",'ImageResourcesPage','FocusPage',
-  "SetValuePage"];
+  "SetValuePage", 'BuilderPage'];
 
 
 
@@ -43,6 +44,10 @@ class _SysWidgetPage2State extends State<SysWidgetPage2> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => FocusPage()));
                 }if(index == 4){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => SetValuePage()));
+                }if(index == 5) {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => BuilderPage())).then((value){
+                    print('BuilderPage 返回');
+                  });
                 }else {
 
 

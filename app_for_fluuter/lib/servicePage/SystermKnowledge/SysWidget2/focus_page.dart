@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 class FocusPage extends StatefulWidget {
 
   @override
-  State<StatefulWidget> createState() => _FocusPageState();
+  State<StatefulWidget> createState() => _FocusDemoSate1();
 
 }
 
@@ -44,34 +44,36 @@ class _FocustPageBodyState extends State<_FocusPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        TextField(
-          focusNode: _focusNode,
-        ),
-        TextField(
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          TextField(
+            focusNode: _focusNode,
+          ),
+          TextField(
 
-        ),
-        TextField(
+          ),
+          TextField(
 
-        ),
+          ),
 
-        Divider(height: 50,color: Colors.red,),
+          Divider(height: 50,color: Colors.red,),
 
-        IconButton(icon: Icon(Icons.arrow_downward), onPressed: (){
+          IconButton(icon: Icon(Icons.arrow_downward), onPressed: (){
 
-          Focus.of(context).nextFocus();
-        }),
+            Focus.of(context).nextFocus();
+          }),
 
-        IconButton(icon: Icon(Icons.arrow_upward), onPressed: (){
-          Focus.of(context).previousFocus();
-        }),
+          IconButton(icon: Icon(Icons.arrow_upward), onPressed: (){
+            Focus.of(context).previousFocus();
+          }),
 
-        IconButton(icon: Icon(Icons.close), onPressed: (){
-          Focus.of(context).unfocus();
-        }),
-      ],
+          IconButton(icon: Icon(Icons.close), onPressed: (){
+            Focus.of(context).unfocus();
+          }),
+        ],
+      ),
     );
   }
 }
@@ -84,6 +86,7 @@ class _FocusDemoSate1 extends State<FocusPage> {
   
    bool _handleKeyPress(FocusNode node, RawKeyEvent event) {
 
+     Navigator.of(context);
      if (event is RawKeyDownEvent) {
        print('Focus node ${node.debugLabel} got key event: ${event.logicalKey}');
        if (event.logicalKey == LogicalKeyboardKey.keyR) {

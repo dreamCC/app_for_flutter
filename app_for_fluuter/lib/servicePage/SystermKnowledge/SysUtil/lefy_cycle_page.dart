@@ -82,7 +82,7 @@ class _ChirldWidgetState extends State<ChirldWidget> {
 
   }
 
-  // 每次调用initState的时候才会调用。
+  // 每次调用initState的时候才会调用。 并不会重复调用。
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies

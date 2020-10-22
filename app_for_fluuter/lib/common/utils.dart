@@ -4,7 +4,6 @@ import 'dart:ui';
 
 export 'shared_preferences.dart';
 export 'event_bus.dart';
-export 'dialog_util.dart';
 
 ///--------屏幕宽度
 double screenW = MediaQueryData.fromWindow(window).size.width;

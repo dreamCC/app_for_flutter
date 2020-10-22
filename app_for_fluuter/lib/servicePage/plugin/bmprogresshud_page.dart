@@ -1,4 +1,6 @@
 
+import 'package:app_for_fluuter/common/mixin.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app_for_fluuter/common/progress_hud.dart';
 
@@ -21,15 +23,16 @@ class BMProgressHudPage extends StatefulWidget {
 }
 
 
-class _BMProgressHudState extends State<BMProgressHudPage> {
+class _BMProgressHudState extends State<BMProgressHudPage>  {
 
 
-  List<String> _contents = ['show','showLoading','showSuccessAndDismiss','showErrorAndDismiss','showAndDismiss','showMessage'];
+  List<String> _contents = ['show','showLoading','showSuccessAndDismiss','showErrorAndDismiss','showAndDismiss','showMessage', "---"];
 
 
-  GlobalKey<ProgressHudState> _progressKey = GlobalKey();
+  GlobalObjectKey<ProgressHudState> _progressKey = GlobalObjectKey("progressHudKey");
 
   double progress = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,20 +42,12 @@ class _BMProgressHudState extends State<BMProgressHudPage> {
       onTap: (){
 
         //_progressKey.currentState.dismiss();
-
       },
       child: Scaffold(
         appBar: AppBar(
           title: Text('BMProgressHudPage'),
         ),
-        body: ProgressHud(
-            child:  ListView.separated(
-                itemBuilder: _itemCreate,
-                separatorBuilder: _seperateCreate,
-                itemCount: _contents.length,
-            ),
-          key: _progressKey
-        )
+        body: ProgressHud(key: null)
       ),
     );
   }
@@ -98,6 +93,7 @@ class _BMProgressHudState extends State<BMProgressHudPage> {
         }else if(index == 5) {
           _progressKey.currentState.showTextAndDismiss(text:'下载失败');
         }else {
+
 
 
         }
