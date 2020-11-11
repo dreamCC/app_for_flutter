@@ -119,7 +119,7 @@ class EmptyWidgetState extends State<EmptyWidget> {
     if(button != null) {
       _children.add(button);
     }
-
+    
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
