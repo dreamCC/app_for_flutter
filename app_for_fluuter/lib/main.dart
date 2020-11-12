@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:app_for_fluuter/common/progress_hud.dart';
+import 'package:app_for_fluuter/servicePage/plugin/provider_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 import 'governmentPage/government_page.dart';
 import 'homePage/home_page.dart';
 import 'minePage/mine_page.dart';
@@ -96,7 +98,8 @@ class _MyAppState extends State<MyApp> {
 
     // MateraiApp 控件，用于app整体的配置。自身并不会显示。其指定home，有点像ios的window。
 
-    return MaterialApp(
+    // 可以通过这种写法，全局共享ProviderChangeNotifier。
+    return ChangeNotifierProvider.value(value: ProviderChangeNotifier(1), child: MaterialApp(
       title: 'MyFlutterApp',
       //theme: ThemeData.fallback(),
 
@@ -110,7 +113,7 @@ class _MyAppState extends State<MyApp> {
       ],
 
       theme: ThemeData(
-          // AppBar的主题样式。
+        // AppBar的主题样式。
           appBarTheme: AppBarTheme(
             elevation: 1,
             brightness: Brightness.dark,
@@ -164,7 +167,7 @@ class _MyAppState extends State<MyApp> {
       // 屏幕上面显示一层，CPU、GPU的图标，用于性能的判断。
       showPerformanceOverlay: false,
 
-    );
+    ),);
   }
 }
 

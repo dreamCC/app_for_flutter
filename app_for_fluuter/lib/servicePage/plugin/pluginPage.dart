@@ -1,5 +1,6 @@
 
 import 'package:app_for_fluuter/servicePage/plugin/mine_empty_widget_page.dart';
+import 'package:app_for_fluuter/servicePage/plugin/provider_page.dart';
 import 'package:flutter/material.dart';
 import 'dio_page.dart';
 import 'event_bus_page.dart';
@@ -32,7 +33,7 @@ class _PluginPageState extends State<PluginPage> {
   List<String> _list = ["DioPage","EventBus","LocationPage","UrlLaunchPage","Video_Player","WebViewPluginPage",
     "BMProgressHudPage","CacheImagePage","PathProviderPage","KeyboardActionsPage","FlutterPickerPage",
     "FlutterMapPage","FlutterBlocPage","BottomTabBarPage", "PhotoViewPage","SpinKitPage","SqflitePage",
-    'FlutterBarrage', "EmptyWidget"];
+    'FlutterBarrage', "EmptyWidget", "Provider"];
 
 
   @override
@@ -78,16 +79,14 @@ class _PluginPageState extends State<PluginPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => PhotoViewPage()));
                 }if(index == 15){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => SpinKitPage()));
-
                 }if(index == 16){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => SqfiltePage()));
-
                 }if(index == 17){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => FlutterBarragePage()));
-
                 }if(index == 18){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => MineEmptyWidgetPage()));
-
+                }else if(index == 19){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProviderPage()));
                 }else {
 
 

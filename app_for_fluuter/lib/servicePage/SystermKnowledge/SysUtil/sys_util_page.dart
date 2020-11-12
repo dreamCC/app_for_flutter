@@ -1,4 +1,5 @@
 
+import 'package:app_for_fluuter/servicePage/SystermKnowledge/SysUtil/change_notify_page.dart';
 import 'package:flutter/material.dart';
 import 'http_page.dart';
 import 'inherited_page.dart';
@@ -35,7 +36,7 @@ class _SysUtilPageState extends State<SysUtilPage> {
 
   List<String> _list = ["HttpPage","InheritedPage","RegexPage","RootBundlePage","StreamControllerPage","WidgetKeyPage",
     "DartIoPage","DartFuturePage","MethodChannelPage","WidgetBindingObserverPage","DateTimePage","ThemePage","JsonModalPage",
-    "Future","RoutePage","MixinPage","OpenMapAppPage","ShowPage",'LefyCyclePage','RandomPage'];
+    "Future","RoutePage","MixinPage","OpenMapAppPage","ShowPage",'LefyCyclePage','RandomPage', 'ChangeNotification'];
 
 
   @override
@@ -89,6 +90,8 @@ class _SysUtilPageState extends State<SysUtilPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => LefyCyclePage()));
                 }if(index == 19){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => RandomPage()));
+                }if(index == 20){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeNotifyPage()));
                 }else {
 
                   // Dart中的所有类都是继承Object类。
@@ -96,9 +99,6 @@ class _SysUtilPageState extends State<SysUtilPage> {
                   while(iterator.moveNext()) {
                     print(iterator.current);
                   }
-
-
-
                 }
               },
             );

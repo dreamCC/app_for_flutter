@@ -679,38 +679,25 @@ FocusScope其实是Focus子类。 我们通过Focus和FocusScope来进行键盘�
 
 
 
+11.12
+1、关于状态管理。
+    event和provider的优缺点。以及使用场景。
+
+    event使用需要注意销毁监听。event_bus就是基于streamController的封装。
+    provider使用，需要注意provider所在节点位置。provider是基于InheritWidget。
+
+
+    这其实给我们了一个思路，比如我们全局有UserInfoModel，因为很可能全局我们都需要使用该模型，那么我们使用Provider是不是会好很多。
+    其实，如果牵扯到模型更新，使用Provider来进行状态管理明显会好很多。 仅仅是通知的话，event会好一些。
+
+    Provider中有几个重要类，Provider、ChangeNotifyProvider、MultiProvider。 提供Provider的。
+    获取ChangeNotify的有，Consumer、Selector等。当然开发中，我们可以不使用该控件。
 
 
 
-
-
-
-
-
-
-前端传参需要加密
-完善个人信息 vet_vcss_iu/api/vet/treat/prftInf
-查询贷款额度 vet_vcss_tr/api/v1/loadtrail/trailLoanAmount
-获取贷款额度验证码  vet_public/api/checkCustGetSmsSend
-获取短信验证码  vet_public/api/getsmscode
-注册 vet_vcss_iu/api/vet/register
-登录 vet_vcss_iu/api/vet/login
-重置密码 vet_vcss_iu/api/vet/usersrestpwd
-获取身份二维码信息 vet_vcss_iu/api/vet/createAppQRCode
-修改密码 vet_vcss_iu/api/vet/chngpwd
-修改用户头像 vet_vcss_iu/api/updateuserinfo
-获取头像及个人信息 vet_vcss_iu/api/vet/queryusrdetail/${userInfoModel.usr_id}
-获取认证后的个人信息 vet_vcss_im/api/im/idv/idvDetailByIdCard/${userInfoModel.crdt_no}
-校验是否是我行客户   vet_public/api/checkIfOurCust
-
-后端返回需要加密
-获取个人信息 vet_vcss_iu/fetchuserinfo
-获取身份二维码信息 vet_vcss_iu/api/vet/createAppQRCode
-获取头像及个人信息 vet_vcss_iu/api/vet/queryusrdetail/${userInfoModel.usr_id}
-获取认证后的个人信息 vet_vcss_im/api/im/idv/idvDetailByIdCard/${userInfoModel.crdt_no}
-
-
-
+2、注意StreamBuilder和FutureBuilder的使用方式。
+    StreamBuilder一般需要借助StreamController使用。
+    FutureBuilder需要借助Future来使用。
 
 
 

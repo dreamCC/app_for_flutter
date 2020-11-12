@@ -22,6 +22,10 @@ class _LefyCyclePage extends State<LefyCyclePage> {
     print('initState');
   }
 
+
+  // 该方法第一次initState的时候回调用。
+  // 如果子widget中，在build方法中依赖了InheritedWidget，父或祖先widget中的InheritedWidget改变(updateShouldNotify返回true)时会被调用。
+  // 如果build中没有依赖InheritedWidget，则此回调不会被调用。
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies

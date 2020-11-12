@@ -37,7 +37,6 @@ class _RootBundlePageState extends State<RootBundlePage> {
               _rootString = await rootBundle.loadString("assets/locationInfo.json");
               setState(() { });
 
-
               PlatformAssetBundle();
 
 
