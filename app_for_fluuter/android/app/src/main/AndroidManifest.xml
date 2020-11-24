@@ -26,6 +26,8 @@
                 android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
 
                 android:value="6a7170dd704fc48e171b7645a094fe93" />
+            <meta-data android:name="flutterEmbedding" android:value="2" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
