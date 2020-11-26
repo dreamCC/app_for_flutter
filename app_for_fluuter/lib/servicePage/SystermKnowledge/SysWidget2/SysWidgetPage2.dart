@@ -1,5 +1,6 @@
 
 import 'package:app_for_fluuter/servicePage/SystermKnowledge/SysWidget2/builder_page.dart';
+import 'package:app_for_fluuter/servicePage/SystermKnowledge/SysWidget2/page_view_page.dart';
 import 'package:flutter/material.dart';
 import 'test_systerm_widget.dart';
 import 'platform_view_page.dart';
@@ -19,7 +20,7 @@ class SysWidgetPage2 extends StatefulWidget {
 class _SysWidgetPage2State extends State<SysWidgetPage2> {
 
   List<String> _list = ["TestSystermWidgetPage","PlatformViewPage",'ImageResourcesPage','FocusPage',
-  "SetValuePage", 'BuilderPage'];
+  "SetValuePage", 'BuilderPage', 'PageView'];
 
 
 
@@ -36,18 +37,20 @@ class _SysWidgetPage2State extends State<SysWidgetPage2> {
               onTap: (){
                 if(index == 0){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => TestSystermWidget()));
-                }if(index == 1){
+                }else if(index == 1){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => PlatformViewPage()));
-                }if(index == 2){
+                }else if(index == 2){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => ImageResourcesPage()));
-                }if(index == 3){
+                }else if(index == 3){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => FocusPage()));
-                }if(index == 4){
+                }else if(index == 4){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => SetValuePage()));
-                }if(index == 5) {
+                }else if(index == 5) {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => BuilderPage())).then((value){
                     print('BuilderPage 返回');
                   });
+                }else if(index == 6){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => PageViewPage()));
                 }else {
 
 

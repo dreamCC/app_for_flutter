@@ -5,17 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'progress_hud.dart';
 
+// ignore: slash_for_doc_comments
+/***************************** empty view start *************************************/
 mixin CanShowEmptyWidgetMixin<T extends StatefulWidget> on State<T> {
 
   GlobalObjectKey<EmptyWidgetState> get emptyWidgetKey;
 
-  // ignore: slash_for_doc_comments
-  /***************************** empty view start *************************************/
   void showLoadingEmptyWidget({Widget loading}) {
+    judgeHasEmptyWidgetValue();
     emptyWidgetKey.currentState.showLoadingEmptyWidget(loading: loading);
   }
 
   void showEmptyWidget({Text title, Text subTitle, Image placeHoledImage, MaterialButton button}) {
+    judgeHasEmptyWidgetValue();
     emptyWidgetKey.currentState.showEmptyWidget(
         title: title,
         subTitle: subTitle,
@@ -25,25 +27,34 @@ mixin CanShowEmptyWidgetMixin<T extends StatefulWidget> on State<T> {
   }
 
   void showCustomEmptyWidget(Widget customWidget) {
+    judgeHasEmptyWidgetValue();
     emptyWidgetKey.currentState.showCustomEmptyWidget(customWidget);
   }
 
   void hiddenEmptyWidget() {
+    judgeHasEmptyWidgetValue();
     emptyWidgetKey.currentState.hiddenEmptyWidget();
   }
 
-// ignore: slash_for_doc_comments
-/***************************** empty view end *************************************/
+  void judgeHasEmptyWidgetValue() {
+    if(emptyWidgetKey == null){
+      throw Exception("you must create [progressHudKey]");
+    }
+    if(emptyWidgetKey.currentState == null){
+      throw Exception("ProgressHud must have a [key]。and the key should be [progressHudKey]");
+    }
+  }
+
 }
+/***************************** empty view end *************************************/
 
 
-
+// ignore: slash_for_doc_comments
+/***************************** progress start *************************************/
 mixin CanShowProgressHudWidgetMixin<T extends StatefulWidget> on State<T> {
 
   GlobalObjectKey<ProgressHudState> get progressHudKey;
 
-  // ignore: slash_for_doc_comments
-  /***************************** progress start *************************************/
   Future showHintProgressHud(String hint) {
     judgeHasProgressHudValue();
     return progressHudKey.currentState.showTextAndDismiss(text: hint);
@@ -78,9 +89,8 @@ mixin CanShowProgressHudWidgetMixin<T extends StatefulWidget> on State<T> {
       throw Exception("ProgressHud must have a [key]。and the key should be [progressHudKey]");
     }
   }
-// ignore: slash_for_doc_comments
-/***************************** progress  end *************************************/
 }
+/***************************** progress  end *************************************/
 
 
 

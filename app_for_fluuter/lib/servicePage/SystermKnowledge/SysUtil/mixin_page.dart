@@ -2,6 +2,7 @@
 import 'package:app_for_fluuter/common/mixin.dart';
 import 'package:app_for_fluuter/common/progress_hud.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/diagnostics.dart';
 
 class MixinPage extends StatefulWidget {
 
@@ -54,6 +55,12 @@ class _MixinPageState extends State<MixinPage> with MyDemoMixin {
 
 
   @override
+  void goto() {
+    // TODO: implement goto
+  }
+
+
+  @override
   Widget build(BuildContext context) {
 
     print("_MixinPageState---build");
@@ -76,9 +83,6 @@ class _MixinPageState extends State<MixinPage> with MyDemoMixin {
           RaisedButton(
             color: Colors.purple,
               onPressed: (){
-                C c = C();
-                c.name = "hello";
-                print(c.name);
               },
           )
         ],
@@ -91,6 +95,12 @@ class _MixinPageState extends State<MixinPage> with MyDemoMixin {
 
 mixin MyDemoMixin<T extends StatefulWidget> on State<T> {
 
+  void goto();
+
+  void gotoHas() {
+
+  }
+
 
   @mustCallSuper
   @override
@@ -99,18 +109,4 @@ mixin MyDemoMixin<T extends StatefulWidget> on State<T> {
     return null;
   }
 }
-
-
- class C {
-
-  set name(String age){
-     print("set name");
-   }
-
-   String get name {
-    return "enHa";
-   }
-
- }
-
 

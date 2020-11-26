@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-class PageViewPage extends StatefulWidget {
+class TabBarViewPage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
@@ -10,7 +10,7 @@ class PageViewPage extends StatefulWidget {
   }
 }
 
-class _PageViewPage extends State<PageViewPage> with SingleTickerProviderStateMixin {
+class _PageViewPage extends State<TabBarViewPage> with SingleTickerProviderStateMixin {
 
 
   TabController _tabController;
@@ -85,7 +85,7 @@ class _PageViewAState extends State<PageViewA> with AutomaticKeepAliveClientMixi
       color: Colors.blueGrey,
       child: GestureDetector(
         onTap: (){
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => PageViewPage()));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => TabBarViewPage()));
         },
         child: Text("PageViewA"),
       ),
@@ -130,7 +130,7 @@ class _PageViewBState extends State<PageViewB> with AutomaticKeepAliveClientMixi
       color: Colors.purple,
       child: GestureDetector(
         onTap: (){
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => PageViewPage()));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => TabBarViewPage()));
         },
         child: Text("PageViewB"),
       ),

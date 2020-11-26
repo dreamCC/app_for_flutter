@@ -32,6 +32,8 @@
     implement不管父类有没有实现，其子类都需要实现。
     wit比较特殊，当我们像要实现多继承的时候，需要用到with关键字。而且with后面的，如果是class，那么就必须要继承Object类。如果继承的不是Object类，
         需要用到关键字mixin和on来实现。
+    flutter 没有interface关键字。我们可以使用abstract和mixin进行替代。当然官方解释，所有的class都可以作为interface。
+
 3、字符串String = r"xxxxx \n xxxxx"; 创建的raw字符。里面的所以字符都是字符比如\n就是字符，而不是换行。正则表达式可以使用。其实类似\n前面加\。
     即\\n。
 4、const修饰List数组，那么就不能向里面添加内容。const 修饰construction函数。那么其属性都必须是final类型的。
@@ -701,6 +703,8 @@ FocusScope其实是Focus子类。 我们通过Focus和FocusScope来进行键盘�
 
 
 
+11.13
+1、Dart 没有 byte、char 和 float，int、double 都是 64 位。
 
 
 

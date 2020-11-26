@@ -90,6 +90,8 @@ class _AnimationWidgetS extends State<AnimationWidget> with SingleTickerProvider
           ),
           Divider(),
 
+
+
           RaisedButton(
               onPressed: () {
                 setState(() {
@@ -160,6 +162,7 @@ class _AnimationWidgetS extends State<AnimationWidget> with SingleTickerProvider
                 );
               }
           ),
+
 
           // 跟着滑动的。
           SlideTransition(

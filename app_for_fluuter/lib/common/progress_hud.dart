@@ -73,7 +73,6 @@ class ProgressHudState extends State<ProgressHud> with SingleTickerProviderState
   ProgressHudType _progressHudType;
 
 
-
   @override
   void initState() {
     super.initState();

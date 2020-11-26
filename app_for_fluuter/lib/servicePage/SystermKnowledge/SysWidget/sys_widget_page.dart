@@ -27,7 +27,7 @@ import 'flex_flexable_expanded_page.dart';
 import 'expension_widget_page.dart';
 import 'step_page.dart';
 import 'chips_page.dart';
-import 'pageview_page.dart';
+import 'tabBar_view_page.dart';
 import 'text_span_page.dart';
 import 'list_wheel_scrollview.dart';
 
@@ -116,7 +116,7 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
                 }if(index == 26){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChipsPage()));
                 }if(index == 27){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => PageViewPage()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => TabBarViewPage()));
                 }if(index == 28){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => TextSpanPage()));
                 }if(index == 29){
