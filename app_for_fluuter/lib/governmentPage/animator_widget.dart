@@ -174,8 +174,6 @@ class _AnimationWidgetS extends State<AnimationWidget> with SingleTickerProvider
             ),
           )
 
-
-
         ],
       ),
     );

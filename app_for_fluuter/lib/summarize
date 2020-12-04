@@ -409,8 +409,25 @@
 
 
 3、关Dart语言的构造函数。默认，我们创建类，系统默认的构造函数是，无参数、无名称构造函数。
-    子类不会继承父类构造函数，如果父类有构造函数，那么子类一定也要定义构造函数，并且同时需要调用父类的构造函数。
+    子类不会继承父类构造函数，如果父类有构造函数，那么子类一定也要定义构造函数，并且同时需要调用父类的构造函数(有名、无名都可以)。
+    类中有final 修饰的属性，必须通过语法糖的形式进行初始化。
     oc、swift是会继承父类的构造方法。
+    Dart的构造函数有两种类型：无名、有名。
+    无名构造函数只能有一个。我们可以部分参数使用语法糖。
+    FatherCls(String name, this.age){
+        this.name = name;
+      }
+    // 子类必须要调用super的构造方法。而且调用顺序是先父类后子类。
+    ChildCls(String name, String age) : super(name, age) {
+        this.age = age;
+        this.name = name;
+      }
+
+    ChildCls(this.name) : age = "24", super(name, age);
+     有名构造函数可以有多个。
+
+     同时super前面可以添加assert判断。如果有assert，那么会先执行assert判断。 同理assert是可以放在函数体内部的。
+
 
 
 4、关于Flutter和Native的交互问题。
@@ -706,6 +723,18 @@ FocusScope其实是Focus子类。 我们通过Focus和FocusScope来进行键盘�
 11.13
 1、Dart 没有 byte、char 和 float，int、double 都是 64 位。
 
+11.27
+1、关于pubspec.lock和pubspec.yaml的工作原理。
+    首先通过pubspec.yaml加载的库是存放在flutter sdk中。 flutter/.pub-cache/hosted/pub.flutter-io.cn/ 下面。
+
+    pub get和pub update的区别。
+    pub get会根据pubspec.lock文件中的版本号进行下载，并存放在flutter/.pub-cache/hosted/pub.flutter-io.cn/下面。如果有就
+    不会重新下载。
+
+    pub update会下载工具的最新版本，同时将pubspec.lock中相应工具的版本号修改为最高。
+
+    我们项目中到底使用是那个版本的spec。是根据pubspec.lock文件确定的。
+    同时pubspec.lock的版本会随着pubspec.yaml的增加而增加，但是并不会随着yaml文件版本的降低而降低。
 
 
 

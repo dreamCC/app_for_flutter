@@ -33,7 +33,7 @@ import 'package:flutter/material.dart';
 
 /**
  * flutter中，key的类型。
- * UnicodeKey() 作为唯一标识。一般用来控制子widget是否刷新。
+ * UnicodeKey()，和ValueKey是继承LocalKey，LocalKey是继承Key的 作为唯一标识。一般用来控制子widget是否刷新。
  * GlobleKey() 一般用来获取子widget的state。*/
 
 /**

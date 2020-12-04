@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 
 class TestSystermWidget extends StatefulWidget {
 
@@ -19,6 +20,7 @@ class _TestSystermWidgetState extends State<TestSystermWidget> with SingleTicker
   Animation<double> _animation;
 
   int _count = 0;
+  bool _showCrossFirst = true;
 
   @override
   void initState() {
@@ -117,7 +119,6 @@ class _TestSystermWidgetState extends State<TestSystermWidget> with SingleTicker
             child: Text("StartAnimtionController"),
           ),
 
-
           FadeTransition(
             opacity: _animation,
             child: Container(
@@ -127,6 +128,32 @@ class _TestSystermWidgetState extends State<TestSystermWidget> with SingleTicker
             ),
           ),
 
+          Divider(),
+          RaisedButton(
+            onPressed: (){
+              _showCrossFirst = !_showCrossFirst;
+              setState(() {});
+            },
+          ),
+          AnimatedCrossFade(
+            firstChild: Container(
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(100)
+              ),
+            ),
+            secondChild: Container(
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                  color: Colors.blue,
+              ),
+            ),
+            crossFadeState: _showCrossFirst? CrossFadeState.showFirst:CrossFadeState.showSecond,
+            duration: Duration(seconds: 2),
+          )
 
 
         ],

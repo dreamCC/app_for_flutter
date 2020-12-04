@@ -13,6 +13,15 @@ class StepperPage extends StatefulWidget {
 class _StepperPageState extends State<StepperPage> {
   int _stepIndex = 0;
 
+
+  void stepCancel() {
+
+  }
+
+  void stepContinue() {
+
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -23,7 +32,7 @@ class _StepperPageState extends State<StepperPage> {
       ),
       body: Center(
         child: Stepper(
-            physics: BouncingScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             onStepContinue: () {
               print("onStepContinue");
               _stepIndex = ++_stepIndex > 2?2:_stepIndex;
@@ -44,19 +53,25 @@ class _StepperPageState extends State<StepperPage> {
               });
 
             },
+            controlsBuilder: (BuildContext context, {VoidCallback onStepContinue, VoidCallback onStepCancel}){
+              return Container(
+                height: 10,
+                color: Colors.red,
+              );
+            },
             currentStep: _stepIndex,
             steps: <Step>[
               Step(
                   title: Text("Step 1"),
                   subtitle: Text("这是第一步-"),
                   content: Text("使用第一步能够干嘛----"),
-                  isActive: _stepIndex == 0
+                  isActive: _stepIndex >= 0
               ),
               Step(
                   title: Text("Step 2"),
                   subtitle: Text("这是第二步-"),
                   content: Text("使用第二步能够干嘛----"),
-                  isActive: _stepIndex == 1
+                  isActive: _stepIndex >= 1
               ),
               Step(
                   title: Text("Step 1"),
