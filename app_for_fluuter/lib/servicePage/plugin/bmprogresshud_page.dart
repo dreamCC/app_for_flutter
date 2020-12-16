@@ -69,13 +69,13 @@ class _BMProgressHudState extends State<BMProgressHudPage>  {
           _progressKey.currentState.showLoading();
 
           Future.delayed(Duration(seconds: 3)).then((value){
-            _progressKey.currentState.showSuccessAndDismiss(text: 'chenggong');
+            _progressKey.currentState.showSuccess(text: 'chenggong');
 
           });
         }else if(index == 2) {
-          _progressKey.currentState.showSuccessAndDismiss(text: 'showSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismiss');
+          _progressKey.currentState.showSuccess(text: 'showSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismissshowSuccessAndDismiss');
         }else if(index == 3) {
-          _progressKey.currentState.showErrorAndDismiss();
+          _progressKey.currentState.showError();
         }else if(index == 4) {
           _progressKey.currentState.showProgress(progress, text: '下载中...');
 
@@ -91,7 +91,7 @@ class _BMProgressHudState extends State<BMProgressHudPage>  {
           });
 
         }else if(index == 5) {
-          _progressKey.currentState.showTextAndDismiss(text:'下载失败');
+          _progressKey.currentState.showHint(hint:'下载失败');
         }else {
 
 

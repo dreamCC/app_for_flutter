@@ -36,7 +36,7 @@ class _MixinPageState1 extends State<MixinPage> with CanShowProgressHudWidgetMix
             RaisedButton(
               color: Colors.purple,
               onPressed: (){
-                progressHudKey.currentState.showSuccessAndDismiss(text: "-------");
+                progressHudKey.currentState.showSuccess(text: "-------");
               },
             )
           ],

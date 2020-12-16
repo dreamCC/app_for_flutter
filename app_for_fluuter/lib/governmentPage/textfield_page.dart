@@ -100,7 +100,7 @@ class _VChildState extends State<VChild> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        ProgressHud.of(context).showTextAndDismiss(text: "错误-");
+        ProgressHud.of(context).showHint(hint: "错误-");
         //GlobalObjectKey<ProgressHudState>("progressHudKey").currentState.showTextAndDismiss(text: "tap VChild");
       },
       child: Container(

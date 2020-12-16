@@ -58,7 +58,7 @@ class EmptyWidgetState extends State<EmptyWidget> {
     });
   }
 
-  void hiddenEmptyWidget() {
+  void dismissEmptyWidget() {
     setState(() {
       _emptyWidgetType = EmptyWidgetType.hidden;
     });

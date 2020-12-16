@@ -30,9 +30,6 @@ class ProgressHud extends StatefulWidget {
   /// 中间Container的Y轴偏移。默认-50.
   final double offsetY;
 
-  /// 中间Container最大宽度。 默认屏幕宽度 - 40.
-  final double containerMaxW;
-
   /// 文本样式。TextStyle(fontSize: 16, color: Colors.white)
   final TextStyle textStyle;
 
@@ -50,8 +47,7 @@ class ProgressHud extends StatefulWidget {
       this.containerColor = const Color.fromARGB(255, 232, 234, 236),
       this.offsetY = -50,
       this.textStyle = const TextStyle(fontSize: 16, color: Color(0xFF262626)),
-      this.iconSize = 40,
-      this.containerMaxW
+      this.iconSize = 40
   }) : super(key: key);
 
   static ProgressHudState of(BuildContext context) {
@@ -69,7 +65,7 @@ class ProgressHudState extends State<ProgressHud> with SingleTickerProviderState
   
   bool _isVisible = false;
   String _text;
-  double _progressValue, _containerMaxW;
+  double _progressValue;
   ProgressHudType _progressHudType;
 
 
@@ -78,12 +74,9 @@ class ProgressHudState extends State<ProgressHud> with SingleTickerProviderState
     super.initState();
 
     _progressValue = 0;
-    _containerMaxW = widget.containerMaxW;
-    if(_containerMaxW == null) _containerMaxW = window.physicalSize.width/window.devicePixelRatio - 40;
   }
 
   
-
   ///  * 显示Hud
   ///  * type，HUD类型
   ///  * test，内容
@@ -113,18 +106,18 @@ class ProgressHudState extends State<ProgressHud> with SingleTickerProviderState
   }
 
   ///  * 显示ProgressHudType.success类型的hud
-  Future<void> showSuccessAndDismiss({String text}) async {
+  Future<void> showSuccess({String text}) async {
     await showAndDismiss(ProgressHudType.success, text: text);
   }
 
   ///  * 显示ProgressHudType.error类型的hud
-  Future<void> showErrorAndDismiss({String text}) async {
+  Future<void> showError({String text}) async {
     await showAndDismiss(ProgressHudType.error, text: text);
   }
 
   ///  * 显示ProgressHudType.text类型的hud
-  Future<void> showTextAndDismiss({String text}) async {
-    await showAndDismiss(ProgressHudType.text, text: text);
+  Future<void> showHint({String hint}) async {
+    await showAndDismiss(ProgressHudType.text, text: hint);
   }
 
   ///  * 显示ProgressHudType.progress类型的hud
@@ -169,7 +162,7 @@ class ProgressHudState extends State<ProgressHud> with SingleTickerProviderState
           constraints: BoxConstraints(
               minHeight: 50,
               minWidth: 50,
-              maxWidth: _containerMaxW
+              maxWidth: window.physicalSize.width/window.devicePixelRatio - 40
           ),
           child: _ProgressHudContainer(
             hudType: _progressHudType,
@@ -201,6 +194,7 @@ class ProgressHudState extends State<ProgressHud> with SingleTickerProviderState
 
 }
 
+///---------------------------------------------------------------
 class _ProgressHudContainer extends StatefulWidget {
 
   final ProgressHudType hudType;

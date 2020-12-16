@@ -33,7 +33,7 @@ mixin CanShowEmptyWidgetMixin<T extends StatefulWidget> on State<T> {
 
   void hiddenEmptyWidget() {
     judgeHasEmptyWidgetValue();
-    emptyWidgetKey.currentState.hiddenEmptyWidget();
+    emptyWidgetKey.currentState.dismissEmptyWidget();
   }
 
   void judgeHasEmptyWidgetValue() {
@@ -57,17 +57,17 @@ mixin CanShowProgressHudWidgetMixin<T extends StatefulWidget> on State<T> {
 
   Future showHintProgressHud(String hint) {
     judgeHasProgressHudValue();
-    return progressHudKey.currentState.showTextAndDismiss(text: hint);
+    return progressHudKey.currentState.showHint(hint: hint);
   }
 
   Future showSuccessProgressHud({String msg}) {
     judgeHasProgressHudValue();
-    return progressHudKey.currentState.showSuccessAndDismiss(text: msg);
+    return progressHudKey.currentState.showSuccess(text: msg);
   }
 
   Future showErrorProgressHud({String msg}) {
     judgeHasProgressHudValue();
-    return progressHudKey.currentState.showErrorAndDismiss(text: msg);
+    return progressHudKey.currentState.showError(text: msg);
   }
 
 
