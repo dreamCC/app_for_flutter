@@ -257,7 +257,24 @@
 1、对于Card组件的使用，由于Card组件的特性，我们可以多使用Card组件来代替Container组件。
     其实Card的源码可以看出，Card其实就是Container，增加evaluation的结果。
 2、Hero组件，配合PageRoute来进行一些特殊效果。PageRoute中，重要属性，pageBuilder、transitionBuilder(常见SliderTransition、FadeTransition)等。
-3、Dart是单线程模型语言。 Dart的循环机制。 isloate。
+3、Dart是单线程模型语言。 Dart的循环机制。 isloate。也就没有了所谓的主线程/子线程之分。
+    想ios、android其实是多线程模型，可以开启线程，然后cpu不停的在线程间调度，从而实现多线程功能。但是Dart是单线程模型，
+    那么如何实现多线程呢？
+    Dart是单线程和Event loop机制。其中 Event Loop 事件循环就是把一系列的（点击事件/滑动事件/网络请求/ IO 事件等）
+    事件存放在 Event Queue 队列中，循环执行从 Event Loop 中获取事件进行执行，直到清空队列事件；
+
+    使用Future类，可以将任务加入到Event Queue的队尾。
+        这也就是为什么，我们需要理解Future((){ }) 和 Future.delay(duration, (){ })。两者间的区别。
+        当调用Future((){  耗时操作 }), 会将《耗时操作》立刻添加到Event loop中，这个时候点击屏幕会没有返回，因为点击事件也会
+        添加到event queue中，而event queue中现在有《耗时操作》，所以就需要《耗时操作执行完成后才能执行点击事件》。
+        Future.delay(duration, (){ 耗时操作 })，会在duration之后，将《耗时操作》添加到event queue中，所以我们在duration之前
+        是能点击屏幕的（点击屏幕事件会立刻添加到event queue中），之后就需要等到《耗时操作》执行完成后才能点击。
+    使用scheduleMicrotask函数，将任务加入到Microtask Queue队尾。
+
+    注意理解Dart中，Event Queue和microtask Queue。
+    总结：dart，具体的事件或者代码什么时候执行，我们心里需要有一个严格的event queue概念。同时需要清晰的知道事件添加到event queue
+    中的顺序。
+
 
 2019.9.23
 1、ExpensionTitle二级及多级菜单的展示，其实和ListTitle的基本功能是一样的，其trailing默认是个向下箭头，知识增加了点击，展示chirldren的能力。
@@ -428,6 +445,12 @@
 
      同时super前面可以添加assert判断。如果有assert，那么会先执行assert判断。 同理assert是可以放在函数体内部的。
 
+    其构造方法，相对于Android是有一定的优化的。相当于，增加的有名构造方法。
+    ios中构造方法是会继承父类的构造方法。
+    swift：如果父类有构造方法（系统将不会提供默认构造方法），子类如果不新增构造方法，那么相当于继承了父类的构造方法，如果子类重写构造方法，那么需要调用父类构造方法。
+    oc：不管类是否有自定义构造方法，系统都会提供默认构造方法。在加上子类会继承父类构造方法，所以oc中所有类都有默认构造方法。
+
+    java和dart一样子类是不会继承父类的构造方法，这就是为什么如果父类有构造方法，子类必须重写构造方法的原因（因为子类不会继承父类的构造方法）。
 
 
 4、关于Flutter和Native的交互问题。

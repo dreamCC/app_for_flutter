@@ -24,7 +24,6 @@ class _HttpPage extends State<HttpPage> {
 
     // 1、创建HttpClient。
     HttpClient client = HttpClient();
-    
 
     Uri url = Uri.parse('https://www.baidu.com');
 

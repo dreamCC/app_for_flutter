@@ -1,7 +1,6 @@
 
 import 'package:app_for_fluuter/common/z_scaffold.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ZScaffoldPage extends StatefulWidget {
@@ -11,6 +10,23 @@ class ZScaffoldPage extends StatefulWidget {
 }
 
 class _ZScaffoldPageState extends State<ZScaffoldPage> {
+
+  Future<void> testFuture() async{
+    print("开始测试----");
+    Future.delayed(Duration(seconds: 1), (){
+        for(int i =0 ; i< 10000; i++) {
+          print("object-$i");
+        }
+
+    });
+    other();
+    print("开始结束----");
+  }
+
+  void other() {
+    print("other----");
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +108,7 @@ class _ZScaffoldPageState extends State<ZScaffoldPage> {
            RaisedButton(
              onPressed: (){
 
+               testFuture();
              },
              child: Text('empty widget hidden'),
            ),
