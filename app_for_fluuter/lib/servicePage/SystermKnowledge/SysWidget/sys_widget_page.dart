@@ -1,4 +1,5 @@
 
+import 'package:app_for_fluuter/servicePage/SystermKnowledge/SysWidget/stream_builder.dart';
 import 'package:flutter/material.dart';
 import 'animated_widget.dart';
 import 'constrains_page.dart';
@@ -46,7 +47,7 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
     "EventTransPage","DataTablePage","ReorderListViewPage","OverlayPage","FormFieldPage","NotifacationListsenPage",
     "AnimatedListPage","MaterialPage","HeroPage","ShaderMaskPage","PickerPage","ShowPage","MediaQueryPage",
     "FlexableExpandedPage","ExpansionTitlePage","StepperPage","ChipsPage","PageViewPage","TextSpanPage","ListWheelScrollViewPage",
-    ""];
+    "ValueListenBuilder", "StreamBuilder"];
 
 
   @override
@@ -121,6 +122,10 @@ class _SysWidgetPageState extends State<SysWidgetPage> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => TextSpanPage()));
                 }if(index == 29){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => ListWheelScrollViewPage()));
+                }if(index == 30){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ValueLisentedBuilderPage()));
+                }if(index == 31){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => StreamBuilderPage()));
                 }else {
 
                 }

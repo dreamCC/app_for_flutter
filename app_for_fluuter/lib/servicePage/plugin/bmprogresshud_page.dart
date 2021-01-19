@@ -4,14 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app_for_fluuter/common/progress_hud.dart';
 
-
-import 'dart:io';
-import 'package:progress_dialog/progress_dialog.dart';
-
-import 'dart:math';
-
-import 'package:flutter/foundation.dart';
-
 import 'dart:async';
 class BMProgressHudPage extends StatefulWidget {
 
@@ -23,15 +15,13 @@ class BMProgressHudPage extends StatefulWidget {
 }
 
 
-class _BMProgressHudState extends State<BMProgressHudPage>  {
+class _BMProgressHudState extends State<BMProgressHudPage>   {
 
 
   List<String> _contents = ['show','showLoading','showSuccessAndDismiss','showErrorAndDismiss','showAndDismiss','showMessage', "---"];
-
-
-  GlobalObjectKey<ProgressHudState> _progressKey = GlobalObjectKey("progressHudKey");
-
   double progress = 0;
+
+  GlobalKey<ProgressHudState> _progressKey = GlobalKey();
 
 
   @override
@@ -41,13 +31,28 @@ class _BMProgressHudState extends State<BMProgressHudPage>  {
     return GestureDetector(
       onTap: (){
 
-        //_progressKey.currentState.dismiss();
+        Navigator.of(context).pop();
       },
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('BMProgressHudPage'),
+      child: WillPopScope(
+        child: Scaffold(
+            appBar: AppBar(
+              title: Text('BMProgressHudPage'),
+            ),
+            body: ProgressHud(
+              key: _progressKey,
+              child: ListView.separated(
+                itemBuilder: (context, index) {
+                  return _itemCreate(context, index);
+                },
+                separatorBuilder: (context, index) => Divider(),
+                itemCount: _contents.length,
+              ),
+            )
         ),
-        body: ProgressHud(key: null)
+        onWillPop: (){
+          print("WillPopScope----------");
+          return Future.value(true);
+        },
       ),
     );
   }
@@ -94,15 +99,10 @@ class _BMProgressHudState extends State<BMProgressHudPage>  {
           _progressKey.currentState.showHint(hint:'下载失败');
         }else {
 
-
-
         }
       },
     );
   }
 
-  Widget _seperateCreate(BuildContext context, int index) {
-    return Divider();
-  }
 }
 

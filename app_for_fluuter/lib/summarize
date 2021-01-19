@@ -658,7 +658,6 @@ FocusScope其实是Focus子类。 我们通过Focus和FocusScope来进行键盘�
     Element树根据Widget树生成，而渲染树又依赖于Element树，最终的UI树其实是由一个个独立的Element节点构成。
     widget是配置信息（相当于配置文件）。
     Element同时持有widget和renderObject，用来进行渲染逻辑，同时决定是否将renderObject
-        是否添加到Render tree上。
     RenderObject是真正用来进行layout、paint等复杂操作。
 
     当有父Widget的配置数据改变时，同时其State.build返回的Widget结构与之前不同，此时就需要重新构建对应的Element树。为了进行Element复用，
@@ -671,10 +670,6 @@ FocusScope其实是Focus子类。 我们通过Focus和FocusScope来进行键盘�
     在 Flutter 中，还有另一个类 RenderObjectWidget 也同样直接继承自 Widget，它没有 build 方法，
     可通过 createRenderObject 直接创建 RenderObject 对象放入渲染树中。Column 和 Row 等控件都间接继承自 RenderObjectWidget。
 
-作者：心至靜行至遠
-链接：https://www.jianshu.com/p/bcc74f37aba5
-来源：简书
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 2、BuildContext的理解。
    BuildContext就是相应Widget对于的xxxElement。
 
@@ -760,8 +755,37 @@ FocusScope其实是Focus子类。 我们通过Focus和FocusScope来进行键盘�
     同时pubspec.lock的版本会随着pubspec.yaml的增加而增加，但是并不会随着yaml文件版本的降低而降低。
 
 
+1.13
+1、flutter中的列表。SingleScrollView、ListView、CustomScrollView（配合sliver使用）、MergeableMaterial（注意其使用方式，可以动态的进行增加和删除）。
+2、ListWheelScrollView，齿轮滚动。
+3、async 和 async* 的区别。
+    async 返回是Future类型，使用return 返回。
+    async* 返回是Stream。使用 yield 返回。
+    Stream<int> countForOneMinute() async* {
+      for (int i = 1; i <= 60; i++) {
+        await Future.delayed(const Duration(seconds: 1));//延迟一秒
+        yield i;//生成Stream的一个值
+      }
+    }
+    输出日志：
+    /*
+    flutter: _bids----null：ConnectionState.waiting
+    flutter: _bids----1：ConnectionState.active
+    flutter: _bids----2：ConnectionState.done
+    */
+
+    Future<int> doSomeLongTask() async { //异步函数
+      await Future.delayed(const Duration(seconds: 1));
+      return 42;
+    }
+
+    了解Stream和Future的区别。 以及StreamBuilder和FutureBuilder的使用。
+
+4、Dismissible侧滑删除。
+
+5、KeepAlive。flutter中，如果控件从屏幕中移除，那么widget将会销毁。比如ListView，如果滚动，我们发现item的initState方法会频繁调用。
 
 
-
-
-
+1.19
+1、WillPopScope的调用时机，只有用户点击返回键或者通过手势返回才会调用。
+    通过Navigator.pod是不会调用的。

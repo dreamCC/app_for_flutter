@@ -12,7 +12,7 @@ class ValueLisentedBuilderPage extends StatefulWidget {
 class _ValueLisentedBuilderPageState extends State<ValueLisentedBuilderPage> {
 
 
-  ValueNotifier<List<String>> _value = ValueNotifier<List<String>>([]);
+  ValueNotifier<int> _value = ValueNotifier<int>(1);
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +27,7 @@ class _ValueLisentedBuilderPageState extends State<ValueLisentedBuilderPage> {
           ValueListenableBuilder(
               valueListenable: _value,
               builder: (context, value, child) {
+                print("000");
                 return Text('value is ${value.toString()}');
               }
           ),
@@ -34,7 +35,7 @@ class _ValueLisentedBuilderPageState extends State<ValueLisentedBuilderPage> {
           RaisedButton(
               onPressed: () {
 
-
+                _value.value += 1;
               }
           ),
         ],

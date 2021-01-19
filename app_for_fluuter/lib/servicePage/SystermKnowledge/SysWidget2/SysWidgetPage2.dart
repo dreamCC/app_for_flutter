@@ -1,6 +1,8 @@
 
 import 'package:app_for_fluuter/servicePage/SystermKnowledge/SysWidget2/builder_page.dart';
 import 'package:app_for_fluuter/servicePage/SystermKnowledge/SysWidget2/dart_init_page.dart';
+import 'package:app_for_fluuter/servicePage/SystermKnowledge/SysWidget2/dismissible_page.dart';
+import 'package:app_for_fluuter/servicePage/SystermKnowledge/SysWidget2/keep_alive_page.dart';
 import 'package:app_for_fluuter/servicePage/SystermKnowledge/SysWidget2/mergeable_material_page.dart';
 import 'package:app_for_fluuter/servicePage/SystermKnowledge/SysWidget2/page_view_page.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,7 @@ class SysWidgetPage2 extends StatefulWidget {
 class _SysWidgetPage2State extends State<SysWidgetPage2> {
 
   List<String> _list = ["TestSystermWidgetPage","PlatformViewPage",'ImageResourcesPage','FocusPage',
-  "SetValuePage", 'BuilderPage', 'PageView', 'DartInitPage', 'MergeableMaterial'];
+  "SetValuePage", 'BuilderPage', 'PageView', 'DartInitPage', 'MergeableMaterial','KeepAlive', 'Dismissible'];
 
 
 
@@ -57,6 +59,10 @@ class _SysWidgetPage2State extends State<SysWidgetPage2> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => DartInitPage()));
                 }else if(index == 8){
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => MergeableMaterialPage()));
+                }else if(index == 9){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => KeepAlivePage()));
+                }else if(index == 10){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => DismissiblePage()));
                 }else {
 
 
