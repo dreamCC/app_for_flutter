@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
@@ -20,22 +21,36 @@ class DartFuturePage extends StatefulWidget {
   }
 }
 
+
 class _DartFuturePageState extends State<DartFuturePage> {
 
 
-  List<String> _list = ["micro Task","event Task","Isolate Task","flutter computer",""];
+  List<String> _list = ["micro Task","event Task","Isolate Task","flutter computer","==="];
+
+
+  Future<void> _doSomeFuture() async{
+   return Future((){
+      for(int i = 0; i < 10000; i++) {
+        print("输出值---$i");
+      }
+
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("DartFuturePage"),
+        actions: [
+          CupertinoActivityIndicator()
+        ],
       ),
       body: ListView.separated(
           itemBuilder: (context, index){
 
             return ListTile(
-              onTap: (){
+              onTap: () async{
 
                 if(index == 0){
 
@@ -102,12 +117,22 @@ class _DartFuturePageState extends State<DartFuturePage> {
                   Isolate.spawn(_spawnValue, "Isolate1");
                   Isolate.spawn(_spawnValue, "Isolate2");
                   print('Isolate end');
-                }else if(index == 3){
+                }else if(index == 3) {
 
-                  print('compute start');
+                  // print('compute start');
                   compute(_spawnValue, "computer");
-                  compute(_spawnValue, "computer1");
-                  print('compute end');
+                  // compute(_spawnValue, "computer1");
+                  // print('compute end');
+
+                  // Isolate.spawn((message) {
+                  //     _doSomeFuture();
+                  // }, 100);
+
+
+                  print("--- dodo");
+                }else {
+
+                  print("============点击了");
 
                 }
 

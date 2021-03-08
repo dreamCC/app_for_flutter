@@ -22,6 +22,7 @@ class ThirdMapPlugin {
     };
     final bool results = await _channel.invokeMethod('openBaiduMap', arguments);
     return results;
+    
   }
 
   // 打开高德地图

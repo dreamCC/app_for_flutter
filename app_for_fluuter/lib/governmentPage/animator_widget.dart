@@ -72,6 +72,7 @@ class _AnimationWidgetS extends State<AnimationWidget> with SingleTickerProvider
   Widget build(BuildContext context) {
 
 
+    
     return Scaffold(
       appBar: AppBar(
         title: Text('AnimationWidget'),
